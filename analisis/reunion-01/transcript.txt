@@ -1,0 +1,387 @@
+Speaker A: ¿No habíamos especificado cuál era el MVP?
+
+Speaker B: Yo lo tengo acá, ahora sí.
+
+Speaker A: Bueno, a mí me parece que más va el tema de la tecnología. Básicamente nosotros lo que vamos a estar trabajando es sobre la documentación funcional, digamos, ponernos de acuerdo sobre todo lo que es el mapa de todo lo que ven ustedes como construible de la aplicación, en corto, mediano y largo plazo. Tal son 4 renglones más, digamos, en tal altura, no son títulos. Después hacés doble clic en alguno, pero sobre todo para mí es importante machar este proyecto con los plazos que tenés con el colegio de arquitectos. Me parece que eso es clave, es decir, para dar el primer paso firme, decir che, les doy algo como para que los tipos vean esto es serio, que hay una respuesta, que firmaron Dalí y López.
+
+Speaker B: Totalmente.
+
+Speaker A: Entonces me parece que para mí sería ese el primer foco en el proceso de mantenimiento.
+
+Speaker B: ¿Cómo hacemos eso?
+
+Speaker A: Agarramos todas las funcionalidades de lo que hay y definimos, como definen ustedes que están más del lado funcional y conocen más el negocio, cuál sería el mínimo, el modelo mínimo, digamos, para ese Con ese objetivo no para el mercado abierto, no para el banco—
+
+Speaker B: Sí estamos de acuerdo totalmente, lo podemos ver respecto de cómo nos vamos a organizar los chicos independientemente de que como están con más know-how al respecto y otras cuestiones y aparte porque quieran o no vamos a terminar integrando después todo eso pero Yo lo pondría más como un modo supervisor o algo así, porque están enfocados en la otra cuestión. Yo podría ser una especie de aportador de know-how, qué sé yo, estaría mucho más en contacto con vos, todo lo que necesité, todo lo que quieras pedir de datos y demás. Y bueno, y por ahí vos, Seba, que estás todavía más en la parte de tecnología y demás, Bueno, un brazo y un hombre, pero es el lazo entre nosotros, entre los dos equipos, ¿viste?
+
+Speaker A: Sí, sí, sí.
+
+Speaker B: El owner, el lazo entre los dos equipos.
+
+Speaker A: Sí, exactamente, va más de eso. Y después, bueno, nada, tratemos de analizar un poco después la— Yo lo pensaba a nivel no solamente como proyecto, digamos, porque acá estamos hablando de proyectos, sino como a nivel unidad de negocio, si la querés ver. Nosotros con Franco estábamos hablando de qué tipo de necesitábamos todo, y la verdad que vamos a ser nosotros dos. No vemos mucho más, a lo mejor en el futuro, qué sé yo.
+
+Speaker C: Hoy para el mantenimiento te diría, porque va a estar un equipo enfocado en lo que son próximos desarrollos y otro mantener lo que ya existe. Como estamos en una etapa realmente donde está desarrollándose todo, yo realmente puedo darlo a cabo.
+
+Speaker B: Vas a poder captar todo. Sí, está perfecto, estamos de acuerdo.
+
+Speaker C: Aparte, por ahí tienes unas ventajas eso, viste, porque nosotros pensamos que suma más fricción que realmente aportar a que salga más rápido todo.
+
+Speaker B: Sí, sí, sí.
+
+Speaker A: Igualmente hay una parte de mesa de ayuda, cosas por el estilo, que ya tienen que ver con los datos del cliente.
+
+Speaker B: Totalmente.
+
+Speaker A: Digamos que, bueno, que a una parte también la puedes robotizar, digamos, bueno, con moda, inteligente, etcétera, lo puedes hacer, pero tenés que tener algo, eso es inevitable.
+
+Speaker B: Totalmente, sí, sí, sí, no, eso es así. Pero aparte que siempre se te van a decir, los desarrollos no terminan nunca, siempre vas a tener que ir haciendo upgrade, upgrade, por diferentes cuestiones.
+
+Speaker A: Y más esto que estás pensando vos ahorita de decirte, me integro en un ecosistema Nosotros todavía tenemos que hacer de alguna manera el análisis de mercadeo, un poco de producto, el producto extendido, el producto de servicio, etcétera, que seguramente le va a pegar al desarrollo, digamos, con nuevas funcionalidades, nuevos requisitos, etcétera. Bueno, eso es lo que va a pasar, no hay problema.
+
+Speaker D: ¿Querés que ya les cuente lo que hay actualmente? Que en definitiva, actualmente la marca tasación inmuebles ya está, como tenemos el dominio, había algo ya hecho, lo estuvimos revisando con Leán, básicamente sirve como para entender, empezar a empañarse de qué es lo que se necesita para tasar un inmueble.
+
+Speaker B: Que gira más para un CAU, qué formulario, qué preguntas, todo lo que el mundo lo conoce.
+
+Speaker D: Una maqueta.
+
+Speaker A: Funcionar de alguna manera.
+
+Speaker D: Pero hay que hacerlo de nuevo. Es mejor hacerlo de nuevo que agarrar eso y malgastarlo. Pero bueno, sirve como para eso, para entenderlo. Y bueno, nada, la idea, entiendo que lo que más o menos había hablado era por ahí entonces nosotros brindar un repositorio de los que ya tenemos, ir ahí armando las cosas y lo vamos viendo, vamos haciendo reuniones.
+
+Speaker A: Un poco menores, pero no voy a definir qué son. Ustedes tampoco, nada, ir a la nube.
+
+Speaker D: Tema de arquitectura y todo, trabajamos con una arquitectura, no sé, el Franco decide todo.
+
+Speaker C: ¿Dónde tienen las cosas? ¿Tienen on-premise o prefieren cloud?
+
+Speaker A: Eso es.
+
+Speaker D: No, a ver, nosotros nuestra idea sería meter AWS en algunas cosas y tener repositorio en GitLab con el CI/CD armado, con eso. ¿Y cómo hacés el seguimiento de proyectos? No miramos, no tenemos como las ceremonias así bien planteadas.
+
+Speaker A: No, no son ceremonias, sino para si tiene alguna herramienta, si trabaja con un dedazo, con un Canva, con un PowerPoint.
+
+Speaker D: Sí, sí, sí, tenemos el tablerito de Trello y ahí lo vamos haciendo. Pero bueno, en definitiva no nos vamos a estar metiendo permanente, yo entiendo que por eso te digo que los que dirigíamos en esas ceremonias.
+
+Speaker A: Pero nosotros en esos lugares ¿Esto por ahí nos puede afectar más a nosotros? Obviamente a Franco sí, pero nosotros para definir una herramienta, no solamente de seguimiento del proyecto, sino de todo lo que tiene que ver con la documentación del proyecto, que tengamos un lugar común. Nosotros trabajamos 22 herramientas más o menos. Podemos trabajar en Azure DevOps, podemos trabajar en Jira, podemos hacerlo con Jira más Confluence para documentación, más el otro. Son herramientas no tan simples de administrar. Digamos, nosotros tenemos 70 flacos en el lado nuestro trabajando con Jira, pero tengo 2 flacos que se dedican solo a eso. No es soplar y hacer botella. Podemos usar un Trello, podemos usar algo más sencillo.
+
+Speaker C: Yo recomiendo, yo he probado todas y en este caso uso la que mejor aplica a nosotros.
+
+Speaker B: Porque tiene todo.
+
+Speaker C: Es muy flexible y te sirve como Kanban, como wiki, como pasaje de información, como mail, como calendario, como motor de transcripción, como motor de texto.
+
+Speaker D: Ese es otro tema. Nosotros somos muy open source de la forma en la que tratamos de usar, no sé, no pagamos ninguna herramienta básicamente. Ese tema es Notion.
+
+Speaker C: Yo lo puedo llevar internamente y compartirles a ustedes. ¿Cuál es el tema? Si la idea es manejo interno entre ellos dos, o dos solos, hago con mi Notion.
+
+Speaker B: La idea es tener una herramienta de seguimiento del proyecto para que ustedes puedan ver el progreso.
+
+Speaker C: Si yo subo un caso de uso, un historial de usuario, un ticket, fuera como lo organicemos, y ven que está en ese proceso de completado, en test, finalizado, ustedes ven que hay progreso. Está la manera de comunicarnos asincronamente. Si ustedes ven que eso no es totalmente necesario, ya que se resuelve con una ceremonia, un mensaje, un mail, que puede, primero venís con un Notion, si no, estoy de acuerdo, hacemos algo más open source, vamos con Trello, vamos con un Google Drive, vamos con cosas más abiertas.
+
+Speaker D: Para mí un Trello, para tablero, me torqué acá, no pasa nada, si no metemos un Notion, o sea, lo armás vos y nos vas compartiendo, estamos de visores, es lo que digo, no quiero como enroscar y meter trabajo en toda esa parte, acá tiene que andar el producto y eso es lo fundamental.
+
+Speaker B: Está bien, estamos de acuerdo, a mí me parece bien igual lo del Notion Para que por ahí con ceremonias y eso vamos a tener un tiempo establecido como para reunirnos, pero por ahí lo sumamos. Puede apenas lo tenga listo y lo suba, o organizamos nosotros en la casa. ¿Qué costo tiene el Notion si tú pudieses buscar? No, pero puede ser gratuito si él lo sube a su cuenta.
+
+Speaker D: Claro, él lo sube, lo usa solo, es gratuito y su cuenta de Notion.
+
+Speaker C: Funciona así, vos tenés espacio de trabajo propio y de equipo. Lo de equipo te cobra por cada asiento. Lo propio, que es lo que yo tengo, para mi organización profesional, me lo pago.
+
+Speaker B: Y vos podés tener más de un proyecto en el día. Exactamente, no tengo limitado.
+
+Speaker C: Yo lo que puedo hacer es, en vez de ustedes meterse al Notion, les paso una captura, les paso un PDF entero del Kanban actual y ustedes lo pueden leer.
+
+Speaker D: Igual cuando nos compartís, siendo nosotros, podemos verlo.
+
+Speaker A: Claro, podemos verlo.
+
+Speaker D: Lo podés compartir en solo lectura y poder meternos a ver nosotros.
+
+Speaker B: Lo que sería bueno es poder ir viendo los artefactos que ya estén terminados. Diagramas, cuestiones, no sé, ver, no sé si van a manejar historia de usuario, especificaciones de caso de uso, lo que sea, lo van a manejar como lo quieran hacer ustedes.
+
+Speaker C: Ahí no sé cuál es su preferencia.
+
+Speaker D: Mira, no, para mí mientras menos te traben a ojo, yo entiendo que todas esas cosas son buenas para las organizaciones gigantes y acá es un producto, como decía recién, tiene que funcionar. Así que vamos directamente con un MVP y vamos revisando esas cosas y lo vamos haciendo como funcionalmente. No me gustaría que por pedir historias de usuario y cosas así se demora el producto, creo yo.
+
+Speaker C: Sí, o sea, la realidad, explico por qué hacemos tanta inversión en eso. Nosotros en la empresa, la manera que desarrollamos, realmente ya nosotros ya no codificamos, nosotros nos dedicamos al análisis y usamos una metodología que se denomina SDD, se llama Spectrum Development, significa desarrollo orientado a las especificaciones. Las historias de usuario no sirven porque las queramos leer, sirven para alimentar un motor de inteligencia artificial y que lo desarrolle por nosotros. No, porque nosotros pegamos a analizar el software, pero eso no sirve de trazabilidad a nosotros para saber cuál es la competitud de una épica, la competencia de una tarea. Entiendo, y tú también te acordás con la MP, me ha pasado mil veces de perderme en la parafernalia o en la extracción de un tablero más que desarrollar el producto. Pero para mí lo ideal es encontrar el punto dulce entre las dos cosas, porque te perdés de una, que es la parte de cómo va el proyecto, o te perdés en desarrollo. Nosotros hoy en día creo que hemos logrado ese punto dulce Por eso tomo ambos hemisferios, me quedo con el punto medio.
+
+Speaker B: ¿Me parece bien? Sí, a nosotros nos sirve ver la tasación y ya eso también para eso, de forma simple, digamos.
+
+Speaker C: Sin complicaciones, no hace falta hacer un diagrama, un board, todo eso.
+
+Speaker A: No, como lo manejen ustedes, pero de hecho gran parte también de la documentación está generada por IA también, o sea, no es que te va a poner a escribir la historia del modelo. Claro, está muy automatizado eso. Sí, pero a mí me es importante más que nada con el tema de desarrollo de ideas alrededor del producto. Porque me muero un poco de la tecnología. El desarrollo de ideas nosotros tenemos que trabajar un poco sobre eso.
+
+Speaker B: Yo le voy a hacer, yo por eso con el Franco cuando me apunte, cuando empecés, antes de que empecés si querés, nos reunimos y te voy a hacer los casos. Te voy a hacer los casos para que vos los veas. Así, a ver, lo podría hacer ahora. Voy a tasar un inmueble, te voy a hacer las mímicas, las comunicaciones, eso como para que vos vayas más o menos haciéndote la historia o en tu escenario de representación acá, digas: ah, y después lo que puedo hacer, por supuesto que vos me lo comentaste, que es muy importante, que ya está, pero es los casos de uso básicos, pero cómo lo usaría un inmobiliario, cómo lo usaría un responsable del banco, cómo lo usaría un particular, cómo lo usaríamos nosotros inclusive. Los diferentes casos de uso también se pueden... es sencillo, no es tan complejo, pero bueno, yo estoy para eso y estaría bueno que por ahí lo hagamos porque vos ahí te vas a hacer una idea. La idea, suponete, porque los casos de uso son importantes, tienen como una identidad así El caso de uso para un inmobiliario, hace de cuenta que el teléfono para el inmobiliario sería como el fusil para el soldado, la herramienta. Es decir, esto tiene que ser, tenemos que convertir a que el inmobiliario considere a tasa inmueble como el disparador para levantar inmuebles, así que haga así y tiene 100 inmuebles acá adentro, y que haga así y ya escupa los PDF. Para el inmobiliario. Para el inmobiliario que va a tasar, para el inmobiliario que es owner, como mi hermano, un dashboard con los datos, con las métricas, con cuánto tasó uno, cuánto tasó el otro, qué hemos tasado, en qué valores, en qué zona. Básicos, dashboard estoy hablando. Todos esos casos de uso yo te los puedo ir mostrando sencillamente y vos te vas a ir dando cuenta y vas a decir: ajá, perfecto. Después, el banquero o el abogado o Flaco que necesiten datos y bueno puedan acceder a una cuenta y tengan el dashboard. Todo eso está. Yo estoy para eso.
+
+Speaker C: Sí, la idea es, por eso preguntarles en lo de la grabación, nosotros lo que hacemos es todas las conversaciones que tenemos que sean de captura de requerimientos, no registros, requerimientos, es grabarla, transcribirla y procesarla.
+
+Speaker B: Perfecto.
+
+Speaker C: ¿Por qué hacemos eso? Porque me permite a mí prestar atención y no tener que estar tecleando. Nuestra idea es, yo estoy de acuerdo con vos y te escuché mencionar 13 casos de uso, que para el MVP nos enfoquemos en los casos de uso, la metodología de casos de uso, no metodología de historia de usuario, porque la metodología de historia de usuario nos va a servir más que nada cuando queramos meterle más cosas al producto. Cuando no hay nada hecho, casos de uso mejor. Entonces formulemos casos de uso y que esos casos de uso hagan ese MVP. La idea sería que cuando nosotros conversemos establezcamos como una especie de marco de la conversación. No es libre, pero sí tiene un formato. ¿Cuál es el formato? Es como decir: ¿Cuál es el caso de uso? ¿Cuáles son los requisitos? ¿Cuáles son las precondiciones y las poscondiciones? Y eso termina en una idea. Como decir: yo quiero una máquina expendedora que me dé Coca. Cuando termine de darme la Coca, me devuelva el vuelto y yo me voy a mi casa. Bueno, toda esa historia hace un caso de uso. Y así sucesivamente. Y esa forma es como más encapsulado y eso hace las cosas más rápidas.
+
+Speaker B: ¿Ven?
+
+Speaker C: Sale la idea. Si nosotros logramos establecer ese método de comunicación, desarrolló más rápido.
+
+Speaker B: Yo tengo un documento para darte que le mostré al Sebastián, lo estuvieron viendo los chicos, te puede servir justamente para mucho de eso, para casos de uso, cómo podría llegar a ser la cronología de una de las tasa actividades. La cronología me refiero de dónde empieza y cómo termina y cuáles son las variantes. Están más o menos acá, te lo puedo pasar, te lo voy a pasar.
+
+Speaker D: Pero sí, para que se entienda, básicamente la app va a apuntar a Mobile First, una vista donde se cargue la propiedad con estos formularios que te decía que tenían, que habíamos visto ya en el tasación inmueble, donde los datos que le va a pedir básicamente son fotos del inmueble, una descripción del inmueble, toda la info que se le pueda dar que lleve a ver si los materiales, todas esas cosas va dentro de la descripción, la geolocalización Cuando empieza a procesar, o sea, cuando tenga que hacer todo ese análisis, ahí es donde está lo que va a haber que resolver y ver cómo se hace, que va a ser una IA donde vemos si va a estar entrenada con la base de datos que nosotros tenemos, o si ustedes van a armar una nueva base de datos que se va a ir alimentando de la que tenemos. Ya lo vamos a definir, pero tiene que devolver a un precio razonable y que después, o sea, ese va a ser el ida y vuelta que vamos a tener que ir trabajando.
+
+Speaker C: ¿Cuál es lo principal? ¿Uber de tasación o autotasador?
+
+Speaker D: Primero tenemos que resolver el core, que va a ser ese, el núcleo va a ser la IA que tase, y yo entiendo que después va a tener que resolver, o sea, su lado va a tener que ser ese, esa parte de uberizar donde Recibe las cosas, cobra, pero por prioridades sería la lógica de la urbanización.
+
+Speaker B: Eso sería lo principal de la aplicación y luego la tasa inmueble. Para el MIPCI, porque al colegio tenemos que ir mostrándole que hay una cosa que se llama tasa inmueble y que el vago pueda apretar y loguearse, por ejemplo, o loguearse o que lo reconozca como para después poder ir a hacer la tasación. Que releve los datos, que guarde los datos, y si se comunica con la IA o no, no hay problema en esta primera instancia porque los datos van a quedar guardados, van a quedar registrados, se los van a poder compartir al banco o al particular que pidió la tasación. Ya te voy a mostrar, porque el proceso está bueno.
+
+Speaker C: Sí, perdón, pregunta respecto a esto, ¿cuál es más o menos en la empresa ¿Ustedes el conocimiento en lo que es algoritmos de predicción, machine learning, conocen, han estudiado más o menos? Yo he usado, pero más que nada conexiones, API, no me he metido en, viste que hay capas, nunca en un modelo, nunca en ajustado.
+
+Speaker B: En la facultad alguna vez, o usaba Hugging Face, alguna cuestión así, pero muy por encima la verdad. Lo que hemos estado implementando nosotros ha sido más a nivel de APIs y conexión, digamos.
+
+Speaker C: Claro, le regulé el dato a ChatGPT.
+
+Speaker B: Fine tuning, cuestiones hemos hecho, pero todo más acá, más superficial, digamos, más para producción. Bien, bien, bien.
+
+Speaker C: Bueno, eso es importante. Y la pregunta asociada a eso, esto también quedó claro, vamos con el tema del autotasador.
+
+Speaker B: El tema del autotasador, lo que importan son los datos.
+
+Speaker C: ¿De dónde se nutre ese modelo, vamos a decirle?
+
+Speaker B: Y nosotros tenemos la base de datos.
+
+Speaker D: Históricamente, el valor de los inmuebles a nivel país podríamos decir, tenemos miles, cientos de miles de registros. Tenemos que ver cómo lo definimos, cómo lo procesamos.
+
+Speaker B: ¿Cómo lo teníamos resuelto? Porque tasación es—
+
+Speaker D: Eso es lo que te decía, tenemos que terminar de encontrarle la manera de que O entrenar un modelo o directamente a ver cómo lo vamos construyendo.
+
+Speaker C: Yo lo tiro ahora, ya que está bastante más avanzada mi tesis de ingeniería, la que hice cuando me recibí.
+
+Speaker B: Acepto. ¿Acepto qué cosa? Acepto tasaciones. Ah, mira qué copado. Bueno, viste cómo son las cosas. Vamos ahí, vamos ahí. Es decir que ya está.
+
+Speaker C: Pero no de venta, de alquiler, pero lo mismo. Vos le ponés el precio de venta y el precio de alquiler. Dentro de lo que es mi formación, yo no desarrollo software per se, yo me dedico al machine learning, que es tratamiento de datos, limpieza de datos, entrenamiento de modelos propios, despliegue, etcétera. O sea, yo todo lo que es backend, frontend, eso lo hago, pero no es mi área de expertise. Yo me interesa mucho esta parte, es donde yo más aporte puedo hacer.
+
+Speaker B: Nosotros habíamos resuelto el tema de la siguiente manera: tenemos una base de datos inmoclick de hace 20 años con no sé qué, millones de registros de más de 20 años, más de 400 inmobiliarias publicando todos los días inmuebles, datos, 20 años, muchos datos. No le hemos metido un enchufe de Maxi Plan y sería genial. A mí me encantaría porque van a salir unos datos como excavar la tierra no sé cuánto para atrás. Sabes los datos que sacas y empiezas a tirar un datito así, los favores. ¿Y dónde saco esos datos? Tan certificado. Pero bueno, ya vendrá su momento de poder vender todo eso. ¿Cómo lo hemos solucionado? ¿Cómo funciona el sistema? Yo soy tasador, voy, abro la aplicación, me dice: bienvenido, Cristian, ¿qué vas a hacer? ¿Quieres tasar un inmueble nuevo o quieres ir al dashboard para ver cómo están tus cosas? No, voy a tasar un inmueble nuevo. Ahora sí me va a decir: bueno, ¿Querés recorrer el inmueble e ir describiéndomelo y después subir la foto? Sí, por favor. Listo, pum. Mirá, el inmueble está muy lindo, tiene 3 dormitorios, 2 baños, tiene buen acceso, hay una roda ahí que ha roto algo ahí, pero bueno, papapapa, lo escuchó el robot, pum, guardó, clavó foto, video, guardó. Señor, muy bien, muchas gracias, nos vemos. Al propietario. Cuando guardó, ya el equipo, si hay un equipo, sabe que en el flujo que ya hizo la inspección ocular, está hecha la inspección ocular, perfecto. Digo, la otra vista de un CEO que está viendo cómo están laburando sus clientes. Y el del banco, por ejemplo, el del banco que había contratado el servicio también lo está viendo en tiempo real. Bueno, hizo el guardado, ¿qué hace cuando se guarda? Entra a comité de tasación para que el comité lo tase. Pero a su vez vos ya le mandaste, cuando hiciste el inmueble, le mandaste al robotomus, al robotomus que es un actor que nosotros tenemos dentro de un asistente dentro de tasación inmuebles, se llama robotomus. ¿Qué hace el robotomus? El robotomus agarra y dice: a ver, ¿qué hizo Cristian? Ah, mira, fue a tasar una casa en Godicruz, 3 dormitorios, 2 baños, mira cómo la describió. Primero lo que hace, lo ordena todo y lo enchufa. Casa, casa, 3 dormitorios, 3 dormitorios, va llenando porque eso fue textual, fue describiendo, llenó la ficha. Y por el otro lado se la pasa al robotomus la ficha, y ¿qué hace el robotomus? Dice: ah, genial, mira, está tasando esto, voy a ir a buscar datos comparables. ¿Dónde los va a buscar? A la base de datos inmoclick, imposible, porque se va a demorar un millón de años en buscar esos datos. Entonces hicimos una base de datos intermedia que se llama Métricas. Que lo que nosotros hemos hecho, que lo vamos a tener que hacer porque no sé si lo voy a recuperar todo eso, pero es en métricas generamos casilleros con datos. Por ejemplo, metro cuadrado de cruz según zona, metro cuadrado de esto. Es decir, vamos resumiendo. Entonces el robotomus, ¿qué hace? No le va a preguntar a inmoclick, le va a preguntar a métricas y chao. Lo otro que traemos de inmoclick, que hacemos las consultas por 3 meses, cuántas casas de 3 dormitorios, 2 baños en esta zona publicaste en este mes 300, listo, te trae ese dato, 300. Entonces cuando alguien, el tasador, yo Cristian, estoy tasando, el robotomus me va a decir mira, tengo buenos datos para vos, como tenemos muchos datos, estoy contrastando con 300 inmuebles, el dato que te voy a dar es de calidad, y para nosotros el valor de ese inmueble es X porque he comparado y pim pum pam. Ese es un índice, y el otro índice, que es el que tenemos que desarrollar, y va a tener que desarrollar, va a ser muy fácil. Seguramente vamos a tener que agarrar el libro de Fitt y Servini, que son dos tasadores reconocidos en Argentina, y un poco la mayoría de los corredores inmobiliarios han estudiado, se han hecho un curso de tasación con ese manual, Fitt y Servini, que es una, que es ni siquiera es así, pero es más bien como tasarían técnicamente los arquitectos. Que hacen, a diferencia de robotomus. Robotomus hace un scraping, agarra y busca valores de mercado publicados y te dice, mira, el promedio de valores es este, que es bastante real y bastante cercano a la realidad, porque es más casi cercano a la realidad el valor de publicación y no el valor técnico de los arquitectos. El valor técnico de los arquitectos es una reconstrucción. Ellos te dicen cuántos metros cuadrados cubiertos tenés, $200. ¿Qué categoría? Premium. Se fijan, $3.000 dólares. $200 por $3.000 dólares, pan. El terreno, tanto. Le suman para eso. A ver, coeficiente. ¿Qué coeficiente le vamos a poner? Frente y fondo. Y el terreno tiene, ¿qué coeficiente le vamos a poner? Coeficiente de antigüedad. La casa es estrenar, listo, 0%, no le descuenta nada. La casa tiene 20 años, le descuenta X%. Y nosotros en tasa inmueble vamos a tener esos dos índices.
+
+Speaker C: Que el segundo es una cuenta, básicamente, no es tanto la inferencia, no es una predicción.
+
+Speaker B: No, más bien es para los tasadores tener en cuenta los diferentes índices.
+
+Speaker A: Pero es una fórmula lo que te dice Franco, es una fórmula.
+
+Speaker B: Es una fórmula, fórmula, fórmula, sí, sí. Y actúa por abajo, es decir, los vagos van a estar tasando igual que si es una sola tasación, va a describir. El tema es que cuando entren esos datos, les vamos a mandar los datos. A robotomus para que nos diga en base a las comparaciones, y le vamos a mandar esos mismos datos a la fórmula del Colegio de Arquitectos. Entonces, todavía más profesionales vamos a ser, ¿entendés? Vamos a tener un valor de mercado, un valor técnico de tasación de arquitectos, validado por el Colegio de Arquitectos, y las tasaciones van a ser certificadas Nosotros vamos a ser un Uber. ¿Qué va a hacer? Hacé de cuenta, tu viejo tiene un departamento en Guaymayén, lo quiere tasar porque lo va a vender. Entonces él agarra, se mete en tasación inmuebles, no tiene que ni escribir: "Hola, tasación inmuebles, quiero tasar un departamento en Guaymayén, que esto que lo otro, pim pum pam, soy...", y lo manda. ¿Qué va a hacer el tasación inmuebles nuestro? Agarra esa solicitud, se fija todos los tasadores en la zona, Sí, queda inscrito 100 inmobiliarias ahí en la zona. Inclusive la podemos calificar. El solicitante podría elegir si quiere la inmobiliaria que le tase o el tasador que le tase, porque podemos hacer una red de tasadores, porque los tasadores se especializan. Es decir, no es lo mismo un tasador para una finca que un tasador para una casa, para un departamento. Son especialistas. Sí, los podéis ir rankeando, le podéis ir poniendo estrellas si tasan más unos que otros. Es un Uber, es un Uber. Cualquiera que tenga, claro, cualquiera que nosotros vamos a verificar que esté matriculado. De hecho, le vamos a dar un curso de uso de la plataforma y algunas virtudes para ser cocucciado.
+
+Speaker C: Bueno, sí, una pregunta que me olvidé. Respecto del autotasador este que lo hacéis infiriendo con datos históricos, se ha recolectado, ¿hay alguna manera de homologarlo? Porque está bueno decir esto está OK, pero es mejor si decís está OK y encima está homologado por esta entidad que te dice que son conformes los datos.
+
+Speaker B: Bueno, ahí le dejo a usted la respuesta. Si pudiera homologarse sería genial.
+
+Speaker D: Sí, pero el solo hecho de que se sepa que va a desprenderse de lo que es el paraguas de cocucci, yo creo que se va a entender.
+
+Speaker A: ¿Conocen Zillow?
+
+Speaker B: Sí. La aplicación.
+
+Speaker C: Bueno, el Z-Value, ¿sí? Eso, por ejemplo, tengo entendido que está homologado. Claro, esa es la pregunta.
+
+Speaker D: Después lo podemos llevar y homologar y decir, mira, esta es la entidad de certificación.
+
+Speaker B: Avanzamos por ahí también.
+
+Speaker C: Yo no soy del mundo inmobiliario, son preguntas que de alguna manera...
+
+Speaker B: Sí, habría que ver. A mí siempre me interesó eso. Una manera de homologarlo, aunque no nos demos cuenta, medio indiferentemente, inconscientemente, es justamente esto, un acuerdo con el Colegio de Arquitectos. Porque una vez que te metés con el Colegio de Arquitectos ya te valía. El Colegio de Arquitectos, nosotros ahora justamente tenemos 6 meses, ya hemos consumido casi un mes o 25 días, no sé cuánto habrá pasado de la firma. Ya hemos venido laburando, de hecho esto es parte del laburo. Es decir que nos están quedando 5 meses de los 6. El acuerdo con el Colegio de Arquitectos, un acuerdo que yo me siento con ustedes acá en el café y les digo: che, 6 meses más, 2 meses más. Por supuesto que le tenemos que llevar algo, porque si no le llevamos nada, no van a hacer nada. Es bastante flexible su género. Lo importante es que esto, justamente, con el profesionalismo que le estamos metiendo, y yo sé del know-how que le estamos metiendo, y yo sé del beneficio que puede llegar a ser el día de mañana cuando lo validemos. Pasados los 6 meses, si un arquitecto lo usan y dicen: che, qué copado, le vamos a hacer hacer un informe, porque eso está dentro del acuerdo, nos tienen que hacer un informe el Colegio de Arquitectos donde validen a las empresas que hicieron y al código este que hicieron. Y ahí podemos meter que validen algo de la base de datos, los datos, porque a ver, no estamos mintiendo, inmoclick viene funcionando de hace, qué sé yo, tal vez si se te mete una norma ISO y te dice: che flaco, pero esa base de datos es un desastre, Y bueno, probablemente porque la base de datos tiene 20 años y debe estar emparchada y debe estar bastante— pero bueno, buenísimo che que estemos acá, buenísimo el proyecto, vamos para adelante. Una pregunta.
+
+Speaker C: Sin más dudas del negocio, un poquito de dudas técnicas. Hoy en día ustedes me dijeron que tienen despegón todo, no le desé. ¿tiene alguna preferencia de framework, lenguaje de programación?
+
+Speaker B: Nada, libre uso. Yo lo que sí, como preferencia de desarrollo, de organización, de estructura, vamos a decir, entiendo que un sistema tipo Uber es lo que más se nos acomoda porque están los mostradores bien definidos, viste, inclusive Inclusive después se te va a armar en el tema del login, aunque uno no lo quiera, las posibles diferentes condiciones que pueden ser más de una. Es decir, un tasador puede ser tasador, pero puede ser consumidor de la tasación.
+
+Speaker A: Hay un tema que estoy probando a ver, que no es nada menor, que es que vos vas a tener como ciertas entidades, esto a nivel modelo de datos, para pensar puedo hacerlo. Puedo tener como ciertas entidades, que las entidades, una entidad es una inmobiliaria, un banco, son clientes que a su vez agrupan inmuebles para publicar. Además tienen tasadores habilitados para su, porque no tasan con cualquiera, tasan con lo que ellos quieren tasar habitualmente. Ese tasador a su vez puede tasar para esa entidad o para otra. Normal, sería que fuese así. Entonces tenés como una parte de administración de entidad, puede ser una segunda fase, pero lo que tenemos que pensar es tal cual.
+
+Speaker B: Sí, sí, sí, son como burbujas dentro de burbujas. Voy a un caso que podría hacerlo, por ejemplo, y sería un buen cliente: Remax. Remax vos tenés, primer burbuja sería el tasador, el vaguito que va y tasa, que va a tener su dashboard que dice, che, tasé 10 inmuebles en el me. Después estás en la segunda capa, la segunda burbuja, que es el owner de esa empresa que tiene 100 flacos de esos. Entonces el dashboard ya integra no solamente los datos de ese vaguito, sino de los otros 100, sí. Y esa es una buena. Después resulta que esa agencia REMAC forma parte de todos los REMAC de Argentina, y con el Fran fuimos a hablar con el Federico tanto y nos contrató el sistema de tasa inmueble porque resulta que tiene a los 1000 RE/MAX de Argentina y los puede ver quién tasó, quién no. Imagínate, el banco te va a decir dame esa herramienta.
+
+Speaker C: Para comprar una pseudo marca blanca o alguna cosa así.
+
+Speaker B: O sistema de aplicación específica de algo que no lo hay.
+
+Speaker A: El modelo se llama modelo entidad, vos hacés el convenio con una entidad, ¿cierto? Su cliente es la entidad y esa entidad tiene una unidad organizativa debajo que es una aplicación casi completa. Tiene tasadores, tiene inmuebles. A su vez, él es dueño de sus datos, dueño en el sentido que lo dice Christian. Che, te mandé a tasar el bien a ver cómo va, lo tomaron, me lo devolvieron. El tasador puede ver mi estadística, puede ver información mía. Era el socio con la entidad de cobro, digamos, es lo mismo. Y esa entidad dentro de eso tiene toda la unidad organizativa. Después, eso lo tenemos que pensar, después viene otra que es básicamente el mundo abierto, que es otro tema. Para mí es una entidad en sí misma, una entidad más en el mundo abierto. Esa entidad, el particular, todos los particulares, todo el universo de potenciales clientes. El particular es un cliente tuyo, ¿me entendés? Vamos a pensarlo eso un poquito, no me queda totalmente claro cómo sería. El de la entidad me queda clarísimo.
+
+Speaker B: No, yo hay un caso de uso que lo practiqué mentalmente, después no lo continué mucho, que es el... Porque, ¿qué pasa? Las tasaciones va a haber que pagarlas. Al tasador hay que ponerle 50 lucas. Así que el que pide la tasación la va a tener que poner. ¿Qué pasa? Yo me voy al Poder Judicial, hacemos convenio, hacemos el modelo con el Poder Judicial y le decimos: flaco, abonate, hacete este plan, pero no sé si se va a dar. Estoy pensando en voz alta, ¿no? Y tenés una bolsa de 1000 tasaciones, por ejemplo, Todos los meses X cantidad y tienen 1000 tasaciones free, pueden utilizar 100, 200, 500 o las 1000. Sí, bueno, esos son casos que, por ejemplo, en lo que estábamos hablando, porque cuando el tasador va a tasar va a querer cobrar. Nosotros, por ejemplo, acá en inmobiliaria, cuando el tasador va a tasar, cobró 300 hoy en inmobiliaria, de acuerdo, 150 para el tasador, 150 para la inmobiliaria. En el caso nuestro de tasación inmueble Uber, va a ser 90% para el tasador, 10% para tasa inmueble.
+
+Speaker A: Ojo, si vos tenés una inmobiliaria, la inmobiliaria va a haber una repartija.
+
+Speaker B: Por eso, ahí vengo con todas esas sub—
+
+Speaker A: El tema para definir ahí, a mí me parece lo más complejo, porque el tema es definir qué construcción No me parece tan complejo, no son tantas variables.
+
+Speaker B: Yo el caso de uso que le estaba diciendo, perdón, para no colgarme. Poder judicial, poder judicial puede decir, tomamos un trato con tasa inmueble, ahora pueden pedir las tasaciones a tasainmuebles.com. Y hay que ver cómo arreglan esto que el otro, si los abogados pagan esto y ya está incluida o no. Pero en donde voy yo es que nosotros vamos a tener que tener en cuenta que pueden existir esos casos, que vengan empresas que nos contraten un paquete de tasaciones mensuales, sí, y que quieran pagar a fin de mes o que quieran pagar al principio. Entonces, como una suscripción, pero de todas maneras ya lo hablamos, vos, Seba, dijiste que había variantes, había posibilidades, pero también son otros casos de uso.
+
+Speaker A: Digo, para cerrar, porque si no se va a ir todo el tema. Lo único para mí que tenemos que terminar de definir es todo el tema de cobranza. Está muy lindo que repartir para un lado, para otro, sino cómo cobra el tipo, viste, cómo lo paga, le da un medio de pago.
+
+Speaker B: Por ejemplo, en la página web de tasacioninmuebles.com, si vos eras particular, vos podías solicitar un tasador. Si solicitabas un tasador, medio que ya pasaba al proceso físico, el tasador te llamaba Te preguntaba el tasa inmueble. Inclusive vos podías hacer 2 pedidos de tasación o 3, pero vamos al más sencillo. Vos pedías una tasación directamente diciendo necesito una tasación y dejabas el número y alguien de acá te llamaba.
+
+Speaker C: Sí, es decir, captación que no tenés que decir nada.
+
+Speaker B: Te llaman de acá y te dicen ¿dónde es el terreno? Es en La Valle, no sé qué. Y bueno, ahí vamos a ver, pero lo llamaban. Es decir, no nos daba muchos datos y lo llamábamos para que nos tasen. El segundo caso sería que, por ejemplo, vos querés tasar tu propiedad y tasa inmueble te ofrecía que autocompletaras los datos de tu propiedad, que vos fueses tu propio tasador. Entonces vos relevabas los datos de tu casa, se los mandabas a tasa inmueble, y tasa inmueble iba a robotomus, preguntaba todas estas cuestiones y te tiraba un PDF con la descripción. Para eso tenías que garpar, sí, para eso tenías que primero te daba el QR, vos pagabas y te llegaba el informe. Y después te daba la tercera opción, que si ese informe querías que fuese firmado por un colegiado, pagabas el plus y venía la firma del colegiado.
+
+Speaker C: O sea, son por tiros, digamos.
+
+Speaker B: Claro, pero tasa inmueble, web trava, y pedías una tasación y tenías esas 3 opciones rápidas. Te llamaba directamente, que pondremos un chatbot o hacemos llamar a alguien, apretar un botón, quiero que te metas en una casa, bueno, y te llama. Esa era la más básica, pero captás, captás, captás. No importa, después ves si sirve o no sirve. La captación es importante porque nadie tampoco te va a pedir una tasación porque tiene ganas de boludear. Y si bueno, tiene ganas de boludear, pero más o menos así. Y el pago, sí, pago QR. Lo que pasa que sí es cierto que hay que analizar porque no todas las tasaciones valen lo mismo. Entonces ahí empieza una parte un poquito más fina que hoy día con la tecnología la vamos a resolver. No salen lo mismo. Perdón, el tema de área no va a ser tan complejo. Nosotros vamos a suplir eso justamente porque, por ejemplo, si hoy día a mí cocucci me piden una tasación acá y tengo que ir a Lavalle, le tengo que cobrar un plus por distancia. Me tengo que ir a Loma El Culo, pero el tasacion inmueble va a evitar eso porque el tasacion inmueble le va a asignar un tasador de La Valle, no va a asignar un tasador de acá, excepto que el que me lo solicita quiere que vaya a cocucci como tasador de inmuebles, pero si no, le va a asignar un lugar que esté más cerca, no le va a asignar el lugar que esté allá en Loma El Culo. Entonces ese vamos a evitar. Lo que no vamos a evitar, que no es lo mismo tasar un castillo de 1500 metros cuadrados cubiertos que una casa de 100 metros cuadrados cubiertos. Entonces esas tabulaciones, que no son menores, que las vamos a tener que ir seguramente y el sistema va a ir aprendiendo, las vamos a tener que tener porque la tasación no es fija.
+
+Speaker D: ¿Era esa la duda respecto pago o vos decías pasarela de pago?
+
+Speaker A: No, no, bueno, las dos cosas. La pasarela de pago y el flujo de pago, ahí me lo explicó bien el modelo de tasa inmueble.
+
+Speaker D: Sí, yo creo que hoy en día integrarse.
+
+Speaker C: La pregunta era por el lado de caso de uso. Yo quiero que tasen mi propiedad. Yo, previo a que me convoquen con alguien, o sea, me maché con alguien, ya tengo que subir mis datos. Yo tengo que decir cuántos metros cuadrados cubiertos.
+
+Speaker B: Es lo que estaba explicando recién, sí o no, eso lo elegí vos.
+
+Speaker C: Y como nosotros entonces Machamos el tema del precio y demás.
+
+Speaker B: No, porque hay tipos de tasadores, tasadores de casas más grandes, más chicas. Sí, sí, no, porque ahí vas a tener que tener un diálogo. Es decir, yo te explico cómo estaba tasa inmueble. Vos te metías tasainmuebles.com y te decía solicitar tasador, y cuando solicitabas tasador te daba dos opciones: que me llamen y te pedía 3 datos nada más, que me llamen, o te daba la opción de que vos pudieras dar datos de tu inmueble para que te lo tasen. Eso depende de cada usuario. Si hay un usuario que no quiere dar datos, que me llamen, entonces lo hace más privado.
+
+Speaker C: Y se hace directamente humano a humano.
+
+Speaker B: Humano a humano, ponemos un chatbot, que me llamen y que lo llame un chatbot, que lo llame un chatbot y le diga: ¿Cómo le va, señor Sebastián? Usted llamó porque quiere tasar un inmueble, por favor dígame la zona, por favor dígame. Yo ya lo, un chatbot. Y ahí, perdón, y ahí el chatbot lo canalizaría al sistema. Mire, quiere tasar una casa de 3 dormitorios, 2 baños, un modelo. ¿Qué tasador tenemos por acá? Al principio no vamos a tener tasadores, vamos a tener los arquitectos que nos han designado, pero bueno, el sistema va a estar. Listo, mando a este arquitecto. Si no tenías la posibilidad, cuando decías quiero que me tasen el inmueble, quiere para, decía algo así, no era joda, para mejorar el tiempo de tasación, es decir, para que sea más, quiere usted ya compartir los datos, qué inmueble quiere tasar. Entonces ahí le abría el diálogo, sí, quiero tasar una casa, 3 dormitorios, 2 baños, ¿quiere subir fotos? Y estaba empezando Estaba haciendo de tasador el vago, me estaba relevando el inmueble, estaba usando la aplicación para relevar el inmueble, me mandaba los datos, ahí cobrábamos y después le entregábamos el informe. Básicamente eso.
+
+Speaker D: Para que se entienda, en definitiva, la herramienta a futuro tiene que llegar a ser eso, que cualquiera pueda usarla para tasar pagando y todo eso. Hoy por hoy el convenio que tenemos con Ingeniería de Arquitectos no nos podemos saltear. Tazadores, por lo cual vamos a obeliscar esa parte.
+
+Speaker A: Sí, sí, una persona de su casa, sí, claro, tasador o no, la diferencia, tasadores van a ser todos porque llegó tasa inmueble básicamente.
+
+Speaker B: Si no está en tu casa y puedes tazar todo, cualquiera, hasta una ama de casa, hasta una empleada doméstica, si quiere tazarle la casa al tipo podría agarrar la tasa inmueble le dice la carta, le saca foto y la tasa. ¿Cuál es la diferencia grande? Robotomus, que vamos a ser nosotros, va a cobrar muy barato por un dato, por un informe, que es una tasación, pero es un informe no certificado, no firmado, o firmado por tasa inmueble, pero no es Tasa inmuebles es una herramienta del sistema, no sería una persona física que pueda firmar y hacerse responsable de la tasación. Para hacerse responsable de la tasación, la gran diferencia que no lo habíamos mencionado, es la inspección ocular del inmueble, es decir, ir in situ, ir hasta el inmueble. Vos me podés pedir la tasación de tu casa, se la pasaste a tasa inmueble, yo te paso el informe, tasa inmueble te cobró 20.000 pesos. Por ese informe. Ahora vamos a decir: che, fui al banco y me dijeron no está firmado por nadie y yo quiero sacar una hipoteca. Ah, le voy a pedir a Tasa Inmuebles que me lo certifique. Agarra esa misma tasación, le pide al corredor inmobiliario Francisco Puebla que la firme porque él fue a hacer la inspección ocular. Y como no había ido a hacer la inspección ocular porque el informe se lo dio Tasa Inmuebles directamente con fotos y geolocalización, Cuando tasa inmueble le diga a Francisco: la tasación tiene que pasar de simple a certificada, y la vas a certificar vos, él va a tener que ir hasta el inmueble. Entonces ahí, de 20.000 va a pasar a valer 300.000, es decir, va a tener que pagar 280.000 pesos más por la firma.
+
+Speaker C: Nada más.
+
+Speaker B: Vamos a cobrar la firma, la firma y las inspecciones oculares. Bueno, paso a seguir. Ustedes nos dirán, estamos medio en manos suyas.
+
+Speaker C: Yo propongo que yo voy a tomar toda esta reunión y toda la información que me pasen y voy a hacer una especie de diagrama o un entendimiento de qué es lo que tiene que funcionar a largo plazo y el MVP este, que este MVP no puede ser MVP arquitecto, que cumpla con esto, o sea, que pase necesidad. Nos juntamos la semana que viene, un día convenido, cuando yo termine de hacer todo esto, les muestro y ustedes me dicen dale, y ahí vemos cómo empezamos a hacerlo.
+
+Speaker B: Le hago una consulta, ¿armaremos un grupo de WhatsApp de nosotros por cuestiones que tengan que ver, viste, novedades? Justo a mí me salió algo y lo tengo que comunicar y no te lo comunico a vos y es para el otro, que estemos Bueno, a ver si te voy a pasar ya. Sí, ahí va, se va a pasárselo al Franco. Al Franco, armamos el grupo entonces. ¿Quiere poner tasación, modelo?
+
+Speaker A: Contarte todo. Una cosa, ¿habrá posibilidades de ver lo que vos me mostraste, la aplicación vieja?
+
+Speaker B: No importa.
+
+Speaker A: Sí, que no es tanto como el de Ana, digamos, pero todo es la vida.
+
+Speaker B: Logueate ahí, por favor, con CC. Siéntate. No, no, una sola C y acá abajo. Bueno, este es el dashboard para el tasador inmobiliario, para el owner sería acá. Yo soy owner, ve, yo acá tengo todos los tasadores. Silvana Pacheco tasó una casa y está en para comité de tasación, todavía no se la ha valorado, por eso el color. Esta ya está valorada. Bien, Cristian Cocucci tasó, Silvana Pacheco tasó, pim pum pam. Acá está el cliente, acá está la fecha de tasaciones y acá están los ID de las tasaciones. Yo quiero buscar una tasación o quiero filtrar, digo A ver las tasaciones que ha hecho Cristian. Y aparecen nada más que todas las tasaciones que ha hecho. Bueno, no sé, acá justo apareció. Habría que ver si está funcionando, pero bueno. Acá podés filtrar por lo que querás. O querés filtrar por, a ver, todas las tasaciones de casa.
+
+Speaker C: Sí, se entiende igual.
+
+Speaker B: Se entiende, se entiende. Bueno, perdón. Entonces, esto son las métricas que no están acá, pero acá estaban. Esto es el dashboard propuesto por mí. En su momento. Acá, ¿qué te decía? Acá te decía: este mes hemos llevado tasado 20 inmuebles.
+
+Speaker C: Estos son tasadores y yo soy, no sé, RE/MAX, y estos son mis tasadores.
+
+Speaker B: Bien, esto es cocucci y estos son los tasadores de cocucci, que son todos los corredores inmobiliarios, y que utilizan la aplicación tasa inmueble para tasar. Bien, por eso que están entrando acá. Acá yo, que soy el owner, Los otros también pueden tener acceso, ¿no? Sí. Acá, el owner me dice que lo voy a mostrar acá porque si no, no lo van a entender. Sí, bueno. Robotomus, no, un módulo contable, tecnología ergonómica muy grande. Acá, dashboard tasadores, estos serían los KPIs, los dashboards, por ejemplo, ¿qué va a aparecer ahí? Tasaciones del mes, ¿qué va a aparecer? Comparación versus mes anterior. Yo soy owner de la empresa, digo, che, mira, venimos bien, hemos tasado 20 inmuebles al día de la fecha, hemos tasado 20 inmuebles más que el año pasado.
+
+Speaker C: La idea es tener un dashboard de métricas agregadas, desagregadas, que sea variable, que tenga filtros, que pueda hacer lo que yo quiera.
+
+Speaker B: Que podamos ir cambiando. Yo he puesto algunos acá.
+
+Speaker C: Que estén embebidos en la página. Sí, que estén embebidos.
+
+Speaker B: En el dashboard del owner. O en el dashboard de cada uno también en particular. Lo que pasa es que en el dato de cada uno en particular yo había pensado que aparezcan mis datos. Nada más, y no los datos de los otros, excepto algunos.
+
+Speaker C: Pregunta: ¿Y qué pasa si supongamos soy dueño de 2 inmobiliarias? Sí, tendría que ir arriba a la derecha y elijo qué inmobiliaria, entonces los datos se refrescan con los datos de la otra inmobiliaria.
+
+Speaker B: Sí, podemos hacerlo así, tipo Google. Mira, entonces tiempo promedio de tasación, zonas más tasadas, son datos, pero datos muy valiosos para un owner de una empresa. Bueno, esto ya se lo pasé al Seba, lo vas a tener.
+
+Speaker C: Pregunta, ¿y esas métricas son fijas o les gustaría que sean variables? Porque ponele que pase un cliente y se le ocurre una métrica que nosotros no.
+
+Speaker B: Sí, podríamos hacerlas variables en toda la posibilidad de que, qué sé yo, si me decís Cristian, le puedo abrir el juego para que ellos se armen sus propias métricas. Pero en principio la gente, yo vengo con mucha experiencia desarrollo sistemas para empresas, es decir, para mi empresa. La resistencia a los cambios son grandes y muchas veces uno gasta pólvora encima, que son cosas muy buenas, pero es como que la gente va por acá y es difícil. No está mal, lo podemos implementar.
+
+Speaker C: Mi opinión personal es que en términos, y eso lo tengo en cuenta, en términos de cuánto dolor resuelve cada cosa. La aplicación mobile es el punto copado de todo esto. El dashboard está buenísimo, pero el dashboard te va a andar cuando ya tengas datos corriendo, o cuando ya el entendimiento previo de la aplicación ya esté ahí. Porque si vos no entendés cómo funciona, o no sabés qué es un tasador, o no sabés de qué te sirve la métrica.
+
+Speaker B: Sí, sí, es cierto. Esto para un para el gerente de una inmobiliaria, o para esto puede ser el dashboard de un banco también, porque el flaco del banco va a estar diciendo habrá que mejorarlo, vamos a tener que mejorar muchas cosas con inteligencia. También probablemente el dashboard para el banco debería decirle cuántas tasaciones tiene asignadas y quiénes la están haciendo. Y bueno, pero un dashboard parecido. Bueno, fíjate vos, Vamos a la tasación, a ver esta tasación que ha hecho Cristian. Fíjate vos que acá empieza, se te abre comité de tasación, OK. Es decir que si yo esta tasación la guardo, la guardo, que no está guardada porque no está tasada todavía, habría que tasarla, sí, habría que ponerle un valor. A ver si nos permite guardar.
+
+Speaker C: No está llegando.
+
+Speaker B: No, no está llegando. Sí, es para mostrarte nada más. Acá lo importante de esto es como nosotros habíamos entendido el funcionamiento. Que ya lo vas a entender. ¿Quieres que te lo muestre del otro lado? Vamos a ir del otro lado, del principio. Vamos a ir desde el principio. Mira qué pasa, yo abrí el dashboard en mi teléfono móvil. Sí, te voy a hacer directamente. ¿Cuál es el IP? 70 y pico.
+
+Speaker C: Es 72. 22.61.40.77. Si no, mira, mira, te tengo esta magia de Apple.
+
+Speaker B: ¿Lo has abrido acá? Sí, está copiado.
+
+Speaker C: Ya tienes copiado todo.
+
+Speaker B: ¿Entonces qué hago?
+
+Speaker C: Anda a Chrome, ahí sí, pégalo. Ahí le das a borrarlo y pegar.
+
+Speaker B: Me voy a loguear, yo soy inmobiliario.
+
+Speaker C: Un poco están maduros, pero no sé si es lo mismo.
+
+Speaker B: No, me parece que es lo mismo. Bueno, viste que yo te decía que la aplicación iba a poner qué querés hacer, si una nueva tasación o ir directamente al dashboard. Bueno, acá me mandó directamente al dashboard, pero yo voy a poner nueva tasación. Bien. Soy vos, tasador. Sí, nueva tasación.
+
+Speaker C: Pero fui a una casa, estoy parado enfrente de la casa, voy a tasarla.
+
+Speaker B: Me dice nueva tasación, ¿qué tipo de inmueble? ¿Casa, departamento, terreno, galpón, local, oficina?
+
+Speaker C: Bien, esos son definidos.
+
+Speaker B: Sí, porque según el tipo es como lo que ahora con inteligencia artificial esto va a cambiar todo, porque mi idea es dar las dos opciones. Si quieren llenar un formulario así como está acá, que lo llenen, pero mi idea es que describan el inmueble y a partir de la descripción nosotros podemos dejar. Lo que sí vamos a hacer es poner a robotomus cuando vaya a tasar alguien, poner a robotomus como asistente para decir: ¿querés que te ayudo con la descripción del inmueble? Te ayudo con la descripción. Parece tonto, pero va a ser una herramienta muy fuerte esa. Porque vos fíjate que nosotros tenemos dentro del potencial de clientes que tenemos, tenemos que categorizar los clientes. Nos pasa con inmoclick. Vos tenés los clientes de la vida, de toda la vida, que tienen sus mañas y boludean, pero tenés siempre todos los clientes que empiezan de cero. Para los clientes que empiezan de cero, una herramienta como inmoclick, por ejemplo, son herramientas muy fuertes. Yo no te mostré el otro día, que eso hay que verlo también, porque vos te sentás con un cliente y si no tenés un bagaje de experiencia de haber ido a ver inmuebles, de haber dado datos, ¿de dónde sacás para hablar con el cliente? Tenés que generar confianza al cliente, y el cliente ve que vos no que va a hacer su primera tasación. Y el inmobiliario joven o la inmobiliaria joven, y con la herramienta tasa inmueble, el flaco antes de llegar a la casa puede fijarse valores de la zona, puede fijarse si se han tasado ahí. Entonces la persona va y se sienta y va con ya otra película, porque va a decir: sí, conozco la zona, se han hecho muchas valoraciones, la casa de allá, la casa de allá. Al tipo que tenía enfrente le cambiaste la película totalmente. Bueno, nada, las dos opciones. Yo haría las dos opciones. Estoy tasando, sí, voy a decir que es casa. ¿Qué pasa? Si es casa, no es lo mismo que departamento, que terreno, porque una casa tenéis que poner metro cuadrado cubierto el modelo de un terreno no hace falta. Entonces no es lo mismo.
+
+Speaker C: Son como plantillas de redactar.
+
+Speaker B: Bueno, acá puse qué casa, acá pongo qué motivo: tasación para venta, tasación para alquiler, particulares para asesoramiento de valores, tasación para empresas, expropiaciones, divisiones, fraccionamientos, estudios, tasación judicial extrajudicial. Quieras o no, esto influye inclusive en los valores porque es algo, a ver, La dinámica de los negocios, el intercambio, tiene que ver con muchas cosas, lo sabemos. No es lo mismo un inmueble que va a tasar para una cuestión judicial o extrajudicial, que tal vez no tiene ni propietario, a otro que, o bueno, diferentes casos. Ubicación, acá tocabas ubicación, geolocalizabas en el mapa así y ya registrabas la ubicación. Detalles, superficie total, superficie construible, pim pum pam. Esto lo que digo yo, en persa, qué sé yo, eso se debería rellenar solo. Como acá, descripción del inmueble, que lo habíamos hecho nosotros. Yo acá usaba esto, por ejemplo: la casa cuenta con 3 dormitorios, 2 baños, está muy bien ubicada, tiene pileta, tiene un quincho, hay una escuela cerca, está en buena conservación. No obstante, seguramente va a haber que hacerle algún tipo de inversión. Ponía acá guardar, un sello. Esto lo que yo digo para directamente inclusive hacer el relevamiento del inmueble, la tasación, ya no estar poniendo pipí acá y después. Entonces vos terminabas de hacer esto, esto sería lo que es la inspección ocular y ponías guardar. Cuando te ponía guardar acá Vámonos y nos vamos al dashboard de nuevo. Ah, no, puse nueva tasación. Nos vamos a ir al dashboard de nuevo acá. Entonces ya te aparecía la inspección ocular acá, es decir, te aparecía con este color. Yo entraba, esto qué pasa cuando ya entraba, como que se había hecho la inspección ocular, ya estaba el relevamiento, esto Podés llegar a tu oficina, a tu escritorio, que ahora no sería tanto el caso, pero podías editarla. Editarla significa cambiar algún dato.
+
+Speaker C: Cuando la editabas y la guardabas, no es lo mismo crear una inspección pendiente que guardarla y darla como finalizada. ¿O cuándo finaliza una inspección?
+
+Speaker B: La inspección finaliza cuando ya te fuiste de la casa. Lo que pasa que ahí quedan los datos guardados del relevamiento, pero no está tasada. Bien, eso es inspección ocular, relevamiento documentado. Bien, pasa al estado, pasa al estado a tasar o por tasar, entra en una lista de tasaciones. Tenemos 30 vendedores y los 30 tasan. Se pelean por atasar. Llega el día jueves, día de tasaciones. Yo tengo una tasación, yo tengo una tasación, yo tengo una tasación, yo tengo una tasación. Se sientan. Yo primero, yo primero, yo primero. No hay orden. No hay orden cronológico. ¿Cuándo la hiciste vos tal día? ¿Cuándo la hiciste vos tal día?
+
+Speaker C: No hay.
+
+Speaker B: Nosotros sí se lo vamos a generar a ellos. Es decir que cuando ellos se vayan a reunir, porque van a haber diferentes casos de uso. Este es un caso de uso muy importante porque un poco el ejemplo que decía Seba, que es que es una empresa que al final terminamos siendo un mini Uber, porque a nosotros nos entran las tasaciones y yo se las voy derivando a los tasadores. Después, hasta ahí llega. Después los tasadores es una lucha para qué tasa, cómo tasamos. Fijate vos, know-how. Y la inmobiliaria tiene que tasar No importa si vos fuiste hoy y el otro fue hace una semana, pero si la de hoy es una oportunidad, ¡hay que ser inteligente! Son pequeñas cosas. Con la sutileza de la inteligencia artificial, inclusive esas pequeñas cosas sensibles las vamos a poder tener en cuenta.
+
+Speaker C: De todas maneras, tenemos que ver.
+
+Speaker B: Entonces, ¿qué pasa? Yo soy el dueño de la empresa, me meto a un tasa inmueble y digo: mira, el Christian ya tasó y está para tasar. Cuando está para tasar, cuando está para tasar, cuando está para tasar, entra en comité de tasación. Yo te estoy mostrando el camino donde cumplimos todos los pasos y queremos ser perfectos. Tal vez no todos los usuarios van a hacer esto porque una vez que vos guardaste envió las consultas al robotomus y al Colegio de Arquitectos, y en realidad ya debería prepararte el PDF y ya te debería decir: che, flaco, esta es la tasación, ¿querés editarla? Porque la vas a poder permitir editar. Sí, sí, bueno, listo. Yo pienso que ese va a ser casi el caso más de uso que va a haber, porque los flacos, mientras más rápido hagan las cosas, olvídate. Ahora, como somos profesionales, y tenemos una trazabilidad y vamos a poder validar, homologar nuestro sistema. Fíjate que ahí el documento que te muestro te lo dice. Esa tasación que yo te hacé y que ya fui a visitar y que quedó en el dashboard como que está lista para tasar, ahora entra en comité de tasación. ¿Y qué es el comité de tasación? Es la misma tasación, la misma ficha del inmueble, pero con otras vistas. ¿Por qué con otras vistas? Porque se entiende que vamos a hacer 5, 6, 7, inclusive pueden ser con videoconferencia. Vamos a tasar ese inmueble, entonces yo lo tengo que exponer. Entonces, para exponerlo hemos hecho una vista en donde de un lado están todos los campos que yo pueda ir leyendo, porque yo lo expongo. Esto es así, esto funciona así: yo muestro la pantalla del inmueble, esta pantalla, y acá me aparecía Suponete la geolocalización que me la mostraba, y acá abajo iban apareciendo las fotos, iban corriendo las fotos, y yo tenía acá al costado la descripción. Entonces, por ejemplo, ustedes estaban acá, hagan de cuenta que están viendo acá, yo les decía: miren chicos, la casa que vamos a tasar es un inmueble que cuenta— yo iba leyendo, sí, y después te leía características, pim pum pam, y ustedes mientras yo iba leyendo y le iba contando todo, íbamos discerniendo Ustedes veían la geolocalización y veían las fotos o videos. Entonces yo termino de expresar, doy mis argumentos y digo: mira, yo creo que esta casa vale tanto por tales cuestiones. Listo, Cristian dijo que vale tanto, Sebastián dijo que vale tanto, Franco dijo que vale tanto, robotomus dijo que vale tanto, y la IA y la escuela de arquitectos dijo que vale tanto. Le ponemos un número, eso es rápido, no importa, es tan bueno que cada uno diga su número. ¿Por qué? Y eso yo lo tenía previsto inclusive de irlo dejando registrado, porque ¿qué pasa? Después se hace la venta. Si nosotros registramos el valor de transacción, que en inmoclick lo registramos muchas veces, si el propietario quiere valor de transacción, yo puedo cotejar el valor de transacción con el valor de tasación y ver cuál fue el tasador que más le pega. —No es menor, pero bueno, estamos muy abajo del agua, no pasa nada, algún día lo podremos hacer. Hoy día el InviPic tenemos que hacerlo mucho más sencillo. Entonces el flaco, este es el comité de tasación, y acá en el comité de tasación, fíjate, aparece robotomus. ¿Qué dice robotomus? Te da un valor, y acá te dice cantidad de valoración, es decir, esto lo que decía ¿Con cuántos inmuebles lo hemos contrastado? Como no tiene inmuebles contrastados con ninguno, la valoración es nula. Si no te dice que es regular, si no te dice que es más o menos buena, si no te dice que es buena o si no te dice que es excelente.
+
+Speaker C: Bueno, eso para ponerle un número, en machine learning eso se llama inferencia. La inferencia es, en base a datos históricos, en base a lo que veo en internet, estimo con un porcentaje de confianza que este valor vale esto. Y la confianza va del 90 al 99%.
+
+Speaker B: Nosotros en el informe de robotomus se lo marcábamos con un flujo de un dibujito como si fuese el volumen o como si fuese con colores, y te decía que es buenísima, que intermedia o que es mala.
+
+Speaker C: Sí, o sea, técnicamente la inferencia, la calidad de inferencia, casi nunca. O sea, ¿por qué sería mala o por qué debería ser mala? Porque faltan datos del lado del usuario, no porque esté mal entrenado.
+
+Speaker B: Si está mal entrenado, el problema no es Sí, sí, sí, tal cual.
+
+Speaker C: Entonces lo que podés decir vos es: y la tasación es del 70% de confianza. ¿Por qué? ¿Por qué del 70% de confianza? Y vos sabés que cuando yo predije el modelo, de las 10 variables que entraban al modelo, 7 tenía 2. Claro. Yo tengo 3 variables que no conozco, son desconocidas, y tuve que poner valor por defecto, valor 0, valor no aplica, valor 1, no sé, lo que sea. Sí, sí, sí. Eso reduce la calidad de la tasación. Sí, pero en sí la predicción del modelo, sí, eso es como decirte el sistema tiene que andar bien siempre, no es que a veces predice mal o predice bien, y eso depende de la calidad de los datos con los que nosotros lo entrenemos, no con tanto lo que el usuario nos dé.
+
+Speaker B: Sí, de hecho, fíjate que hay un informe que te voy a mandar, que te mandé, cuando habla del sistema nuestro de tasación, la IA que vamos a entrenar, Habla de, no habla, yo lo he puesto así, pero por una cuestión de tratar de ampliar un poco más, no habla nada más que traemos datos de inmoclick históricos, habla de scraping, es decir, habla de que robotomus nuestro no va a scrapear nada más que a la base de datos de inmoclick para saber valores, vamos a scrapear a todos los portales de venta de Argentina, por ejemplo.
+
+Speaker C: Bueno, ahí te tengo una notición. La tesis que yo hice, escrapea datos. ¿A quién le escrapea los datos? A una pro. ¿A ver qué hace una pro?
+
+Speaker B: Sí, es el competidor más grande.
+
+Speaker C: Yo le escrapeé los datos a una pro y con eso yo alimentaba la base de datos. Debo ponerle en el transcurso de un mes, escrapeé 4000 registros, 4000 propiedades. Las propiedades, si se vende o si se alquila, deja de estar publicada, pero son datos importantes.
+
+Speaker B: ¿O no ha tocado igual?
+
+Speaker C: Legalmente no se puede hacer. Esa es la respuesta corta. Legalmente no se puede hacer. En la práctica se puede hacer, sí. Con fines académicos.
+
+Speaker B: Y legalmente no se puede hacer porque estás utilizando herramientas que hacen que quiten dignidad. No, porque, a ver, nadie te puede privar. Yo, supónete, me viene el juez, le digo: oye, flaco, yo me metí a Zona Pro. Y le escrapeé porque yo hice consultas, me empecé a anotar. A ver, ¿me explico lo que te digo? Si vos podés escrapear de una manera pública, si los datos están públicos, a ver, si yo se los busco por abajo, si yo se los busco por abajo y me traigo, no sé, más datos o hago un escrapeo con tanta, eso sí, se entiende que la justicia Pero, ¿cómo hace el que vende hoteles? ¿El que vende...? ¿De Pegar?
+
+Speaker C: No, de Tribago. Tribago empezó con scrapping. No, yo no te lo niego. Vamos a lo que es idóneo y la realidad. La realidad es que la gente lo hace. ¿Cuál es el tema? Que en los papeles hay una ley argentina que es la Ley de Protección de Datos que dice: mira, vos podés ver 5, 7... $4.000 ya hay otro propósito.
+
+Speaker B: Sí, sí, se puede. Yo solo lo puse como para ampliar porque el día mañana inclusive...
+
+Speaker C: Lo bueno de inmoclick es que si logramos hacer que sigan registrándose propiedades y la gente siga publicando su precio de venta eso es más comida para el modelo. Se sigue realimentando.
+
+Speaker B: Por supuesto. Eso es lo positivo. Bueno, a ver si ya terminamos, Sebas. Comité de tasación, acá estaba el robotomus como te digo, valoración de la tasación, acá en donde los flacos ponen estado de la tasación, pendiente, pasó a tasada. Fíjate vos que no tenía los campos de los usuarios, pero acá a mí me me hubiese gustado que cada flaco que tasó el inmueble lo ponga por separado y que ponga el valor, viste. Pero acá poníamos participantes, quienes habíamos participado, y ponía, lo habíamos hecho medio manual. Ya te pasé esto, que es este documento, que ahí te va a servir algo. Cualquier cosa que vos necesité, Fran, esto te pasé. Tasa inmueble es una plataforma de gestión de tasaciones inmobiliarias donde clientes solicitan tasaciones Profesionales la ejecutan. Un comité valida valores. Muy importante para nosotros porque esto es lo que decías vos, lo han homologado, lo han... Bueno, si nosotros proponemos algo realmente profesional y serio, seguro vamos a marcar una punta por lo menos. Solicitan tasaciones, profesionales las ejecutan, un comité valida valores apoyados por IA. Y el sistema genera documentación, métricas y facturación automática. Y ahí, bueno, tenés boludeces. Suponete, acá es un diagrama de flujo más o menos, pero te lo van a entender mejor acá. Flujo de nueva tasación: inicio nueva tasación, geolocalizar inmueble, completar datos básicos, asistente ayuda IA, subir fotografías, guardar borrador, enviar a comité. Flujo comité de tasación: tasación recibida, revisión del inmueble, consulta robotomus IAA, consulta valor colegio de arquitectos, discusión comité, definir valor final, guardar resolución, generar PDF, compartir al cliente.
+
+Speaker C: ¿Hasta dónde llega el MVP, arquitectos?
+
+Speaker B: Y el MVP, definámoslo, lo tenemos que definir. Yo te diría que por lo menos hasta acá sí, seguro, hasta acá, porque si no, no podríamos estar funcionando. Tenemos que poder hacer una tasación y poder compartirla.
+
+Speaker C: O sea, lo más complejo de todo esto Es esto, consultar con robotomus, porque eso lo podemos sacar. No, lo que puedo hacer es que eso lo podemos sacar. No, que un dato, te tiro este dato y que en realidad sea un promedio de datos de la zona, no entrenado. Tal cual.
+
+Speaker B: Yo me invento una base de datos y hace un promedio de los datos de GoPro, ponele. Franco, imagínate que yo te digo, nosotros, yo empezaría poniendo en Nosotros, cuando vayamos al colegio de arquitectos o al que le mostremos, por lo general, no todos, pero por lo general le estamos llevando figuritas de colores, en el sentido de que le estamos llevando cosas muy tecnológicas, muy nuevas.
+
+Speaker C: No es gente que está al día con tecnología, no.
+
+Speaker B: Son como mi mamá, como mi hermano, inclusive el Pablo, que es más o menos joven, pero usan las herramientas mientras se lo dé lo más servido posible. Por eso es que yo quiero hacer algo que vos, ¿cómo se lo vamos a vender a los inmobiliarios? Por ejemplo, ¿querés ahorrar en una tasación? ¿Querés tasar más rápido? ¿Querés ser más fiable en la tasación? Utilizá tasa inmueble. Hay que hacerlo para... Bueno, vamos a ordenarnos un poco.
+
+Speaker C: Yo voy a analizar esta documentación. Yo lo que pretendo hacer es para la próxima reunión tener un diseño de un Fronend. Vamos a poner la página web, y el mobile, o sea, las dos cosas. Los chicos recién hicieron una diferenciación que es el flujo de tasación, yo soy tasador, voy a la casa, saco la foto, asistente, eso tienes una aplicación mobile, no web. ¿Por qué no web? Para charlar la técnica, no te quiero aburrir con eso, vamos a hacerla mobile. Y el dashboard, lo que accede una persona que quiere ver cómo están trabajando los tasadores, sí es web, pero tiene su versión mobile que va a estar embebido en la versión mobile de tasación. Me parece bien.
+
+Speaker B: Y después, sí, veamos eso que decimos del modelo mínimo, vas a traer como para... y ahí ajustamos algunas cuestioncitas. Ajustamos si ponemos el robotomus, no lo ponemos, lo ponemos en construcción. El login, los logins, el login es importante, yo no sé si es un módulo muy difícil de... pero tampoco es algo que sea imprescindible, más bien lo podemos loguear nosotros, le podemos crear el usuario nosotros a los 10 arquitectos que vayan a participar, y no hace falta que hagan todo el proceso de login en la primera etapa. Lo que sí, por ahí más prioridad, es que si ellos ya están logueados, que la aplicación mobile se pueda abrir y puedas ir a hacer un relevamiento del inmueble y puedas guardar los datos. Por ejemplo, eso sería lo más básico, como para ir mostrando el esqueleto, lo lo articular. Y después podemos ir incorporando el tema de usuario. Tampoco, bueno, hay que ver qué nivel de complejidad le vayamos a querer dar. Lo charlamos en la próxima reunión, así no se nos hace tan extenso, ¿os parece?

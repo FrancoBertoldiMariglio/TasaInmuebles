@@ -1,0 +1,12 @@
+{
+  "mcpServers": {
+    "graphify-cocucci": {
+      "command": "/opt/miniconda3/bin/python3.12",
+      "args": [
+        "-m",
+        "graphify.serve",
+        "/Users/francobertoldi/Documents/Cocucci/graphify-out/graph.json"
+      ]
+    }
+  }
+}
