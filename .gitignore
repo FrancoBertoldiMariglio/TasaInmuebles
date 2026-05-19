@@ -3,8 +3,11 @@
 *.mp3
 *.wav
 
-# Graphify cache (derivable con /graphify --update)
-graphify-out/cache/
+# Graphify output (derivable con /graphify --update — no versionar)
+# Incluye graph.json/html, GRAPH_REPORT.md, cache/, converted/, manifests.
+# La config .graphifyignore SÍ se versiona (vive en la raíz).
+graphify-out/
+**/graphify-out/
 
 # Local Claude Code settings (per-user)
 .claude/settings.local.json
