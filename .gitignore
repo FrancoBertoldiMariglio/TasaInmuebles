@@ -1,0 +1,20 @@
+# Audios de reuniones (pesados, fuente primaria pero no versionable)
+*.m4a
+*.mp3
+*.wav
+
+# Graphify cache (derivable con /graphify --update)
+graphify-out/cache/
+
+# Local Claude Code settings (per-user)
+.claude/settings.local.json
+
+# Sistema
+.DS_Store
+Thumbs.db
+
+# Editor
+.vscode/
+.idea/
+*.swp
+*~
