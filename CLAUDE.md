@@ -76,6 +76,8 @@ Inicio → Geolocalizar → Datos básicos → Asistente IA (descripción) → F
 
 - **2026-04-19 (aprox.)** — Firma del acuerdo de 6 meses con el Colegio de Arquitectos. **CONFIRMAR FECHA EXACTA.**
 - **2026-05-14** — Reunión-01 (kickoff técnico). Transcripción completa en `analisis/reunion-01/transcript.txt`.
+- **2026-05-19** — Reunión-02 (refinamiento producto). Cerró decisiones clave: tipo de tasación dual venta+alquiler por default (DS-10), rentabilidad alquiler configurable (DS-09), Robotomus se mantiene como mock en MVP (DS-11), comité con propuestas individuales persistidas (DS-12). Transcripción en `analisis/reunion-02/transcript.txt`.
+- **2026-05-19** — **Migración del catálogo de requisitos a Notion.** 9 DBs bajo la página "Requisitos" son ahora source of truth. Los `.md` locales pre-migración quedan archivados en `analisis/archive/wiki-requisitos-pre-notion-2026-05-19/` como historia inmutable.
 - **2026-06-25 (Hito 1 — MVP demo Colegio)** — 6 semanas desde reunión-01. Demo intermedia funcional para el Colegio. El alcance del MVP está pensado contra esta fecha (no contra la fecha de cierre del acuerdo). Decisión confirmada por Franco el 2026-05-14.
 - **~2026-10-19 (Hito 2 — cierre acuerdo, estimado)** — Cierre formal del acuerdo de 6 meses con el Colegio. El MVP de las 6 semanas es la demo intermedia, no el entregable final. Entre Hito 1 y Hito 2 se ejecutan iteraciones que extienden el producto. **CONFIRMAR FECHA EXACTA.**
 
@@ -167,8 +169,9 @@ Decidido en reunión-01 por Franco y aceptado por la sociedad:
 - Sin ceremonias rígidas. Reuniones bajo demanda.
 
 ### Documentación
-- **Wiki del proyecto**: `proyecto/wiki/` (vacío todavía; se llenará a partir de esta reunión y siguientes).
-- **Análisis de fuentes primarias**: `analisis/` (transcripts, PDFs, imágenes).
+- **Catálogo de requisitos**: en **Notion** desde 2026-05-19. 9 bases de datos bajo la página "Requisitos": Casos de Uso (CU-UI), Requisitos Funcionales (RF), BR Software, BR-NEG, Atributos de Calidad (AC), Requisitos Globales (RG), Stakeholders, Glosario, Decisiones IR. Cada DB tiene `userDefined:ID` semántico estable (`BR-007`, `CU-UI-014`) y `Notion ID` auto-incremental con prefijo. Para crear, editar, renumerar o consultar cualquier artefacto: invocar el agente **`notion-expert`** (`.claude/agents/notion-expert.md`), que tiene el contexto completo de URLs, schemas y convenciones.
+- **Wiki del proyecto**: `proyecto/wiki/` reservada para ADRs (`proyecto/wiki/ADR/`), diseño (`proyecto/wiki/diseno/`), preguntas pendientes y documentos de alcance / arquitectura. **No** para catálogo de requisitos (eso vive en Notion).
+- **Análisis de fuentes primarias**: `analisis/` (transcripts, PDFs, imágenes, audios). Incluye `analisis/archive/` con snapshots históricos.
 - Generación de documentación apoyada en IA siempre que sea posible.
 
 ### Canales
@@ -182,17 +185,40 @@ Decidido en reunión-01 por Franco y aceptado por la sociedad:
 Cocucci/
 ├── CLAUDE.md            # Este archivo. Contexto persistente para Claude.
 ├── AGENTS.md            # Catálogo de agentes/skills/MCPs y cuándo invocarlos.
-├── analisis/            # Fuente primaria (PDFs, transcripciones, imágenes).
+├── .gitignore           # Excluye .m4a (audios), graphify-out/cache/, settings.local.json
+├── .claude/
+│   ├── agents/
+│   │   └── notion-expert.md   # Agente para todo cambio en catálogo de requisitos.
+│   └── settings.local.json    # Settings per-usuario (no versionado).
+├── analisis/            # Fuente primaria inmutable (PDFs, transcripts, audios).
 │   ├── reunion-01/
-│   │   ├── Palmares Open Mall 4.m4a    # Audio original.
-│   │   └── transcript.txt              # Transcripción de la reunión-01.
-│   ├── imgs/                            # Capturas WhatsApp de la maqueta vieja.
-│   └── "Tasa Inmuebles…".pdf           # Brief de Cocucci con diagramas y stack.
-└── proyecto/
-    └── wiki/            # Documentación viva del proyecto (casos de uso, ADRs, etc.).
+│   │   ├── grabacion.m4a          # Audio original (no versionado).
+│   │   └── transcript.txt
+│   ├── reunion-02/
+│   │   ├── grabacion.m4a
+│   │   └── transcript.txt
+│   ├── imgs/                       # Capturas WhatsApp de la maqueta vieja.
+│   ├── archive/
+│   │   └── wiki-requisitos-pre-notion-2026-05-19/  # Snapshot histórico
+│   │       │                                       # del catálogo .md
+│   │       │                                       # pre-migración Notion.
+│   │       ├── staging/            # CBR/CAC/CRF/RC nunca migrados a Notion.
+│   │       ├── 00_fundamentos.md
+│   │       ├── 02_enfoque-IR.md
+│   │       └── ...
+│   ├── mvp-decisions-2026-05-19.md # Snapshot del MVP curado.
+│   └── "Tasa Inmuebles…".pdf       # Brief de Cocucci con diagramas y stack.
+├── proyecto/
+│   └── wiki/            # Doc viva NO-requisitos: ADRs, diseño, alcance.
+│       ├── ADR/
+│       ├── diseno/
+│       ├── 00_preguntas_pendientes.md
+│       ├── 01_alcance_funcional.md
+│       └── 02_arquitectura.md
+└── graphify-out/        # Grafo de conocimiento del repo (derivable con /graphify --update).
 ```
 
-No hay todavía repo de código. Cuando se cree, irá a GitLab y se mantendrá fuera de este árbol o como submódulo, según se decida.
+Git inicializado el 2026-05-19 como red de seguridad. No hay todavía repo de código de la aplicación; cuando se cree, irá a GitLab y se mantendrá fuera de este árbol o como submódulo, según se decida.
 
 ---
 
@@ -202,23 +228,25 @@ No hay todavía repo de código. Cuando se cree, irá a GitLab y se mantendrá f
 
 1. **Idioma**: trabajar en **español rioplatense** (es el idioma de los stakeholders y de toda la documentación de origen). Código y comentarios técnicos pueden ir en inglés si el stack lo amerita.
 
-2. **No tocar `analisis/`** salvo lectura. Es fuente primaria inmutable. Nuevas transcripciones se agregan como `analisis/reunion-NN/transcript.txt`.
+2. **No tocar `analisis/`** salvo lectura. Es fuente primaria inmutable. Incluye `analisis/archive/wiki-requisitos-pre-notion-2026-05-19/`, que es el snapshot histórico del catálogo .md pre-migración Notion. Nuevas transcripciones se agregan como `analisis/reunion-NN/transcript.txt`.
 
 3. **Antes de proponer arquitectura o stack**, releer `CLAUDE.md` § 5 (decisión pendiente). No inventar decisiones cerradas que no estén registradas acá.
 
-4. **Antes de definir un caso de uso o flujo funcional**, revisar `analisis/reunion-01/transcript.txt` y el PDF de Cocucci. La sociedad ya consensuó muchas cosas que no hay que re-derivar.
+4. **Antes de definir un caso de uso o flujo funcional**, revisar las transcripciones de reuniones disponibles (`analisis/reunion-01/transcript.txt`, `analisis/reunion-02/transcript.txt`) y el PDF de Cocucci. La sociedad ya consensuó muchas cosas que no hay que re-derivar. Para el estado consolidado actual de cada artefacto, consultar **Notion** (no los .md archivados).
 
 5. **MVP-first**. Si una propuesta no aporta al objetivo "demo al Colegio de Arquitectos antes de octubre 2026", marcarla explícitamente como Fase 2 o Fase 3.
 
 6. **Casos de uso, no historias de usuario** (durante Fase 1). Formato: caso de uso → requisitos → precondiciones → poscondiciones.
 
-7. **No crear archivos `.md` espontáneos** en `proyecto/wiki/` sin que el usuario lo pida. La wiki se construye con curaduría humana, no como subproducto de cada sesión.
+7. **El catálogo de requisitos vive en Notion, no en archivos `.md`.** Cualquier solicitud del usuario para crear, editar, renombrar, renumerar o consultar un CU-UI, RF, BR Software, BR-NEG, AC, RG, Stakeholder, término del glosario o Decisión IR debe ejecutarse contra las 9 DBs de Notion vía MCP `mcp__claude_ai_Notion__*`, **no** escribiendo archivos `.md` locales. Para esto invocar el agente especializado **`notion-expert`** (`.claude/agents/notion-expert.md`), que tiene URLs canónicas, schemas y convenciones. NO crear archivos `.md` espontáneos en `proyecto/wiki/` ni regenerar el catálogo viejo en `analisis/archive/`: ese directorio es inmutable.
 
-8. **Verificar el deadline del Colegio** (`~2026-10-19`) la primera vez que se cite en una sesión. Está marcado como estimado y necesita confirmación del usuario.
+8. **`proyecto/wiki/` queda reservada para documentos NO-requisitos**: ADRs (`ADR/`), diseño (`diseno/`), preguntas pendientes, alcance, arquitectura. No crear archivos ahí sin pedido explícito del usuario.
 
-9. **Decisiones nuevas**: si en una sesión se cierra una decisión (stack, framework, fecha, alcance), proponer al usuario incorporarla a este CLAUDE.md antes de seguir.
+9. **Verificar el deadline del Colegio** (`~2026-10-19`) la primera vez que se cite en una sesión. Está marcado como estimado y necesita confirmación del usuario.
 
-10. **Graphify activo en este proyecto.** Existe `graphify-out/` con grafo de conocimiento del repo. Antes de leer archivos completos para responder preguntas sobre arquitectura, contexto, relaciones entre entidades o ubicación de algo, **consultar primero el grafo** vía las tools `mcp__graphify-cocucci__*` (`graph_stats`, `god_nodes`, `get_node`, `get_neighbors`, `get_community`, `shortest_path`, `query_graph`). Solo caer a `Read`/`Grep` cuando hace falta modificar un archivo o el grafo no tiene la info. Esto reduce ~71× el costo de tokens y acelera las respuestas. Las reglas generales de uso de graphify están en `~/.claude/rules/graphify-mcp.md`. Si el repo se modifica mucho sin actualizar el grafo, correr `/graphify --update` para refrescarlo.
+10. **Decisiones nuevas**: si en una sesión se cierra una decisión (stack, framework, fecha, alcance), proponer al usuario incorporarla a este CLAUDE.md antes de seguir. Las decisiones de producto / IR (DP / DS / Q / A) se cargan también en la DB "Decisiones IR" de Notion vía `notion-expert`.
+
+11. **Graphify activo en este proyecto.** Existe `graphify-out/` con grafo de conocimiento del repo. Antes de leer archivos completos para responder preguntas sobre arquitectura, contexto, relaciones entre entidades o ubicación de algo, **consultar primero el grafo** vía las tools `mcp__graphify-cocucci__*` (`graph_stats`, `god_nodes`, `get_node`, `get_neighbors`, `get_community`, `shortest_path`, `query_graph`). Solo caer a `Read`/`Grep` cuando hace falta modificar un archivo o el grafo no tiene la info. Esto reduce ~71× el costo de tokens y acelera las respuestas. Las reglas generales de uso de graphify están en `~/.claude/rules/graphify-mcp.md`. **Importante**: el archivado del 2026-05-19 movió los `.md` de requisitos a `analisis/archive/`; los `source_file` del grafo siguen apuntando al path viejo hasta que se corra `/graphify --update`. Para consultas sobre el estado actual de requisitos, **siempre preferir Notion** sobre el grafo o los archivos.
 
 ---
 
