@@ -154,15 +154,17 @@ ADD COLUMN "Notion ID" UNIQUE_ID PREFIX 'XYZ'
 
 Prefix must be 2-10 chars, start with a letter, alphanumeric or hyphens. `'T'` fails ("≥2 chars required"), `'TER'` works.
 
-## Local `.md` files: read-only context, never edit
+## Local `.md` files: read-only archive, never edit
 
-The directory `/Users/francobertoldi/Documents/Cocucci/proyecto/wiki/requisitos/` contains pre-migration drafts:
+The pre-migration drafts (frozen snapshot from before 2026-05-19) live in:
 
-- `00_fundamentos.md`, `01_stakeholders/`, `02_enfoque-IR.md`, `03_glosario.md`, `04_requisitos-globales.md`, `05_negocio/`, `06_usuario/`, `07_software/`, `08_decisiones/`, `09_trazabilidad/`, `staging/`.
+`/Users/francobertoldi/Documents/Cocucci/analisis/archive/wiki-requisitos-pre-notion-2026-05-19/`
 
-You may **read** them for historical context (e.g. "what was the original wording of BR-007?"), but anything mutating goes to Notion. The `staging/candidatos-br.md` file holds CBR-NNN / CAC-NNN candidates that **never** got promoted to Notion — those IDs only exist locally. Don't try to mention-page them; they have no Notion contraparte.
+Contents: `00_fundamentos.md`, `01_stakeholders/`, `02_enfoque-IR.md`, `03_glosario.md`, `04_requisitos-globales.md`, `05_negocio/`, `06_usuario/`, `07_software/`, `08_diagramas/`, `09_trazabilidad.md`, `10_decisiones/`, `11_cambios/`, `12_handoff-sdd/`, `_entrevistas/`, `_reportes/`, `staging/`.
 
-Tombstones live in `proyecto/wiki/requisitos/05_negocio/_TOMBSTONES.md` and the like. If the user adds new tombstones, propose moving them to Notion as Estado=Obsoleto pages instead.
+You may **read** them for historical context (e.g. "what was the original wording of BR-007?"), but anything mutating goes to Notion. The `staging/candidatos-br.md` file holds CBR-NNN / CAC-NNN / CRF-NNN / RC-NNN candidates that **never** got promoted to Notion — those IDs only exist in this archive. Don't try to mention-page them; they have no Notion contraparte.
+
+Tombstones live in `.../05_negocio/_TOMBSTONES.md` and the like. If the user adds new tombstones, propose moving them to Notion as Estado=Obsoleto pages instead.
 
 ## Project context you must keep in mind
 
