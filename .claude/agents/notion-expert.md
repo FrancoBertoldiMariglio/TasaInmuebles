@@ -89,7 +89,7 @@ Estas viven bajo la página **Operativa** (no Requisitos), y se relacionan con l
 
 ### Atributos de Calidad (AC) — formato Planguage (Tom Gilb)
 - **Title**: `Nombre` (`AC-NNN — Title`)
-- **Text**: `userDefined:ID`, `Descripción`, `Escala`, `Métro` (Meter), `Mínimo`, `Objetivo`, `Máximo`, `Contexto`, `Fuente`
+- **Text**: `userDefined:ID`, `Descripción`, `Escala`, `Métro` (Meter — typo legacy, **NO renombrar**), `Mínimo`, `Objetivo`, `Máximo`, `Contexto`, `Fuente`
 - **Select**: `Estado` (Borrador/Planguage completo/Pendiente), `Fase`, `MoSCoW`, `Categoría` (Performance/Usabilidad/Seguridad/Compliance/Disponibilidad/Mantenibilidad/Confiabilidad/Trazabilidad/Escalabilidad/Interoperabilidad), `Confianza` (Alta/Media/Baja)
 - **Checkbox**: `Transversal`
 - **Relations**: `Aplica a CU`, `RFs afectados`, `Decisiones bloqueantes`
@@ -125,20 +125,21 @@ Estas viven bajo la página **Operativa** (no Requisitos), y se relacionan con l
 - **Select**: `Estado` (Planificada/Realizada/Cancelada), `Tipo` (Socios/Sponsor/Demo/Standup/Review/1:1/Externa — Colegio/Externa — otra)
 - **Date**: `Fecha` (use expanded `date:Fecha:start`)
 - **File**: `Audio`, `Transcripción` (subida manual via UI, la API no soporta upload directo)
-- **Person**: `Asistentes` ⚠️ **solo para usuarios Notion** (admin del workspace). **NO mete a Cocucci/Sebastián/Franco acá** — ellos van linkeados como mention-page a S-001/S-002/S-003 en el body, o via la columna de relación a Stakeholders si existe en el schema.
-- **Relations**: `Decisiones tomadas` (→ Decisiones IR), `Documentos producidos`, `Tareas generadas`, `Hito`
-- **Schema gap conocido (a 2026-05-21)**: la DB Reuniones NO tiene columna de relación a Stakeholders. Cuando se necesite linkear participantes que no tienen cuenta Notion, **proponer al user agregar la columna `Participantes (Stakeholders)`** como relación bidireccional a la DB Stakeholders, antes de cargar la reunión.
+- **Person**: `Asistentes` ⚠️ **solo para usuarios Notion** (admin del workspace). **NO mete a Cocucci/Sebastián/Franco acá** — ellos van linkeados como mention-page a S-001/S-002/S-003 en el body, o via la columna `Participantes (Stakeholders)`.
+- **Relations**: `Decisiones tomadas` (→ Decisiones IR), `Documentos producidos`, `Tareas generadas`, `Hito`, `Participantes (Stakeholders)` (→ Stakeholders DB; agregada 2026-05-21).
 
 ## Workflow: create a new artifact
 
 1. **Pick the next semantic ID.** Query the target DB view ordered by `userDefined:ID` and find the highest. New IDs are sequential per DB (no reuse, even after delete — see §6 below).
 2. **Resolve relation URLs first.** If the new artifact relates to existing artifacts (CUs, RFs, BRs, decisions), look up their page URLs via `notion-query-database-view` so you can put them in relation properties.
 3. **Create with `notion-create-pages`** with `parent.database_id` = the data-source URL, `properties` filled, and `content` for the body.
-4. **Body conventions**:
-   - Markdown headings (`## Contexto`, `## Opciones consideradas`, `## Decisión final`, `## Trazabilidad`) for narrative artifacts.
-   - For glosario terms, use `## Nocion`, `## Impacto`, `## Menciones`, `## Confianza`.
-   - All cross-references to other Notion pages → `<mention-page url="..."/>`, never raw `BR-007` plain text.
-   - Code blocks fenced (` ``` `) for JSON / pseudocode / formulas.
+4. **Body conventions** (ver "Page body templates" para detalle por DB):
+   - Markdown headings (`## H2`, `### H3`, `#### H4`).
+   - **Cross-references entre artefactos**: SIEMPRE `<mention-page url="..."/>`. Nunca raw `BR-007`.
+   - **Personas**: SIEMPRE mention-page a Stakeholders (principle #5).
+   - **Flujos paso-a-paso largos**: HTML `<table header-row="true">`.
+   - **Diagramas**: bloques mermaid.
+   - **Fórmulas / pseudocódigo**: bloques fenced (javascript, python, etc).
 5. **Verify.** `notion-fetch` the newly created page and confirm the title format matches the convention and the `userDefined:ID` text matches the embedded ID in the title.
 
 ## Workflow: edit an existing artifact
@@ -171,306 +172,323 @@ The project rule says **IDs are never reused**. But during the 2026-05-19 refact
 
 ## Page body templates (single source of truth)
 
-> **Por qué acá y no como database template nativo de Notion**: la API REST de Notion no soporta crear database templates programáticamente (a 2026-05). Los templates "nativos" (los que aparecen en el desplegable del botón "New") son entities de UI exclusiva, sin endpoint. Por eso esta sección es la **única plantilla canónica** para cada tipo de página. Antes de crear cualquier artefacto, **releé la sección correspondiente y respetá la estructura** (headings, orden, mention-pages, propiedades obligatorias). Si una plantilla no sirve para un caso particular, **discutilo con el user** y proponé refinarla acá antes de divergir.
+> **Por qué acá y no como database template nativo de Notion**: la API REST de Notion no soporta crear database templates programáticamente (a 2026-05). Los templates "nativos" (los que aparecen en el desplegable del botón "New") son entities de UI exclusiva, sin endpoint. Por eso esta sección es la **única plantilla canónica** para cada tipo de página.
 
-> **Convención general**: los headings son `## H2`. Los bloques con cross-references usan mention-page. Personas siempre via mention-page a Stakeholders (principle #5). Los placeholders entre `{...}` son texto que reemplazás con valor real.
+> **Las plantillas reflejan los patrones reales detectados en las páginas existentes al 2026-05-21**. Fueron derivadas de un sampling de 30+ páginas (3+ por DB). Si encontrás una página existente con estructura distinta a la plantilla, lo más probable es que la plantilla esté incompleta — reportá y la actualizamos antes de tocar nada.
+
+**Convenciones generales aplicables a todas las plantillas**:
+- Headings: `## H2` para secciones principales, `### H3` para sub-secciones, `#### H4` para clasificaciones dentro de trazabilidad.
+- **Enunciados / decisiones canónicas**: blockquote `> {texto}` para destacarlas.
+- **Cross-references entre artefactos**: SIEMPRE `<mention-page url="..."/>`.
+- **Personas**: SIEMPRE mention-page a Stakeholders (principle #5).
+- **Flujos paso-a-paso largos**: HTML `<table header-row="true">` con columnas `#` | `Actor` | `Acción`.
+- **Diagramas**: bloques mermaid (` ```mermaid `).
+- **Tablas de parámetros / inputs / outputs / cardinalidades**: HTML `<table>` con header-row.
+- **Fórmulas / pseudocódigo**: bloques fenced (` ```javascript `, ` ```python `, ` ```json `).
+- **Trazabilidad — dos patrones**:
+  - *Simple*: `## Trazabilidad` con bullets (`- **Implementado por**: <mention-page url="..."/>`).
+  - *Auto-generada (más completa)*: `## Trazabilidad detallada (auto-generada)` con sub-secciones `### Referencias salientes` y `### Referencias entrantes`, y sub-sub-headings `#### Originado por (CU)`, `#### Aplica a (RF)`, `#### Aplica reglas de negocio (BR software)`, `#### Verificado por (AC)`, `#### Casos de Uso (Usuario)`, `#### Requisitos Funcionales`, `#### Reglas de Negocio (Software)`, `#### Atributos de Calidad`.
+- **Placeholders** `{...}` en las plantillas son texto a reemplazar con valor real.
 
 ### Template — Casos de Uso (CU-UI)
 
-**Propiedades obligatorias**: `Nombre`, `userDefined:ID`, `Resumen`, `Actor principal`, `Estado` (default `Borrador`), `Estilo` (default `nivel-valor`), `Fase`, `MoSCoW`.
+**Propiedades obligatorias**: `Nombre` (formato `CU-UI-NNN — Título descriptivo`), `userDefined:ID`, `Resumen`, `Actor principal`, `Estado` (default `Borrador`), `Estilo`, `Fase`, `MoSCoW`.
 
-**Propiedades opcionales pero recomendadas**: `Precondiciones`, `Postcondición de éxito`, relations.
+**El body varía según `Estilo`**. Tres plantillas distintas:
 
-**Body skeleton**:
-```markdown
-## Resumen
-{1-2 párrafos contando el caso en lenguaje del actor; no jerga técnica}
+#### CU-UI estilo `fully-dressed (Cockburn)` — flujos críticos del MVP
 
-## Actor principal
-<mention-page url="..."/> ({S-NNN del stakeholder principal})
+Estructura completa (12-15 secciones). Usar para los CUs más importantes del MVP-6sem (ej. CU-UI-001 Tasador crea tasación end-to-end). Secciones esperadas, en orden:
 
-## Precondiciones
-- {condición 1}
-- {condición 2}
+1. `## Resumen` — 1-2 párrafos en lenguaje del actor. Si el caso tiene variantes según un parámetro de negocio (ej. `tipo_tasacion`), explicitarlo con mention-page al BR/DS que lo define.
+2. `## Actor principal` — rol + contexto. Si es humano, mention-page a S-NNN.
+3. `## Actores secundarios` — bullets con otros actores y servicios externos (Google Maps, RENAPER, etc).
+4. `## Precondiciones` — lista numerada de pre-condiciones (login, permisos, estado de datos, contexto de dispositivo).
+5. `## Postcondiciones (estado del sistema al terminar el flujo)` con dos sub-secciones:
+   - `### Postcondición de éxito` — entidad persistida, campos completos, snapshots para audit.
+   - `### Postcondición de falla` — qué pasa si el flujo se aborta (borrador, retomable, etc).
+6. `## Frecuencia esperada` — volumen MVP vs post-MVP.
+7. `## Flujo principal (camino de éxito)` — `<table header-row="true">` con columnas `#` | `Actor` | `Acción`. Cada acción incluye mention-page al RF que la implementa.
+8. `## Flujos alternativos` — uno por bloque `### FA-NNN — Nombre`, cada uno con su tablita.
+9. `## Excepciones (rutas de error)` — uno por bloque `### E-NNN — Nombre`, cada uno con su tablita (paso que dispara error + reacción del sistema).
+10. `## Atributos de calidad relevantes` — bullets con mention-page a AC-NNN + estado (✓ formalizado / Fase 2).
+11. `## Reglas de negocio aplicadas` — bullets con mention-page a BR-NNN + estado.
+12. `## Decisiones derivadas / pendientes` — bullets con mention-page a DS-NN / DP-NNN / Q-NN / A-NNN.
+13. `## Trazabilidad inversa` — 1-2 párrafos narrativos: este CU se origina en RC-XXX del transcript de reunión-NN; en reunión-MM se agregaron las decisiones... (cita reuniones via mention-page).
+14. Separador `---` + `## Diagrama de flujo` con bloque ` ```mermaid ` (flowchart TD con classDef para colorear actores).
+15. `### Referencias salientes` con sub-bullets canónicos: `**Resuelve problema de negocio:**`, `**Implementado por (RF):**`, `**Verificado por (AC):**`, `**Sujeto a reglas de negocio (BR software):**`.
 
-## Flujo principal
-1. {paso del actor o del sistema}
-2. {paso}
-...
+#### CU-UI estilo `nivel-valor` — flujos del MVP con foco en el valor entregado
 
-## Postcondición de éxito
-{estado del sistema al final del flujo}
+Estructura intermedia (8-10 secciones). Usar para CUs del MVP donde el "diferenciador" comercial importa (ej. CU-UI-004 Comité cierra valor final). Secciones esperadas:
 
-## Excepciones / flujos alternativos
-- **{condición}**: {qué pasa}
+1. `## Actor principal` — rol + S-NNN mention-page.
+2. `## Precondiciones` — bullets cortos.
+3. `## Flujo principal ({Versión + canal})` — con sub-secciones `### Fase A — ...`, `### Fase B — ...`, `### Fase C — ...` cuando el flujo se descompone en macro-etapas (registro de propuestas, discusión externa, cierre).
+4. `## Postcondición de éxito` — bullets.
+5. `## Diferenciador para el Colegio` — por qué este CU es valioso institucionalmente. Citar transcript o decisión.
+6. `## Fuera del MVP-6sem` — bullets con mention-page a decisiones que difieren features a Fase 2/3.
+7. `## Trazabilidad` — narrativa: `Implementa <mention-page url="..."/> (BR-NEG-NNN visión). Contribuye al Hito 1. Se descompone en <mention-page url="..."/>, <mention-page url="..."/>`.
+8. Separador `---` + `## Diagrama de flujo` con bloque mermaid.
+9. `### Referencias` (sub) con bullets: `**Resuelve:**`, `**Implementado por:**`, `**Verificado por:**`, `**DS asociadas:**`, `**Aplica RG:**`.
 
-## Trazabilidad
-- **Implementado por (RF)**: <mention-page url="..."/>, <mention-page url="..."/>
-- **Sujeto a (BR Software)**: <mention-page url="..."/>
-- **Verificado por (AC)**: <mention-page url="..."/>
-- **Resuelve BR-NEG**: <mention-page url="..."/>
-- **Decisiones bloqueantes**: <mention-page url="..."/>
-- **Hitos donde entra**: <mention-page url="..."/>
-```
+#### CU-UI estilo `esqueleto` — casos diferidos a Fase 2/3
+
+Estructura minimal (3-4 secciones). Usar para CUs que NO entran al MVP (ej. CU-UI-008 Robotomus calcula valor referencial — diferido). Secciones esperadas:
+
+1. `## Actor principal` — rol o sistema.
+2. `## Resumen` — 1-2 frases del caso.
+3. `## Por qué NO está en MVP-6sem` — bullets con razones técnicas (Cynefin complejo, dependencias) y de negocio (prioridad, alcance) + sustituto MVP si lo hay (mock, manual, etc).
+4. `## Trazabilidad` — 1 línea con MoSCoW + Fase + mention-page a artefactos relacionados.
 
 ### Template — Requisitos Funcionales (RF)
 
-**Propiedades obligatorias**: `Nombre`, `userDefined:ID`, `Descripción`, `Estado`, `Fase`, `MoSCoW`.
+**Propiedades obligatorias**: `Nombre` (formato `RF-NNN — Título`), `userDefined:ID`, `Descripción`, `Estado`, `Fase`, `MoSCoW`.
 
-**Body skeleton** (RF granulares y atómicos; si el RF es trivial, body puede quedar vacío y toda la info va en `Descripción`):
-```markdown
-## Comportamiento
-{descripción extendida si el campo Descripción quedó corto}
+**Propiedades opcionales**: `Trigger` (cuando el RF se dispara automáticamente).
 
-## Trigger
-{evento o condición que dispara el RF; si está en la propiedad Trigger, no repetir acá}
+**Body varía según complejidad**. Dos patrones:
 
-## Reglas aplicables
-- <mention-page url="..."/> ({BR-NNN})
-- <mention-page url="..."/>
+#### RF simple (granular, atómico)
 
-## Atributos de calidad asociados
-- <mention-page url="..."/> ({AC-NNN})
+Secciones esperadas:
 
-## Trazabilidad
-- **CU origen**: <mention-page url="..."/>
-- **Decisiones bloqueantes**: <mention-page url="..."/>
-```
+1. `## Descripción` — descripción extendida si el campo `Descripción` quedó corto.
+2. `## Flujo` — pasos numerados (1. ..., 2. ..., 3. ...). Si hay sub-pasos: `\t- ...`.
+3. `## Validación` — bullets con reglas que el sistema aplica.
+4. `## Entrada / Salida` — bloques `IN:` y `OUT:` con tipos / catálogos cerrados.
+5. Separador `---` + `## Trazabilidad detallada (auto-generada)` con `### Referencias salientes` y `### Referencias entrantes`, y sub-sub-headings `#### Originado por (CU)`, `#### Implementa visión (BR-NEG)`, `#### Aplica reglas de negocio (BR software)`, `#### Verificado por (AC)`.
+
+#### RF complejo (con cálculo, fórmulas, tablas grandes)
+
+Para RFs como RF-016 (Fitt-Servini), RF-008 (validación con muchos campos). Secciones esperadas:
+
+1. `## Descripción` — descripción extendida.
+2. `## Trigger` — automático / manual / re-cálculo, con detalle si el campo `Trigger` quedó corto.
+3. `## Inputs (provienen del modelo de Tasación)` — `<table>` con columnas `Campo` | `Origen` (mention-page al RF / BR / DS de origen) | `Notas`.
+4. `## Fórmula ...` — bloque fenced ` ```javascript ` con pseudocódigo.
+5. `## Derivación de ...` — si aplica, segunda fórmula derivada.
+6. `## Parámetros (todos vía RG-008)` — `<table>` con columnas `Parámetro` | `Origen` | `Configurable MVP` | `Configurable Fase 2`.
+7. `## Aplicación según {variable}` — `<table>` o bloque fenced con código de control.
+8. `## Outputs` — `<table>` con columnas `Campo persistido` | `Tipo` | `Notas`.
+9. `## Visibilidad` — qué CUs muestran el output al usuario y cómo.
+10. `## Validación` — reglas que el sistema aplica al output.
+11. `## Diferenciador para el Colegio` — por qué este cálculo aporta institucionalmente.
+12. `## Fuera del MVP-6sem` — features Fase 2+ relacionados.
+13. `### Referencias` con bullets: `**Originado por:**`, `**Implementa visión:**`, `**Aplica BR:**`, `**Verificado por:**`, `**Decisión bloqueante:**`, `**DS asociadas:**`, `**Aplica RG:**`.
 
 ### Template — BR Software
 
-**Propiedades obligatorias**: `Nombre`, `userDefined:ID`, `Enunciado`, `Clasificación` (Hecho/Restricción/Habilitador/Inferencia/Cálculo), `Estado`, `Fase`, `MoSCoW`, `Fuente / autoridad`.
+**Propiedades obligatorias**: `Nombre` (formato `BR-NNN — Título`), `userDefined:ID`, `Enunciado`, `Clasificación` (Hecho/Restricción/Habilitador/Inferencia/Cálculo), `Estado`, `Fase`, `MoSCoW`, `Fuente / autoridad`.
 
-**Propiedades condicionales**: `Paramétrico` (checkbox), `Parámetros` (texto si Paramétrico=YES), `Impacto si cambia`.
+**Propiedades condicionales**: `Paramétrico` (checkbox; YES si tiene parámetros configurables), `Parámetros` (texto, si Paramétrico=YES), `Impacto si cambia`.
 
-**Body skeleton** (la mayoría de BRs tienen body breve; el `Enunciado` es la regla en sí):
-```markdown
-## Enunciado extendido
-{si el campo Enunciado quedó corto, expandirlo acá con ejemplos}
+**Body varía según clasificación**:
 
-## Parámetros configurables
-- `{nombre_parametro}`: {tipo, default, rango, dónde se configura — ej. RG-008}
+#### BR clasificación Habilitador / Restricción / Hecho (mayoría)
 
-## Casos cubiertos
-- ✅ {caso que aplica}
-- ❌ {caso que NO aplica}
+Secciones esperadas:
 
-## Impacto si cambia
-{1-3 líneas — si está en la propiedad, no repetir}
+1. `## Enunciado` — blockquote `> {regla completa}`. Si el campo `Enunciado` quedó corto, expandir acá con bullets indented (`> - {sub-condición}`).
+2. `## Condición habilitante` o `## Condición de aplicación` — bullets con las pre-condiciones / triggers de la regla.
+3. `## Verificación` — sub-bullets por fase: `MVP-6sem` (verificación manual), `Fase 2-3` (automatizada, con integración).
+4. `## Fuente de autoridad` — bullets con referencias institucionales + reuniones (mention-page) + transcript:LXXX si aplica.
+5. `## Impacto si cambia` — bullets con escenarios y consecuencias.
+6. `## Por qué {Clasificación}` — justificación de la clasificación elegida (vs alternativas), 2-3 párrafos.
+7. `## Diferencia con {otro caso}` — cuando aplica (ej. BR-001 sobre tasadores vs BR-013 sobre B2C).
+8. `---` + `## Trazabilidad detallada (auto-generada)` con `### Referencias salientes` (`#### Aplica a (RF)`) y `### Referencias entrantes` (`#### Requisitos Funcionales`).
 
-## Trazabilidad
-- **Aplica a CU**: <mention-page url="..."/>
-- **RFs afectados**: <mention-page url="..."/>
-- **Fuente**: {cita literal + referencia a la reunión/decisión origen via mention-page}
-```
+#### BR clasificación Cálculo (cuando tiene fórmula)
+
+Para BRs como BR-011 (Fitt-Servini lite). Secciones esperadas:
+
+1. `## Enunciado` — blockquote con la regla.
+2. `## Fórmula ...` — bloque fenced ` ```javascript ` con pseudocódigo.
+3. `## Derivación de ...` — si aplica, segunda fórmula.
+4. `## Parámetros configurables (todos vía RG-008)` — `<table>` con columnas `Parámetro` | `Origen` | `Configurable MVP` | `Configurable Fase 2`.
+5. `## Versionado` — política de versionado de la fórmula (`v1`, `v2`, etc).
+6. `## Aplicación según {variable}` — `<table>` con casos.
+7. `## Snapshot de inputs` — bullets describiendo qué se persiste para auditoría.
+8. `## Fuente de autoridad` — institucional + reuniones + DS asociadas.
+9. `## Impacto si cambia` — bullets por escenario.
+10. `## Por qué Cálculo` — justificación.
+11. `## RFs afectados` — bullets con mention-page.
+12. `## Trazabilidad` — bullets con `**DS asociadas:**`, `**BRs relacionados:**`, `**AC asociados:**`.
 
 ### Template — BR-NEG
 
-**Propiedades obligatorias**: `Nombre`, `userDefined:ID`, `Problema / Objetivo`, `Visión`, `Estado`, `Fase`, `MoSCoW`.
+**Propiedades obligatorias**: `Nombre` (formato `BR-NEG-NNN — Título`), `userDefined:ID`, `Problema / Objetivo`, `Visión`, `Estado`, `Fase` (típicamente `Transversal`), `MoSCoW` (puede ser `Foundational`).
 
-**Body skeleton** (BR-NEG suele ser breve y el contenido vive en las propiedades):
-```markdown
-## Contexto
-{por qué importa esta regla a nivel negocio, no software}
+**Body varía según si es visión, restricción o decisión de negocio**:
 
-## Implicancias
-- {qué se gana cumpliéndola}
-- {qué se pierde si no se cumple}
+#### BR-NEG tipo Visión / Producto
 
-## Trazabilidad
-- **Resuelto por (CU)**: <mention-page url="..."/>
-- **Stakeholders impactados**: <mention-page url="..."/>, <mention-page url="..."/>
-```
+Para BRs como BR-NEG-001 (Visión Tasa Inmuebles). Secciones esperadas:
 
-### Template — Atributos de Calidad (AC) — Planguage
+1. `## Problema / Objetivo de negocio` — 1-2 párrafos describiendo el problema que motiva el producto.
+2. `## Visión` — 1 párrafo describiendo a dónde va el producto.
+3. `## Stakeholders impactados` — `<table>` con columnas `ID` (mention-page a S-NNN) | `Stakeholder` | `Beneficio` o `Daño`.
+4. `## Métrica de éxito (X años)` — bullets con KPIs cuantitativos (volumen, cobertura, adopción).
+5. `## Restricciones derivadas` — bullets con mention-page a otros BR-NEG / Decisiones que la condicionan.
+6. `---` + `## Trazabilidad detallada (auto-generada)` con `### Referencias salientes` (`#### Resuelto por (CU usuario)`) y `### Referencias entrantes` (`#### Casos de Uso (Usuario)`, `#### Requisitos Funcionales`).
 
-**Propiedades obligatorias** (forzar Planguage completo, no aceptar slots vacíos en producción):
-- `Nombre`, `userDefined:ID`, `Descripción`, `Categoría` (Performance/Usabilidad/Seguridad/etc), `Estado`, `Fase`, `MoSCoW`, `Confianza`.
-- **Planguage**: `Escala`, `Métro` (Meter, sic — es typo histórico), `Mínimo`, `Objetivo`, `Máximo`, `Contexto`, `Fuente`.
+#### BR-NEG tipo Restricción / Acuerdo institucional
 
-**Body skeleton** (suele estar mayormente en propiedades; el body se usa para detalle):
-```markdown
-## Detalles de medición
-{cómo se mide específicamente — instrumento, frecuencia, muestra}
+Para BRs como BR-NEG-002 (Acuerdo Colegio). Secciones esperadas:
 
-## Justificación de niveles
-- **Mínimo ({valor})**: {por qué este es el piso aceptable}
-- **Objetivo ({valor})**: {por qué este es el target}
-- **Máximo ({valor})**: {por qué este es el techo aspiracional}
+1. `## Restricción` o `## Decisión` — 1 párrafo describiendo la restricción.
+2. `## Fechas clave` — bullets con fechas + flags de confirmación pendiente.
+3. `## Cláusulas relevantes` — bullets citando reuniones.
+4. `## Implicancias operativas` — bullets describiendo cómo afecta el MVP / Fase 2 / Fase 3.
+5. `## Riesgo` — 1-2 párrafos describiendo el riesgo si no se cumple.
+6. `---` + `## Trazabilidad detallada (auto-generada)` con `### Referencias entrantes`.
 
-## Contexto de uso
-{dispositivo, conectividad, escenario — si está en la propiedad, ampliar acá}
+#### BR-NEG tipo Decisión de modelo de negocio
 
-## Trazabilidad
-- **Aplica a CU**: <mention-page url="..."/>
-- **RFs afectados**: <mention-page url="..."/>
-- **Decisiones bloqueantes**: <mention-page url="..."/>
-```
+Para BRs como BR-NEG-003 (Comisión 90/10). Secciones esperadas:
+
+1. `## Decisión` — 1 párrafo describiendo la decisión.
+2. `## Justificación de negocio` — bullets con efectos esperados (atracción de tasadores, reducción costo cliente, resistencia previsible).
+3. `## Excepción: {caso}` — cuando aplica, sub-sección con un caso particular + mention-page a decisión pendiente.
+4. `## Aplicación efectiva` — bullets por fase (MVP vs Fase 2).
+5. `## Stakeholders desfavorecidos` — `<table>` con columnas `ID` | `Stakeholder` | `Daño`.
+6. `---` + `## Trazabilidad detallada (auto-generada)`.
+
+### Template — Atributos de Calidad (AC) — formato Planguage
+
+**Propiedades obligatorias**: `Nombre` (formato `AC-NNN — Título`), `userDefined:ID`, `Descripción`, `Categoría` (Performance/Usabilidad/Seguridad/etc), `Estado`, `Fase`, `MoSCoW`, `Confianza`.
+
+**Planguage en propiedades**: `Escala`, `Métro` (Meter — typo legacy, **NO renombrar**), `Mínimo`, `Objetivo`, `Máximo`, `Contexto`, `Fuente`.
+
+**Body skeleton**:
+
+1. Blockquote inicial opcional: `> {Cita de origen — ambigüedad cerrada, decisión, etc.}` para anclar el AC a su fuente narrativa.
+2. `## Planguage` — `<table>` con columnas `Slot` | `Valor`, con filas para: Nombre del atributo, Categoría, Escala, Metro, Mínimo aceptable, Objetivo, Máximo aspiracional, Contexto, Fuente. **Repetir lo de las propiedades** acá en formato visible.
+3. `## Verificación binaria` — `✓ Cumple si ...` `✗ No cumple si ...`. Para ACs con doble escala (Usabilidad SUS + soporte): `criterio AND`.
+4. `## Por qué doble escala` — cuando aplica, justificación de tener dos métricas.
+5. `## Riesgos / dependencias` — bullets.
+6. `## Tradeoffs` — bullets con mention-page a otros ACs que pueden entrar en conflicto.
+7. `## Fuera del MVP-6sem` — bullets con features de telemetría / heatmaps / A/B testing diferidos.
+8. `---` + `## Trazabilidad detallada (auto-generada)` con `### Referencias salientes` (`#### Originado por (CU)`, `#### Aplica a (RF)`) y `### Referencias entrantes` (`#### Casos de Uso (Usuario)`, `#### Requisitos Funcionales`).
+
+Para ACs Fase 2 con Planguage parcial (ej. AC-006), simplificar: body puede tener solo `## Planguage (parcial)`, `## Contexto`, `## Por qué Fase 2`, `## Tradeoffs`, `## Trazabilidad`.
 
 ### Template — Requisitos Globales (RG)
 
-**Propiedades obligatorias**: `Nombre`, `userDefined:ID`, `Enunciado`, `Descripción`, `Test checklist`, `Estado`, `Fase` (típicamente `Transversal`).
+**Propiedades obligatorias**: `Nombre` (formato `RG-NNN — Título`), `userDefined:ID`, `Enunciado`, `Descripción`, `Test checklist`, `Estado`, `Fase` (típicamente `Transversal`).
 
 **Body skeleton**:
-```markdown
-## Por qué es global
-{justificación: por qué este invariante aplica a TODOS los RFs, no a uno solo}
 
-## Aplica a
-{categorías de RFs/CUs donde se debe verificar; ejemplos concretos}
-
-## NO aplica a
-{excepciones documentadas, si las hay}
-
-## Implementación de referencia
-{pseudocódigo o decisión de arquitectura recomendada para cumplir el RG}
-
-## Test checklist
-{si el campo Test checklist quedó corto, expandir acá con casos de prueba específicos}
-```
+1. `## Enunciado` — blockquote `> {regla global}` con detalle expandido. Sub-bullets para sub-condiciones por fase (MVP / Fase 2).
+2. `## Justificación` — 1-2 párrafos explicando por qué este invariante aplica a TODOS los RFs.
+3. `## AC implícito en todo RF que ...` — bullets describiendo el contrato esperado.
+4. `## Lista de acciones críticas` (cuando aplica, ej. RG-004 audit trail) — bullets con mention-page a RFs / CUs afectados.
+5. `## Parámetros configurables identificados` (cuando aplica, ej. RG-008) — `<table>` con columnas `Parámetro` | `Default MVP` | `Scope` | `Origen` (mention-page).
+6. `## Test asociado` — checklist `- [ ]` con casos de prueba QA.
+7. `## RFs afectados` — lista con mention-page (o "TODOS los que persisten datos" para RGs universales).
+8. `## Excepciones documentadas` — sub-bullets con casos que NO siguen el RG y por qué.
 
 ### Template — Stakeholders
 
-**Propiedades obligatorias**: `Nombre`, `userDefined:ID`, `Descripción`, `Tipo` (Humano/Sistema/Organización), `Clasificación` (Favorecido/Ignorado/Desfavorecido/Neutral), `Alcance`.
+**Propiedades obligatorias**: `Nombre` (formato `S-NNN — Nombre`), `userDefined:ID`, `Descripción`, `Tipo` (Humano/Sistema/Organización), `Clasificación` (Favorecido/Ignorado/Desfavorecido/Neutral), `Alcance`.
 
 **Propiedades opcionales**: `Rol Snowman DSDM`, `Fuente`.
 
-**Body skeleton** (más largo para Humanos clave; muy breve para Sistemas/Organizaciones externas):
-```markdown
-## Quién es
-{nombre completo, cargo, contexto institucional}
+**Body skeleton** (más largo para Humanos clave; más breve para Sistemas/Organizaciones):
 
-## Qué aporta / qué pierde
-- **Aporta**: {know-how, recursos, validación, etc.}
-- **Pierde / gana con el sistema**: {por qué está en su clasificación}
-
-## Relaciones clave
-- **Con otros stakeholders**: <mention-page url="..."/> ({tipo de relación})
-
-## Empathy map (solo para Humanos críticos)
-- **Piensa**: {...}
-- **Dice**: {...}
-- **Hace**: {...}
-- **Siente**: {...}
-
-## Trazabilidad
-- **CUs donde participa**: <mention-page url="..."/>
-- **BR-NEG que lo impactan**: <mention-page url="..."/>
-```
+1. `## Resumen` — 1 párrafo identificando al stakeholder y su rol en el proyecto.
+2. `## Clasificación (sección X — {grupo})` — `<table>` con matriz Mendelow: columnas `Tipo` | `Relación` | `Clase` | `Poder` (Alta/Media/Baja) | `Interés` (Alto/Medio/Bajo) | `Estrategia (Mendelow)` (involucrar / mantener informado / mantener satisfecho / monitorear). Para sistemas: incluir coordenadas en el cuadrante `[X, Y]`.
+3. `## Gana / pierde` — bullets con `**Gana:**` y `**Pierde:**` (o `**Riesgo:**`).
+4. `## Rol Snowman DSDM` (solo para humanos que tienen rol DSDM) — con sub-secciones por rol si cubre múltiples:
+   - `### Sponsor` — financia, autoridad de escalación, alcance.
+   - `### Visionario` — visión en una oración, horizonte temporal.
+   - `### Product Owner` — nexo entre negocio y técnico.
+   - `### Coordinador técnico` — decisiones de stack y arquitectura.
+   - `### Business Analyst` — captura de requerimientos.
+   - `### Consultor` — asesor externo.
+   - `### Célula de equipo` — desarrollador.
+5. `## Cobertura desde el snowman` (cuando aplica, ej. orgs externas) — mention-page al humano que es el contacto canónico (`<mention-page url="..."/>`).
+6. `## Overlap detectado` (cuando una persona cubre múltiples roles) — `<table>` con `Roles` | `Riesgo` | `Mitigación`.
+7. `## Decisiones derivadas vinculadas` — bullets con mention-page a DS / DP que dependen de info de este stakeholder.
 
 ### Template — Glosario
 
-**Propiedades obligatorias**: `Término` (formato `T-NNN — Concepto`), `userDefined:ID`, `Definición`, `Protegido` (checkbox; YES para nombres propios).
+**Propiedades obligatorias**: `Término` (formato `T-NNN — Concepto`), `userDefined:ID`, `Definición`, `Protegido` (checkbox; YES para nombres propios: Inmoclick, Métricas, Robotomus).
 
 **Propiedades opcionales**: `Sinónimos`, `Relacionados`, `Fuente / cita`.
 
-**Body skeleton** (términos del LEL — Léxico Extendido del Lenguaje):
-```markdown
-## Categoría
-{Objeto / Sujeto / Acción / Estado — clasificación LEL}
+**Body skeleton** (formato LEL — Léxico Extendido del Lenguaje). **NOTA**: usar `## Nocion` SIN ACENTO (typo legacy en la mayoría de las páginas existentes — respetarlo por consistencia, NO corregir a "Noción"):
 
-## Noción
-{Definición extendida — la del campo `Definición` puede ser un resumen; acá va el detalle}
+1. `## Categoria` — uno de: `Objeto` / `Sujeto` / `Acción` / `Estado`. (También sin acento si así está en las páginas existentes.)
+2. `## Nocion` — definición extendida; la del campo `Definición` puede ser un resumen, acá va el detalle. Mantener mismo estilo que páginas existentes (sin acentos en headings, con acentos en cuerpo del texto).
+3. `## Impacto` — cómo se manifiesta el término en el producto / qué decisiones / artefactos lo usan, con mention-page.
+4. `## Menciones` — quién y dónde se mencionó por primera vez (reunión, transcript:LXXX, persona).
+5. `## Confianza` — `Alta` / `Media` / `Baja` (qué tan estable es esta definición).
 
-## Impacto
-{Cómo se manifiesta en el producto / qué decisiones / artefactos lo usan}
-
-## Sinónimos y términos relacionados
-- **Sinónimos**: {alias informales del dominio}
-- **Relacionados**: <mention-page url="..."/>, <mention-page url="..."/>
-
-## Menciones
-{Quién y dónde se mencionó por primera vez — reunión, transcript:LXXX, persona}
-
-## Confianza
-{Alta / Media / Baja — qué tan estable es esta definición}
-```
+Para términos extendidos (ej. T-039 Rentabilidad, T-040 Tipo de tasación), se pueden agregar sub-secciones específicas pero respetando el formato LEL como base.
 
 ### Template — Decisiones IR
 
-**Propiedades obligatorias**: `Nombre`, `userDefined:ID`, `Tipo` (DP/DS/Q/A), `Estado`, `Contexto`, `Opciones consideradas`, `Decisión final` (vacío si Estado=Abierta), `Bloquea a`.
+**Propiedades obligatorias**: `Nombre` (formato `{DS-NN | DP-NNN | Q-NN | A-NNN} — Título`), `userDefined:ID`, `Tipo` (DP/DS/Q/A), `Estado`, `Contexto`, `Opciones consideradas`, `Bloquea a`.
 
-**Propiedades condicionales**: `Fecha decisión` (cuando Estado=Decidida), `ADR relacionado` (URL si existe), `Reunión origen` (relation).
+**Propiedades condicionales**: `Decisión final` (vacío si Estado=Abierta/En debate), `Fecha decisión` (cuando Estado=Decidida — expanded `date:Fecha decisión:start`), `ADR relacionado` (URL si existe), `Reunión origen` (relation a Reuniones DB).
 
 **Body skeleton**:
-```markdown
-## Contexto
-{1-3 párrafos — situación que originó la decisión, restricciones, stakeholders involucrados}
 
-## Opciones consideradas
+1. `## Contexto` — 1-3 párrafos describiendo:
+   - Situación que originó la decisión.
+   - Restricciones técnicas / de negocio / temporales.
+   - Stakeholders involucrados (con mention-page).
+   - Citas literales del transcript si aplican (blockquote `> "..."` — Persona).
+   Sub-secciones `### Complejidad técnica implícita` o `### Estado previo de la decisión` cuando ayudan a explicar.
+2. `## Opciones consideradas` — sub-secciones por opción:
+   - `### A) {Nombre opción A}` — `**{Descartada / Elegida / Diferida}.**` + razones (costos, riesgos, complejidad).
+   - `### B) {Nombre opción B}` — idem.
+   - `### C) {Nombre opción C}` — idem (cuando aplica).
+3. `## Decisión final` — si Estado=Decidida: enunciado claro de la opción elegida + detalles de implementación (sub-secciones `### Modelo de datos`, `### Reglas`, `### Lo que NO está en MVP` cuando aplican). Si Estado=Abierta/En debate/Diferida: explicar qué se necesita para zanjarla.
+4. `## Impacto` — bullets con:
+   - `**Artefactos afectados**:` mention-page a CUs / RFs / BRs / ACs.
+   - `**Confirma sin cambios**:` lo que queda igual (cuando aplica).
+   - `**Genera artefacto pendiente**:` nuevos artefactos a crear como consecuencia.
+5. `## Re-apertura posible` (cuando aplica, decisiones que pueden volverse a debatir) — quién puede reabrir, bajo qué condiciones.
+6. `## Trazabilidad` — bullets:
+   - `**Bloquea a**:` mention-page (también está en propiedad, pero acá con detalle).
+   - `**Relacionada con**:` mention-page a otras decisiones.
+   - `**Reunión origen**:` mention-page a Reuniones DB.
+   - `**Tomada por**:` mention-page a Stakeholders DB (S-NNN del decisor — NO usar campo `Person`).
+   - `**Aplica RG**:` mention-page (cuando aplica).
 
-### A) {Nombre opción A}
-**{Descartada / Elegida / Diferida}.** {Razones técnicas/de negocio/de política. Costos. Riesgos.}
+Para decisiones tipo `A — Ambigüedad`, agregar al inicio `## Cita ambigua` con blockquote `> "{cita literal del transcript}" (LNNN)` + `**Palabras disparadoras**: '{palabra}' + '{palabra}'`.
 
-### B) {Nombre opción B}
-**{Descartada / Elegida / Diferida}.** {Razones.}
-
-### C) {Nombre opción C}
-**{Descartada / Elegida / Diferida}.** {Razones.}
-
-## Decisión final
-{Si Estado=Decidida: enunciado claro de la opción elegida + detalles de implementación.}
-{Si Estado=Abierta/En debate/Diferida: explicar qué se necesita para zanjarla.}
-
-## Implementación / impacto
-- **Artefactos afectados**: <mention-page url="..."/>, <mention-page url="..."/>
-- **Cambios derivados en otros artefactos**: ...
-
-## Trazabilidad
-- **Reunión origen**: <mention-page url="..."/>
-- **Tomada por**: <mention-page url="..."/> ({S-NNN del decisor — no campo Person})
-- **Bloquea**: <mention-page url="..."/>
-- **Relacionada con**: <mention-page url="..."/>
-```
+Para decisiones tipo `Q — Pregunta abierta`, el body puede ser muy breve (a veces solo Contexto + Opciones + Decisión final si está decidida).
 
 ### Template — Reuniones (DB orbital)
 
 **Propiedades obligatorias**: `Título` (formato `Reunión-NN — Subtítulo`), `Fecha`, `Estado`, `Tipo`, `Acta — resumen`, `Agenda`.
 
-**Propiedades opcionales**: `Audio`, `Transcripción` (upload manual), `Hito` (relación), `Decisiones tomadas` (relación a Decisiones IR — se llena después de procesar), `Tareas generadas`, `Documentos producidos`, `Participantes (Stakeholders)` (relación a Stakeholders si la columna existe).
+**Propiedades opcionales**: `Audio`, `Transcripción` (upload manual via UI), `Hito` (relación), `Decisiones tomadas` (relación a Decisiones IR — se llena después de procesar), `Tareas generadas`, `Documentos producidos`, `Participantes (Stakeholders)` (relación a Stakeholders).
 
 **Body skeleton**:
-```markdown
-**Fecha:** {YYYY-MM-DD}
-**Tipo:** {Socios / Demo / etc} — {subtipo informal: "Impromptu Call", "Standup semanal", etc}
-**Duración:** {minutos}
-**Asistentes:** <mention-page url="..."/> ({S-NNN, rol}), <mention-page url="..."/> ({S-NNN, rol})
-**Grabación:** [Ver en Fathom]({url})
-**Transcript local:** `analisis/reunion-NN/transcript.txt`
-> Audio (`grabacion.m4a`) y transcripción se adjuntan a la fila vía drag-drop manual — la API no soporta upload directo.
 
----
+1. Header con metadatos en negrita:
+   - `**Fecha:** {YYYY-MM-DD}`
+   - `**Tipo:** {Socios / Demo / etc} — {subtipo informal: "Impromptu Call", "Standup semanal", etc}`
+   - `**Duración:** {minutos}` (cuando aplica)
+   - `**Asistentes:** <mention-page url="..."/> ({rol}), <mention-page url="..."/> ({rol})` — SIEMPRE mention-page a Stakeholders, jamás texto plano.
+   - `**Grabación:** [Ver en Fathom]({url})` (cuando aplica)
+   - `**Transcript local:** ` + path al transcript local entre backticks.
+   - Blockquote con nota sobre upload manual: `> Audio y transcripción se adjuntan a la fila vía drag-drop manual — la API no soporta upload directo.`
+2. Separador `---` + `## Contexto previo a la reunión` (o `## Contexto`) — qué venía de antes, qué motivó la reunión.
+3. Separador `---` + `## Discusión principal` (o `## Temas tratados`) — sub-secciones `### 1. {Tema}` / `### 2. {Tema}` / etc, cada una con resumen + decisiones tomadas + mention-page a artefactos. Marcar con `(nuevo)` / `(confirma)` / `(debate)` el tipo de aporte.
+4. `## Decisiones tomadas` — `<table>` con columnas `ID` (mention-page a DS / DP / Q / A) | `Decisión` | `Estado`. Una fila por decisión cerrada en la reunión.
+5. `## Artefactos generados o modificados ({N} cambios en Notion)` — sub-secciones:
+   - `### Nuevos (N)` — bullets con mention-page a nuevos artefactos.
+   - `### Modificados (N)` — bullets con mention-page a artefactos editados + 1 línea de qué cambió.
+6. `## Tareas generadas` (o `## Pendientes abiertos de esta reunión`) — bullets con pendientes; cada pendiente asignado a `<mention-page url="..."/>` cuando hay responsable.
+7. `## Próximos pasos` — lista numerada con próximas acciones / reuniones agendadas.
+8. `## Artefactos a procesar (pendiente — sesión separada)` (cuando aplica) — si la reunión generó input para nuevos CU / BR / AC / DS pero NO se cargaron todavía, listar acá como propuestas pendientes con `{Tema} → posible {tipo de artefacto} en {DB}`.
 
-## Contexto
-{Por qué se convocó, qué se esperaba lograr, qué venía de antes}
-
----
-
-## Temas tratados
-
-### 1. {Título tema} ({nuevo / confirma / debate})
-{Resumen + decisiones tomadas + referencias a artefactos via mention-page}
-
-### 2. {Título tema} (...)
-...
-
----
-
-## Pendientes abiertos de esta reunión
-- {Pendiente 1 — asignado a <mention-page url="..."/> si aplica}
-- {Pendiente 2}
-
----
-
-## Artefactos a procesar (pendiente — sesión separada)
-{Si la reunión generó input para nuevos CU-UI / BR / AC / DS / etc, listarlos acá sin crearlos todavía.
-El procesamiento se hace en una pasada separada con el user.}
-
-- {Tema} → posible {tipo de artefacto} en {DB}.
-- ...
-```
-
-
+## UNIQUE_ID column reminder
 
 All 9 DBs have a `Notion ID` column of type `auto_increment_id`. **Readonly.** Notion assigns the number in creation order. You can't backfill or skip numbers. The prefix is set at column creation time (we configured it during the 2026-05-19 refactor). If you ever need to add UNIQUE_ID to a new DB:
 
@@ -497,7 +515,7 @@ Tombstones live in `.../05_negocio/_TOMBSTONES.md` and the like. If the user add
 - **Stakeholders**: Cristian Cocucci (Sponsor, know-how inmobiliario), Sebastián Ríos (Product Owner / COO), Franco Bertoldi (CTO, user). See S-001, S-002, S-003 in Stakeholders DB.
 - **Hito 1**: 2026-06-25 — MVP demo for Colegio de Arquitectos. ~6 weeks from kickoff (2026-05-14).
 - **Hito 2 (estimado)**: ~2026-10-19 — cierre del acuerdo de 6 meses con el Colegio. **Needs confirmation.**
-- **Reunión-01**: 2026-05-14 (kickoff). Reunión-02: 2026-05-19. Newer meetings get appended.
+- **Reunión-01**: 2026-05-14 (kickoff). **Reunión-02**: 2026-05-19. **Reunión-03**: 2026-05-21 (Impromptu call con Sebastián). Newer meetings get appended.
 - **MVP-first principle**: when adding scope, mark `Fase = MVP` only if it fits the 6-semana scope. Default to Fase 2 for anything aspirational.
 - **Dual product**: "Uber de tasación" (profesional, comité, PDF firmado) + "Autotasador" (B2C, Robotomus mock + Fitt-Servini, PDF referencial).
 - **Robotomus en MVP = mock**. Real Robotomus inference (ETL Inmoclick + Métricas + ML) is Fase 2 dual-track. See DS-11.
@@ -506,17 +524,30 @@ Tombstones live in `.../05_negocio/_TOMBSTONES.md` and the like. If the user add
 ## Edge cases & lessons learned
 
 1. **`notion-query-database-view` requires `view_url`, not `database_url` or collection URL.** If you don't have a view URL, `notion-fetch` the DB first to get its default view URL.
+
 2. **Property `Métro`** in AC DB is a typo of "Métrica" (Planguage "Meter") — leave it alone; renaming would break every existing page.
-3. **`<br>` HTML inside text properties** is used by the existing data instead of newlines (Notion peculiarity in `Opciones consideradas`, `Contexto`, etc). Match the existing style when editing.
-4. **Date properties** use expanded form: `date:Fecha decisión:start` (ISO 8601), `date:Fecha decisión:end` (null for single dates), `date:Fecha decisión:is_datetime` (0 for date-only).
-5. **Checkbox values** are the literal strings `"__YES__"` and `"__NO__"`, not booleans.
-6. **Relations** are JSON arrays of page URLs. To add a relation, include the full `https://www.notion.so/{id}` URL in the array.
-7. **The `notion-fetch` `id` parameter accepts a URL** — pass the full Notion URL, not the bare ID.
-8. **Background agents can hang** on big batches. If you're processing > 30 pages, do it in chunks of 10 with explicit verification between chunks. Don't spawn a long-running sub-agent for this.
 
-9. **Notion API ≠ database templates.** The REST API (and therefore the MCP) cannot create or instantiate database templates programmatically. There is no `template_id` parameter on `notion-create-pages`. Page body templates live in **this file**, in the "Page body templates" section above. Treat that section as the single source of truth: read it before creating, propose edits to it before deviating.
+3. **`## Nocion` (sin acento)** in Glosario bodies — same kind of legacy typo. Most existing T-NNN pages use `## Nocion` and `## Categoria` without accents in the headings. Respect that for consistency; if you create a new term, follow the existing pattern.
 
-10. **`Person` properties only accept Notion accounts.** Fields like `Asistentes` (Reuniones), `Tomada por` (Decisiones IR) are type `person` and only accept user IDs of people with a Notion workspace account. The 3 socios (Cocucci/Sebastián/Franco) currently do not have Notion accounts → don't try to put them there. Linkear via `<mention-page>` to Stakeholders DB instead (principle #5). If a DB lacks a relation column to Stakeholders, **propose adding it** via `ADD COLUMN "Participantes (Stakeholders)" RELATION TO {stakeholders_collection}` before loading the artifact.
+4. **`<br>` HTML inside text properties** is used by the existing data instead of newlines (Notion peculiarity in `Opciones consideradas`, `Contexto`, `Test checklist`, `Acta — resumen`, etc). Match the existing style when editing.
+
+5. **Date properties** use expanded form: `date:Fecha decisión:start` (ISO 8601), `date:Fecha decisión:end` (null for single dates), `date:Fecha decisión:is_datetime` (0 for date-only).
+
+6. **Checkbox values** are the literal strings `"__YES__"` and `"__NO__"`, not booleans.
+
+7. **Relations** are JSON arrays of page URLs. To add a relation, include the full `https://www.notion.so/{id}` URL in the array.
+
+8. **The `notion-fetch` `id` parameter accepts a URL** — pass the full Notion URL, not the bare ID.
+
+9. **Background agents can hang** on big batches. If you're processing > 30 pages, do it in chunks of 10 with explicit verification between chunks. Don't spawn a long-running sub-agent for this.
+
+10. **Notion API ≠ database templates.** The REST API (and therefore the MCP) cannot create or instantiate database templates programmatically. There is no `template_id` parameter on `notion-create-pages`. Page body templates live in **this file**, in the "Page body templates" section above. Treat that section as the single source of truth: read it before creating, propose edits to it before deviating.
+
+11. **`Person` properties only accept Notion accounts.** Fields like `Asistentes` (Reuniones), `Tomada por` (Decisiones IR) are type `person` and only accept user IDs of people with a Notion workspace account. The 3 socios (Cocucci/Sebastián/Franco) currently do not have Notion accounts → don't try to put them there. Linkear via `<mention-page>` to Stakeholders DB instead (principle #5). If a DB lacks a relation column to Stakeholders, **propose adding it** via `ADD COLUMN "Participantes (Stakeholders)" RELATION TO {stakeholders_collection}` before loading the artifact.
+
+12. **"Trazabilidad detallada (auto-generada)" como heading canónico**. La mayoría de las páginas con trazabilidad rica usan este nombre exacto de heading H2, con sub-secciones `### Referencias salientes` y `### Referencias entrantes`, y sub-sub-headings H4 (`#### Originado por (CU)`, `#### Aplica a (RF)`, `#### Aplica reglas de negocio (BR software)`, `#### Verificado por (AC)`, `#### Casos de Uso (Usuario)`, `#### Requisitos Funcionales`, `#### Reglas de Negocio (Software)`, `#### Atributos de Calidad`). Respetá este patrón para consistencia. Para artefactos simples basta `## Trazabilidad` con bullets sin sub-sub-headings.
+
+13. **Bidireccionales: confirmá explícitamente**. Cuando agregás una columna `RELATION` a una DB, Notion no siempre crea automáticamente la reverse property en la DB destino. Si el user pidió bidireccional, verificá con `notion-fetch` que ambas DBs tengan la columna correspondiente. Si falta el reverse, agregalo explícitamente.
 
 ## Project rules you must honor (from root CLAUDE.md)
 
@@ -563,5 +594,6 @@ After completing changes, give a tight summary:
 - Any cross-references rewritten as mention-page (incluyendo personas como mention-page a Stakeholders).
 - Any inconsistency detected (title-vs-ID desync, broken relations, person en texto plano que faltaba linkear, etc).
 - Any schema gap detected (DB que no tiene una columna que el caso requiere) — listar como propuesta pendiente al user.
+- Any deviation from the page body template (heading que no estaba en la plantilla, sección reordenada, etc) — reportá y proponé actualizar la plantilla acá antes de divergir.
 
 Don't paste full body dumps. The user reads Notion directly.
