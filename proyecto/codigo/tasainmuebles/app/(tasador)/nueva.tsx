@@ -21,6 +21,7 @@ import Button from '../../components/ui/Button';
 import Card from '../../components/ui/Card';
 import Input from '../../components/ui/Input';
 import Accordion from '../../components/ui/Accordion';
+import ModalSuccess from '../../components/ui/ModalSuccess';
 import { MotivoTasacion, TipoInmueble } from '../../types/tasacion';
 
 type TipoOpt = {
@@ -120,6 +121,7 @@ export default function NuevaTasacionScreen() {
 
   const [motivoModal, setMotivoModal] = useState(false);
   const [estadoModal, setEstadoModal] = useState(false);
+  const [successModal, setSuccessModal] = useState(false);
   const [filledPhotos, setFilledPhotos] = useState<number[]>(
     Array.from({ length: PHOTO_SLOTS_FILLED }, (_, i) => i + 1),
   );
@@ -202,9 +204,12 @@ export default function NuevaTasacionScreen() {
       setOpenAccordion('descripcion');
       return;
     }
-    Alert.alert('Tasación creada exitosamente', undefined, [
-      { text: 'OK', onPress: () => router.replace('/(tasador)/home') },
-    ]);
+    setSuccessModal(true);
+  };
+
+  const handleVerTasacion = () => {
+    setSuccessModal(false);
+    router.replace('/(tasador)/detalle/1578');
   };
 
   const motivoLabel =
@@ -613,6 +618,18 @@ export default function NuevaTasacionScreen() {
           setEstadoModal(false);
         }}
         onClose={() => setEstadoModal(false)}
+      />
+
+      <ModalSuccess
+        visible={successModal}
+        onClose={() => setSuccessModal(false)}
+        title="Tasación creada exitosamente"
+        subtitle="La tasación #1578 ha sido dada de alta. Ya está lista para editar."
+        illustration="paper-up"
+        primaryLabel="Ver tasación"
+        onPrimary={handleVerTasacion}
+        secondaryLabel="Cerrar"
+        onSecondary={() => setSuccessModal(false)}
       />
     </SafeAreaView>
   );

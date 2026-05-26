@@ -11,6 +11,7 @@ import { Feather } from '@expo/vector-icons';
 import { useLocalSearchParams, useRouter } from 'expo-router';
 import { LiquidGlassView } from '@callstack/liquid-glass';
 import Button from '../components/ui/Button';
+import ModalSuccess from '../components/ui/ModalSuccess';
 import { useGlassSupport } from '../hooks/useGlassSupport';
 import { colors, radius, spacing, typography } from '../constants/tokens';
 
@@ -24,11 +25,21 @@ export default function CerrarValorScreen() {
   const [opcion, setOpcion] = useState<Opcion>('fitt');
   const [valorARS, setValorARS] = useState('');
   const [valorUSD, setValorUSD] = useState('');
+  const [successModal, setSuccessModal] = useState(false);
 
   const isOverride = opcion === 'override';
   const glassOn = useGlassSupport();
 
+  const valoresCerrados = isOverride
+    ? `AR$ ${valorARS || '0'} · US$ ${valorUSD || '0'}`
+    : 'AR$ 142.500.000 · US$ 175.000';
+
   const handleConfirm = () => {
+    setSuccessModal(true);
+  };
+
+  const handleCompartir = () => {
+    setSuccessModal(false);
     router.dismiss();
     setTimeout(() => {
       router.push({ pathname: '/compartir', params: { id } });
@@ -153,6 +164,16 @@ export default function CerrarValorScreen() {
           </View>
         </SafeAreaView>
       </Pressable>
+
+      <ModalSuccess
+        visible={successModal}
+        onClose={() => setSuccessModal(false)}
+        title="Valoración exitosa"
+        subtitle={`Tasación #${id} cerrada con valores ${valoresCerrados}.`}
+        illustration="claps"
+        primaryLabel="Compartir PDF"
+        onPrimary={handleCompartir}
+      />
     </Pressable>
   );
 }

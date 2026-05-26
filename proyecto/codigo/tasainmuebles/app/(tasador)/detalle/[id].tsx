@@ -14,6 +14,7 @@ import { SafeAreaView } from 'react-native-safe-area-context';
 import Badge, { BadgeVariant } from '../../../components/ui/Badge';
 import Button from '../../../components/ui/Button';
 import Card from '../../../components/ui/Card';
+import ModalSuccess from '../../../components/ui/ModalSuccess';
 import { colors, radius, spacing, typography } from '../../../constants/tokens';
 import {
   EstadoTasacion,
@@ -142,6 +143,7 @@ export default function DetalleScreen() {
   const { id } = useLocalSearchParams<{ id: string }>();
   const router = useRouter();
   const [tab, setTab] = useState<'tasacion' | 'comite'>('tasacion');
+  const [editSuccess, setEditSuccess] = useState(false);
   const tasacion = SAMPLE_TASACIONES.find((t) => t.id === id);
 
   if (!tasacion) {
@@ -369,6 +371,7 @@ export default function DetalleScreen() {
                 variant="primary"
                 size="sm"
                 icon={<Feather name="edit-2" size={12} color={colors.white} />}
+                onPress={() => setEditSuccess(true)}
               >
                 Editar
               </Button>
@@ -424,6 +427,16 @@ export default function DetalleScreen() {
           </Button>
         </ScrollView>
       )}
+
+      <ModalSuccess
+        visible={editSuccess}
+        onClose={() => setEditSuccess(false)}
+        title="Tasación editada exitosamente"
+        subtitle={`Los datos de la tasación #${tasacion.id} fueron actualizados.`}
+        illustration="check"
+        primaryLabel="Ver tasación"
+        onPrimary={() => setEditSuccess(false)}
+      />
     </SafeAreaView>
   );
 }
