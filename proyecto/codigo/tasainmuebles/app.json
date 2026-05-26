@@ -9,7 +9,7 @@
     "scheme": "tasainmuebles",
     "ios": {
       "supportsTablet": true,
-      "bundleIdentifier": "com.tasainmuebles.app",
+      "bundleIdentifier": "com.bertoldifranco.tasainmuebles",
       "infoPlist": {
         "NSCameraUsageDescription": "Tasainmuebles necesita acceso a la cámara para fotografiar el inmueble durante la tasación.",
         "NSPhotoLibraryUsageDescription": "Tasainmuebles necesita acceso a la galería para adjuntar fotos del inmueble.",

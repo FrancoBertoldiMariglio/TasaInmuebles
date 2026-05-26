@@ -183,7 +183,7 @@ function BottomNav({ active = 'home' }: BottomNavProps) {
               key={item.id}
               style={styles.bottomFab}
               activeOpacity={0.82}
-              onPress={() => router.push('/tasador/nueva-tasacion')}
+              onPress={() => router.push('/nueva')}
             >
               <View style={styles.bottomFabInner}>
                 <Feather name="plus" size={26} color={colors.coral} />
@@ -198,8 +198,8 @@ function BottomNav({ active = 'home' }: BottomNavProps) {
             style={styles.bottomItem}
             activeOpacity={0.7}
             onPress={() => {
-              if (item.id === 'home') router.push('/tasador/home');
-              if (item.id === 'tasaciones') router.push('/tasador/tasaciones');
+              if (item.id === 'home') router.push('/home');
+              if (item.id === 'tasaciones') router.push('/home');
             }}
           >
             <Feather
@@ -242,7 +242,7 @@ export default function TasadorHome() {
   }
 
   function handleRowPress(tasacion: Tasacion) {
-    router.push(`/tasador/detalle/${tasacion.id}`);
+    router.push(`/detalle/${tasacion.id}`);
   }
 
   return (
