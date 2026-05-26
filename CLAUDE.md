@@ -3,7 +3,7 @@
 > Plataforma de gestión de tasaciones inmobiliarias. Clientes solicitan tasaciones, profesionales matriculados las ejecutan, un comité valida valores apoyado por IA, y el sistema genera documentación, métricas y facturación automática.
 
 **Código interno del proyecto:** `Cocucci`
-**Nombre comercial del producto:** `Tasa Inmuebles` (dominio: `tasacioninmuebles.com`, ya en poder de la sociedad)
+**Nombre comercial del producto:** `Tasa Inmuebles` (dominio canónico: `tasainmuebles.com`, ya en poder de la sociedad. App web en `app.tasainmuebles.com` — Vercel custom domain con SSL automático)
 
 ---
 
@@ -83,7 +83,7 @@ Inicio → Geolocalizar → Datos básicos → Asistente IA (descripción) → F
 - **2026-06-25 (Hito 1 — MVP demo Colegio)** — 6 semanas desde reunión-01. Demo intermedia funcional para el Colegio. El alcance del MVP está pensado contra esta fecha (no contra la fecha de cierre del acuerdo). Decisión confirmada por Franco el 2026-05-14.
 - **~2026-10-19 (Hito 2 — cierre acuerdo, estimado)** — Cierre formal del acuerdo de 6 meses con el Colegio. El MVP de las 6 semanas es la demo intermedia, no el entregable final. Entre Hito 1 y Hito 2 se ejecutan iteraciones que extienden el producto. **CONFIRMAR FECHA EXACTA.**
 
-Hay una maqueta vieja del sistema con el dominio `tasacioninmuebles.com` ya armada. **Decisión tomada en reunión-01: rehacer desde cero, no rescatar la maqueta.** Sirve solo como referencia de qué funcionalidades se necesitan.
+Hay una maqueta vieja del sistema con dominio histórico armada. **Decisión tomada en reunión-01: rehacer desde cero, no rescatar la maqueta.** Sirve solo como referencia de qué funcionalidades se necesitan.
 
 ---
 
