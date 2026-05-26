@@ -3,6 +3,10 @@
 *.mp3
 *.wav
 
+# Output JSON de transcripción (AssemblyAI, derivable del .m4a, suele ser MB+)
+# Solo versionamos el transcript.txt que es la lectura humana
+analisis/**/transcript.json
+
 # Graphify output (derivable con /graphify --update — no versionar)
 # Incluye graph.json/html, GRAPH_REPORT.md, cache/, converted/, manifests.
 # La config .graphifyignore SÍ se versiona (vive en la raíz).
