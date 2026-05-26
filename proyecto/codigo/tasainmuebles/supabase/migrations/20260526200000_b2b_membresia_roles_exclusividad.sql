@@ -67,17 +67,71 @@ from public.profiles p
 where p.entidad_id is not null
 on conflict (entidad_id, user_id) do nothing;
 
+-- ─── 4.5. Drop policies viejas que dependen de profiles.entidad_id ────────
+-- Las policies viejas (creadas por 20260526190000) referencian la columna
+-- profiles.entidad_id en sus subqueries. Hay que tirarlas ANTES del drop
+-- column, sino Postgres rechaza el ALTER. Las nuevas se recrean en los
+-- steps 10 y 11 con la semántica basada en entidad_miembros.
+drop policy if exists entidades_self_read   on public.entidades;
+drop policy if exists entidades_admin_write on public.entidades;
+drop policy if exists tasaciones_access     on public.tasaciones;
+
 -- ─── 5. Drop profiles.entidad_id — entidad_miembros es la única fuente ─────
 alter table public.profiles drop column if exists entidad_id;
 
--- ─── 6. BR-035: partial unique index — tasador máx 1 entidad comercial ─────
-create unique index if not exists entidad_miembros_tasador_comercial_unico
-  on public.entidad_miembros(user_id)
-  where 'tasador' = any(roles)
-    and entidad_id in (select id from public.entidades where tipo <> 'unipersonal');
+-- ─── 6. BR-035: trigger — tasador máx 1 entidad comercial ──────────────────
+-- No se puede expresar como partial unique index porque PG no acepta
+-- subqueries en index predicates (entidad_id IN (SELECT ... FROM entidades)).
+-- Se implementa como trigger BEFORE INSERT/UPDATE en entidad_miembros.
+create or replace function public.enforce_tasador_exclusividad()
+  returns trigger
+  language plpgsql
+  security definer
+  set search_path = public
+as $$
+declare
+  v_es_unipersonal boolean;
+  v_conflicto      uuid;
+begin
+  -- 1. Si el row no tiene rol tasador, no aplica BR-035.
+  if not ('tasador' = any(new.roles)) then
+    return new;
+  end if;
 
-comment on index public.entidad_miembros_tasador_comercial_unico is
-  'BR-035: un user con rol tasador en exactamente 1 entidad NO unipersonal.';
+  -- 2. Si la entidad destino es unipersonal, no aplica BR-035.
+  select (tipo = 'unipersonal') into v_es_unipersonal
+  from public.entidades where id = new.entidad_id;
+
+  if v_es_unipersonal then
+    return new;
+  end if;
+
+  -- 3. Buscar otra membership con rol tasador en otra entidad comercial.
+  select m.entidad_id into v_conflicto
+  from public.entidad_miembros m
+  join public.entidades       e on e.id = m.entidad_id
+  where m.user_id = new.user_id
+    and 'tasador' = any(m.roles)
+    and e.tipo  <> 'unipersonal'
+    and m.entidad_id <> new.entidad_id
+  limit 1;
+
+  if v_conflicto is not null then
+    raise exception 'BR-035: el user % ya tiene rol tasador en entidad % (no unipersonal). Un tasador puede pertenecer a una sola entidad comercial.',
+      new.user_id, v_conflicto
+      using errcode = '23505';
+  end if;
+
+  return new;
+end $$;
+
+drop trigger if exists entidad_miembros_enforce_tasador on public.entidad_miembros;
+create trigger entidad_miembros_enforce_tasador
+  before insert or update on public.entidad_miembros
+  for each row execute function public.enforce_tasador_exclusividad();
+
+comment on function public.enforce_tasador_exclusividad() is
+  'BR-035: un user con rol tasador en máximo 1 entidad NO unipersonal.';
 
 -- ─── 7. Helper: chequeo de rol del user actual en una entidad ──────────────
 create or replace function public.user_has_role_in_entidad(
