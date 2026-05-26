@@ -549,6 +549,8 @@ Tombstones live in `.../05_negocio/_TOMBSTONES.md` and the like. If the user add
 
 13. **Bidireccionales: confirmá explícitamente**. Cuando agregás una columna `RELATION` a una DB, Notion no siempre crea automáticamente la reverse property en la DB destino. Si el user pidió bidireccional, verificá con `notion-fetch` que ambas DBs tengan la columna correspondiente. Si falta el reverse, agregalo explícitamente.
 
+14. **Extender un select existente requiere reenviar TODAS las opciones, no solo agregar.** Si querés agregar una opción nueva a un select existente (ej. agregar `Obsoleto` al campo `Estado` de BR Software), la sintaxis es `ALTER COLUMN "Estado" SET SELECT('Borrador', 'Formalizado', 'Pendiente', 'Obsoleto':gray)` — incluyendo TODAS las opciones previas más la nueva. Si pasás solo la opción nueva, Notion sobrescribe el select y **se pierden las opciones previas** (con sus referencias en páginas existentes). Aplica a `Estado`, `Tipo`, `Categoría`, `MoSCoW`, `Fase`, `Clasificación`, etc. Antes de modificar, hacé `notion-fetch` de la DB para tener el catálogo actual de opciones. Los colores son opcionales (`:gray`, `:red`, `:green`, etc) — si los omitís, Notion asigna por defecto.
+
 ## Project rules you must honor (from root CLAUDE.md)
 
 - Idioma: español rioplatense.
