@@ -8,6 +8,7 @@ import {
 } from 'react-native';
 import { useSafeAreaInsets } from 'react-native-safe-area-context';
 import { Feather } from '@expo/vector-icons';
+import { useRouter } from 'expo-router';
 import { colors, radius, spacing, typography } from '../../constants/tokens';
 import Wordmark from './Wordmark';
 
@@ -27,6 +28,7 @@ export default function BrandBar({
   notificationCount = 0,
 }: BrandBarProps) {
   const insets = useSafeAreaInsets();
+  const router = useRouter();
   const avatarInitial = userName.charAt(0).toUpperCase();
 
   return (
@@ -36,8 +38,15 @@ export default function BrandBar({
         { paddingTop: insets.top + spacing.sm },
       ]}
     >
-      {/* Logo */}
-      <Wordmark size={15} />
+      {/* Logo — long-press opens dev /design-system showcase */}
+      <Pressable
+        onLongPress={() => router.push('/design-system' as never)}
+        delayLongPress={800}
+        accessibilityRole="button"
+        accessibilityLabel="Logo Tasainmuebles"
+      >
+        <Wordmark size={15} />
+      </Pressable>
 
       {/* Spacer */}
       <View style={styles.spacer} />
