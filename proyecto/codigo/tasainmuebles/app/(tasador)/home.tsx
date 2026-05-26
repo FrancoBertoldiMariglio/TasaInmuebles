@@ -9,9 +9,9 @@ import {
   Platform,
   StatusBar,
 } from 'react-native';
-import { useSafeAreaInsets } from 'react-native-safe-area-context';
 import { Feather } from '@expo/vector-icons';
 import { useRouter } from 'expo-router';
+import { useSafeAreaInsets } from 'react-native-safe-area-context';
 
 import { colors, radius, spacing, typography, shadows } from '@/constants/tokens';
 import { SAMPLE_TASACIONES, EstadoTasacion, Tasacion } from '@/types/tasacion';
@@ -21,7 +21,6 @@ import { useGlassSupport } from '@/hooks/useGlassSupport';
 // ─── Types ─────────────────────────────────────────────────────────────────
 
 type TabId = 'todas' | 'pendientes' | 'sin_asignar' | 'en_proceso';
-type NavItem = 'home' | 'tasaciones' | 'fab' | 'estadisticas' | 'comunicaciones';
 
 interface KpiCardProps {
   label: string;
@@ -149,72 +148,6 @@ function BrandBar() {
           <Text style={styles.brandAvatarText}>F</Text>
         </TouchableOpacity>
       </View>
-    </View>
-  );
-}
-
-// ─── Bottom Nav ────────────────────────────────────────────────────────────
-
-interface BottomNavProps {
-  active?: NavItem;
-}
-
-function BottomNav({ active = 'home' }: BottomNavProps) {
-  const insets = useSafeAreaInsets();
-  const router = useRouter();
-
-  const items: { id: NavItem; icon: React.ComponentProps<typeof Feather>['name']; label: string }[] = [
-    { id: 'home',           icon: 'home',           label: 'Inicio'    },
-    { id: 'tasaciones',     icon: 'file-text',      label: 'Tasaciones'},
-    { id: 'fab',            icon: 'plus',           label: ''          },
-    { id: 'estadisticas',   icon: 'bar-chart-2',    label: 'Métricas'  },
-    { id: 'comunicaciones', icon: 'message-circle', label: 'Mensajes'  },
-  ];
-
-  return (
-    <View style={[styles.bottomNav, { paddingBottom: insets.bottom + 8 }]}>
-      {items.map((item) => {
-        const isFab    = item.id === 'fab';
-        const isActive = !isFab && item.id === active;
-
-        if (isFab) {
-          return (
-            <TouchableOpacity
-              key={item.id}
-              style={styles.bottomFab}
-              activeOpacity={0.82}
-              onPress={() => router.push('/nueva')}
-            >
-              <View style={styles.bottomFabInner}>
-                <Feather name="plus" size={26} color={colors.coral} />
-              </View>
-            </TouchableOpacity>
-          );
-        }
-
-        return (
-          <TouchableOpacity
-            key={item.id}
-            style={styles.bottomItem}
-            activeOpacity={0.7}
-            onPress={() => {
-              if (item.id === 'home') router.push('/home');
-              if (item.id === 'tasaciones') router.push('/home');
-            }}
-          >
-            <Feather
-              name={item.icon}
-              size={22}
-              color={isActive ? colors.coral : 'rgba(255,255,255,0.55)'}
-            />
-            {item.label ? (
-              <Text style={[styles.bottomLabel, isActive && styles.bottomLabelActive]}>
-                {item.label}
-              </Text>
-            ) : null}
-          </TouchableOpacity>
-        );
-      })}
     </View>
   );
 }
@@ -415,11 +348,9 @@ export default function TasadorHome() {
           </View>
         </View>
 
-        {/* Spacer so last card isn't hidden behind BottomNav */}
+        {/* Spacer for the expo-router Tabs bar at the bottom */}
         <View style={{ height: spacing.lg }} />
       </ScrollView>
-
-      <BottomNav active="home" />
     </View>
   );
 }
@@ -750,64 +681,4 @@ const styles = StyleSheet.create({
     paddingHorizontal: 2,
   },
 
-  // Bottom Nav
-  bottomNav: {
-    position: 'absolute',
-    bottom: 0,
-    left: 0,
-    right: 0,
-    backgroundColor: colors.navy,
-    borderTopLeftRadius: 22,
-    borderTopRightRadius: 22,
-    flexDirection: 'row',
-    alignItems: 'flex-end',
-    paddingTop: spacing.sm,
-    paddingHorizontal: spacing.lg,
-    ...Platform.select({
-      ios: {
-        shadowColor: colors.black,
-        shadowOffset: { width: 0, height: -4 },
-        shadowOpacity: 0.12,
-        shadowRadius: 12,
-      },
-      android: { elevation: 12 },
-    }),
-  },
-  bottomItem: {
-    flex: 1,
-    alignItems: 'center',
-    gap: 3,
-    paddingBottom: spacing.xs,
-  },
-  bottomLabel: {
-    fontSize: typography.sizes.xs,
-    color: 'rgba(255,255,255,0.55)',
-    fontWeight: typography.weights.medium,
-  },
-  bottomLabelActive: {
-    color: colors.coral,
-  },
-  bottomFab: {
-    flex: 1,
-    alignItems: 'center',
-    marginTop: -22,
-    paddingBottom: spacing.xs,
-  },
-  bottomFabInner: {
-    width: 52,
-    height: 52,
-    borderRadius: radius.full,
-    backgroundColor: colors.white,
-    alignItems: 'center',
-    justifyContent: 'center',
-    ...Platform.select({
-      ios: {
-        shadowColor: colors.coral,
-        shadowOffset: { width: 0, height: 4 },
-        shadowOpacity: 0.35,
-        shadowRadius: 8,
-      },
-      android: { elevation: 8 },
-    }),
-  },
 });
