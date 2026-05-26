@@ -1,0 +1,147 @@
+<!doctype html>
+<html lang="es">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<title>Tasainmuebles — Prototipo navegable</title>
+<link rel="stylesheet" href="tokens.css">
+<style>
+  html, body { margin: 0; padding: 0; background: linear-gradient(135deg, #FFF1ED 0%, #F1F5F9 50%, #ECFDF5 100%); min-height: 100vh; font-family: 'Manrope', system-ui, sans-serif; }
+  .stage { min-height: 100vh; display: flex; align-items: center; justify-content: center; padding: 24px; gap: 36px; }
+
+  .side {
+    width: 260px; align-self: stretch;
+    display: flex; flex-direction: column; gap: 16px;
+    padding: 28px 0;
+  }
+  .side h1 {
+    font-size: 22px; font-weight: 800; letter-spacing: -0.02em; margin: 0;
+    color: #1F2937;
+  }
+  .side h1 .red { color: #F87171; }
+  .side .meta { font-size: 11px; font-weight: 600; color: #9CA3AF; letter-spacing: 0.08em; text-transform: uppercase; margin-top: -4px; }
+  .side p { font-size: 13px; line-height: 1.5; color: #6B7280; margin: 0; }
+  .side .tip {
+    background: #fff; border-radius: 14px; padding: 14px 16px;
+    font-size: 12px; color: #374151; line-height: 1.5;
+    box-shadow: 0 1px 3px rgba(0,0,0,0.04), 0 1px 2px rgba(0,0,0,0.06);
+  }
+  .side .tip b { color: #EF4444; }
+  .side .jumps { display: flex; flex-wrap: wrap; gap: 6px; }
+  .side .jumps button {
+    padding: 7px 12px; border-radius: 999px;
+    background: #fff; border: 1px solid #E5E7EB;
+    font-size: 12px; font-weight: 600; color: #374151; cursor: pointer;
+    font-family: inherit;
+    transition: all 120ms ease;
+  }
+  .side .jumps button:hover { background: #F87171; color: #fff; border-color: #F87171; }
+
+  .reset-btn {
+    align-self: flex-start;
+    padding: 9px 16px; border-radius: 10px;
+    background: #1F2937; color: #fff; border: 0; cursor: pointer;
+    font-family: inherit; font-size: 12px; font-weight: 600;
+    display: inline-flex; align-items: center; gap: 6px;
+  }
+  .reset-btn:hover { background: #111827; }
+
+  /* Phone wrapper — clips modal scrim to device shape */
+  .phone-wrap {
+    position: relative;
+    border-radius: 48px;
+    overflow: hidden;
+    width: 402px; height: 850px;
+  }
+
+  /* Animations */
+  @keyframes fadeIn { from { opacity: 0 } to { opacity: 1 } }
+  @keyframes slideUp { from { opacity: 0; transform: translateY(20px) scale(0.96) } to { opacity: 1; transform: translateY(0) scale(1) } }
+  @keyframes slideUpSheet { from { transform: translateY(100%) } to { transform: translateY(0) } }
+  .phone-wrap > * > * { animation: fadeIn 220ms ease both; }
+
+  @media (max-width: 900px) {
+    .stage { flex-direction: column; }
+    .side { width: 100%; max-width: 402px; padding: 12px 0; }
+  }
+</style>
+</head>
+<body>
+
+<div class="stage">
+
+  <div class="side">
+    <div>
+      <h1><span class="red">Tasa</span>inmuebles</h1>
+      <div class="meta">Prototipo navegable · MVP H1</div>
+    </div>
+    <p>Cliqueá los botones, tabs y filas para navegar. Acordeones se abren/cierran. Los modales aparecen sobre la pantalla.</p>
+
+    <div class="tip">
+      <b>Flujo sugerido tasador:</b><br/>
+      Bienvenida → Login → Home → tocar fila → Detalle → tab "Comité" → Valorar tasación → Cerrar.
+    </div>
+    <div class="tip">
+      <b>Flujo sugerido B2C:</b><br/>
+      Bienvenida → Quiero tasar mi propiedad → Crear cuenta → + Nueva tasación → Calcular.
+    </div>
+
+    <div>
+      <div style="font-size: 11px; font-weight: 600; color: #9CA3AF; letter-spacing: 0.08em; text-transform: uppercase; margin-bottom: 8px;">Saltos rápidos</div>
+      <div class="jumps" id="jumps">
+        <button data-screen="bienvenida">Bienvenida</button>
+        <button data-screen="login">Login</button>
+        <button data-screen="home">Home Tasador</button>
+        <button data-screen="nueva">Nueva tasación</button>
+        <button data-screen="detalle" data-tab="tasacion">Detalle</button>
+        <button data-screen="detalle" data-tab="comite">Comité</button>
+        <button data-screen="compartir">Compartir PDF</button>
+        <button data-screen="b2c-home">B2C Home</button>
+        <button data-screen="b2c-resultado">B2C Resultado</button>
+      </div>
+    </div>
+
+    <button class="reset-btn" id="reset">↻ Reiniciar prototipo</button>
+  </div>
+
+  <div id="root"></div>
+</div>
+
+<script src="https://unpkg.com/react@18.3.1/umd/react.development.js" integrity="sha384-hD6/rw4ppMLGNu3tX5cjIb+uRZ7UkRJ6BPkLpg4hAu/6onKUg4lLsHAs9EBPT82L" crossorigin="anonymous"></script>
+<script src="https://unpkg.com/react-dom@18.3.1/umd/react-dom.development.js" integrity="sha384-u6aeetuaXnQ38mYT8rp6sbXaQe3NL9t+IBXmnYxwkUI2Hw4bsp2Wvmx4yRQF1uAm" crossorigin="anonymous"></script>
+<script src="https://unpkg.com/@babel/standalone@7.29.0/babel.min.js" integrity="sha384-m08KidiNqLdpJqLq95G/LEi8Qvjl/xUYll3QILypMoQ65QorJ9Lvtp2RXYGBFj1y" crossorigin="anonymous"></script>
+
+<script type="text/babel" src="components.jsx"></script>
+<script type="text/babel" src="proto-1.jsx"></script>
+<script type="text/babel" src="proto-2.jsx"></script>
+<script type="text/babel" src="proto-3.jsx"></script>
+<script type="text/babel" src="proto-4.jsx"></script>
+
+<script type="text/babel">
+// Wrap App in phone clip
+function Root() {
+  return <div className="phone-wrap"><App/></div>;
+}
+const root = ReactDOM.createRoot(document.getElementById('root'));
+root.render(<Root/>);
+
+// Wire jumps + reset
+document.getElementById('reset').addEventListener('click', () => {
+  localStorage.removeItem('tasainmuebles_proto_v1');
+  window.location.reload();
+});
+document.getElementById('jumps').addEventListener('click', (e) => {
+  const btn = e.target.closest('button[data-screen]');
+  if (!btn) return;
+  const screen = btn.dataset.screen;
+  const tab = btn.dataset.tab;
+  const state = { screen };
+  if (tab) state.tab = tab;
+  if (screen === 'detalle') state.tasacion = window.SAMPLE_ROWS && window.SAMPLE_ROWS[0];
+  localStorage.setItem('tasainmuebles_proto_v1', JSON.stringify(state));
+  window.location.reload();
+});
+</script>
+
+</body>
+</html>

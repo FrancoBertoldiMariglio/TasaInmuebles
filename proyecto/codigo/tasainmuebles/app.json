@@ -1,0 +1,63 @@
+{
+  "expo": {
+    "name": "Tasainmuebles",
+    "slug": "tasainmuebles",
+    "version": "1.0.0",
+    "orientation": "portrait",
+    "icon": "./assets/icon.png",
+    "userInterfaceStyle": "light",
+    "scheme": "tasainmuebles",
+    "ios": {
+      "supportsTablet": true,
+      "bundleIdentifier": "com.tasainmuebles.app",
+      "infoPlist": {
+        "NSCameraUsageDescription": "Tasainmuebles necesita acceso a la cámara para fotografiar el inmueble durante la tasación.",
+        "NSPhotoLibraryUsageDescription": "Tasainmuebles necesita acceso a la galería para adjuntar fotos del inmueble.",
+        "NSLocationWhenInUseUsageDescription": "Tasainmuebles usa tu ubicación para geolocalizar el inmueble a tasar."
+      }
+    },
+    "android": {
+      "package": "com.tasainmuebles.app",
+      "adaptiveIcon": {
+        "backgroundColor": "#F87171",
+        "foregroundImage": "./assets/adaptive-icon.png"
+      },
+      "permissions": [
+        "android.permission.CAMERA",
+        "android.permission.READ_EXTERNAL_STORAGE",
+        "android.permission.WRITE_EXTERNAL_STORAGE",
+        "android.permission.ACCESS_FINE_LOCATION",
+        "android.permission.ACCESS_COARSE_LOCATION"
+      ]
+    },
+    "web": {
+      "favicon": "./assets/favicon.png",
+      "bundler": "metro"
+    },
+    "plugins": [
+      "expo-router",
+      "expo-status-bar",
+      [
+        "expo-camera",
+        {
+          "cameraPermission": "Tasainmuebles necesita la cámara para fotografiar el inmueble."
+        }
+      ],
+      [
+        "expo-location",
+        {
+          "locationAlwaysAndWhenInUsePermission": "Tasainmuebles usa tu ubicación para geolocalizar el inmueble."
+        }
+      ],
+      [
+        "expo-image-picker",
+        {
+          "photosPermission": "Tasainmuebles accede a la galería para adjuntar fotos del inmueble."
+        }
+      ]
+    ],
+    "experiments": {
+      "typedRoutes": true
+    }
+  }
+}

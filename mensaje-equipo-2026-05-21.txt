@@ -1,0 +1,66 @@
+Equipo, estuve organizando lo que charlamos con Seba el martes y armando el roadmap. Me quedaron varios puntos abiertos que necesitamos resolver entre los 3. Va resumido.
+
+
+*Lo que YA cerramos* (no piden input ahora, solo para que estén al tanto)
+
+- Modelo Entidad ↔ Propiedad ↔ Tasador refinado (con un matiz pendiente, ver abajo).
+- Autotasador B2C se posiciona como ayuda al colegiado, no como reemplazo. Esto va a impactar el copy del flujo y el disclaimer del PDF.
+- Onboarding de tasadores en Fase 2: RENAPER para identidad civil, validación de matrícula a definir.
+- Radios censales del INDEC como unidad geográfica para Robotomus en Fase 2 (propuesta de Seba, provisional).
+
+
+*Lo que necesitamos los 3, ordenado por urgencia*
+
+
+*1. Fecha de entrega vs fecha límite del acuerdo* (es lo más importante)
+
+Crís, vos mencionaste octubre como la fecha de presentación al Colegio. Seba y yo lo vemos así:
+
+- Fecha límite del acuerdo: aprox. 19 de octubre. Es cuando vence el convenio de 6 meses con el Colegio.
+- Fecha de entrega del MVP: nuestra propuesta sigue siendo aprox. 25 de junio (Hito 1, 6 semanas desde el kickoff).
+
+La diferencia importa: si entregamos en junio, tenemos 4 meses para iterar con feedback real antes de cerrar el acuerdo en octubre. Si dejamos la entrega para octubre, llegamos a la presentación con un MVP recién terminado, sin tiempo de probarlo.
+
+Nuestra preferencia es entregar antes y usar los meses intermedios para refinar con los arquitectos del piloto. ¿Cómo lo ves?
+
+
+*2. Padrón inmobiliario único* (pregunta para vos, Crís)
+
+Una propiedad puede tasarse muchas veces a lo largo del tiempo, por distintos tasadores. Sin un identificador único de propiedad, no podemos cruzar la info ni distinguir "departamento A" de "departamento B" en el mismo edificio si están pegados.
+
+¿Sabés si el Catastro de Mendoza tiene una API, lista pública, o forma programática de acceder al padrón inmobiliario? Si existe, lo usamos como ID canónico y resuelve un montón de cosas.
+
+
+*3. Modelo tasador-entidad, matiz a confirmar*
+
+Seba planteó que un tasador puede pertenecer a múltiples entidades (banco, inmobiliaria, juzgado). Me hace ruido: un tasador NO debería poder trabajar para 2 estudios inmobiliarios competidores al mismo tiempo, es conflicto de interés profesional.
+
+Sí podría tasar para un estudio inmobiliario Y para un banco, pero en el caso típico el banco se pone en contacto con el estudio y este último le asigna a su tasador. No es una membresía banco-tasador directa.
+
+¿Validamos esta restricción? Es importante porque define cómo modelamos los permisos.
+
+
+*4. Validación de matrícula profesional Fase 2* (pregunta para vos, Crís)
+
+Para Fase 2 vamos a verificar identidad civil con RENAPER. Para validar matrícula profesional, Seba intuyó que el Colegio podría tener una base de matriculados accesible.
+
+¿Sabés si el Colegio de Arquitectos tiene API, lista CSV, o algún canal que nos permita cruzar DNI con matrícula vigente? Si no hay nada automatizable, vamos con verificación documental + revisión humana, pero queremos saber primero.
+
+
+*5. Texto del disclaimer del PDF B2C* (pendiente, no urgente)
+
+Como decidimos que el B2C es ayuda al colegiado, el texto del disclaimer del PDF tiene que reflejarlo. Idealmente con asesoría legal antes del Hito 1. ¿Lo coordinás vos, Crís?
+
+
+*6. Peralta como validador externo* (Seba)
+
+¿Confirmás que lo querés llevar a la próxima? Si sí, lo agrego como stakeholder y le mandamos el contexto antes.
+
+
+*Operativo*
+
+- Próxima reunión: martes 26 de mayo a la mañana. Crís, ¿podés? Seba ya confirmó.
+- Idealmente llegamos al martes con respuestas a los puntos 1, 2 y 4 (los bloqueantes).
+- El resto lo charlamos ahí.
+
+Tírenme dudas y cualquier cosa, avisen.

@@ -1,0 +1,340 @@
+Impromptu Call - May 21
+VIEW RECORDING - 32 mins (No highlights): https://fathom.video/share/QLxTZ-Hk9vFNDesPa7f_8edexejzs2BR
+
+---
+
+0:01 - Franco Bertoldi (bertoldifranco4@gmail.com)
+  Listo, ahora sí. Vamos.
+
+0:04 - Speaker 2
+  Contame, ¿cómo te fue más da de lo que contaste por arriba?
+
+0:08 - Franco Bertoldi (bertoldifranco4@gmail.com)
+  Sí, dale.
+
+0:08 - Speaker 2
+  O que veamos si querés el plan de lo que él te dijo, no el plan, sino el tema de los features que estaban.
+
+0:18 - Franco Bertoldi (bertoldifranco4@gmail.com)
+  Mirá, ahora estoy presentando. Ay, se me sirve eso.
+
+0:23 - Speaker 2
+  Ahora sí.
+
+0:23 - Franco Bertoldi (bertoldifranco4@gmail.com)
+  Joda, mirá, yo lo que he estado haciendo estas últimas dos reuniones han sido puramente, pura y exclusivamente captura de requerimientos.  Yo lo que hice fue, lo único que hice fue esto, dame un segundo, lo único para hacer la captura de requerimientos un poco más, visual, hice la aplicación que me mandó él, se la hice con Cloud Design.  Me hacía trascenduable, para que me planteara esto, mostrándole los logins y demás, empezar a hablar, empezar a contarme qué es lo que病ía que haber.
+
+0:57 - Speaker 2
+  Mhm. Mhm. Mhm.
+
+1:07 - Franco Bertoldi (bertoldifranco4@gmail.com)
+  Entonces revolves solo el MVP y no tanto de la Ap Krankauti entera.
+
+1:12 - Speaker 2
+  Mhm.
+
+1:12 - Franco Bertoldi (bertoldifranco4@gmail.com)
+  Entonces noУ tenia como que pararlo y decir, powerful who hor your inventory, y esa pregunta es como un tiro en el pie para algún tipo que me dice y prefiero que esté todo.  So, I got note mentalmente to start to record a little bit. Based on all that, there were a lot of things.  First, did a lot of code. I'm going to click here in requisitos. All of this that we are seeing in the meeting with Prince Ciroli, I'm going do everything.  The holder, the user, the software, diagram, the decisions, the changes, everything I'm doing here. And to be able to share it, I moved to Notion.  Tengo dos partes hechas. Lo que es la operativa, el día a día, y la documentación. La parte de documentación en la que estoy rellenando es todo esto, ¿sí?  Identificando stakeholders, a Cristian, a Boa, a mí, consultor externo, etcétera, glosario de términos, todos los casos de uso, que esto fue lo que trabajé el otro día.
+
+2:05 - Speaker 2
+  Yes, yes, yes, yes.
+
+2:12 - Franco Bertoldi (bertoldifranco4@gmail.com)
+  Yo lo que hice el otro día, cuando fui con él, le armé esta herramienta, que básicamente es una página donde vos vas eligiendo casos de uso, ya vas diciendo, este lo quiero, este no, y yo le iba mostrando diagramas de flujo para que él fuera viendo cómo sería dicho caso de uso, y de esa manera elegimos los que irían, ¿sí?  Los que irían en el MVP. Esos que irían en el MVP están acá y además están tallados con en qué fase van incluidos, ¿sí?  Fase 2, fase 3 son como las evoluciones. Por ahora lo que hemos quedado es para el MVP, en esta es la verdad, ¿sí?  you. Filtro por... Ah, no, para. Bueno, sí, voy a filtrar. Solo vamos a ver los del MVP, ¿sí? Quería, tasador crea tasación en tu end, que básicamente es el flujo que vos la conoces, que es...
+
+3:14 - Speaker 2
+  Is it a collab more, or not?
+
+3:16 - Franco Bertoldi (bertoldifranco4@gmail.com)
+  Correcto, exactamente. Entra a mis tasaciones, nueva tasación, le da OK, OK, tipo de tasación, o sea, motivo de la tasación, datos de la persona dueña del inmueble, ubicación, datos del inmueble, geolocalización, etcétera, etcétera, etcétera, etcétera.  Y yo le doy OK, y eso tiene dos flujos. Por un lado, me devuelve el autotazador, está el autotazador, que sería Robotomus.  So let's see this is, considering these characteristics, and here it is, for example, that Robotomus has to do two things, or two things in general.  They are talking about the price of the the alquiler and the price of the price of the alquiler, in the case of the formula of the architect, it is a derivative of the price of the of of the price, which is the formula, and then it says, considering the zone, the rate of the 0.5%, that is the price of the alquiler, and in the case of Robotomus, in reality, what he will do is learn from the data, or learn from data to predict the price of the alquiler, and in reality, statistically, when they learn from the data, they will learn from those percentages, you understand?
+
+4:21 - Speaker 2
+  Ok, ok.
+
+4:36 - Franco Bertoldi (bertoldifranco4@gmail.com)
+  And what is the percentage of the of the person?
+
+4:39 - Speaker 2
+  Cuando me decía aprenderlo en base a estadística, sistema experto, machine learning.
+
+4:42 - Franco Bertoldi (bertoldifranco4@gmail.com)
+  Marcin Bernal. Yes, Marcin
+
+4:44 - Speaker 2
+  Ok. Ok, ok.
+
+4:47 - Franco Bertoldi (bertoldifranco4@gmail.com)
+  Lo que acá veo es que, bueno, va a ser un poco compleja esta parte, por eso yo fui reiterativo con intentar dejarlo para la siguiente fase, porque primero que vamos a tener que tener una disponibilización de los datos, y yo no sé cuán limpio van a estar los datos de la base de datos esas, dónde hacer las herramientas, pero claro, no, voy a tener que hacer varias cosas y me va a quitar el foco del desarrollo MOA, del desarrollo web, y además lo que quiere hacer Kristen es una segregación.
+
+5:03 - Speaker 2
+  Seguro que no, seguro que poco.
+
+5:15 - Franco Bertoldi (bertoldifranco4@gmail.com)
+  por zona muy, muy, muy específica, ¿sí? Fácil de hacer. Eso, yo luego, cuando hice la tesis, es difícil, porque, y en especial en Argentina, porque, viste, va, me voy al caso extremo Buenos Aires, no está dividido por el resto del país, viste que tiene partidos comunes.
+
+5:31 - Speaker 2
+  Después podemos ver ahí, podemos ver ahí algún tipo de...
+
+5:33 - Franco Bertoldi (bertoldifranco4@gmail.com)
+  Bueno, entonces eso, te cago un poco la cabeza. Bueno, más allá de eso, acá lo que quiero decir es...
+
+5:44 - Speaker 2
+  So we can see, I'm thinking about now, I don't know if it is used in that way, but you know what are the radios sensuals?
+
+5:52 - Franco Bertoldi (bertoldifranco4@gmail.com)
+  No.
+
+5:54 - Speaker 2
+  Well, when you make a census, the census is divided, well, obviously the province, blah, blah, and the minimum division of the census is called radios sensual.  That's they are, they exist, we can go into a base of data and you will see the geolocalization of the radios sensual of all the country.
+
+6:15 - Franco Bertoldi (bertoldifranco4@gmail.com)
+  Genial, y está bien.
+
+6:16 - Speaker 2
+  What is the radios sensual? And that's what is interesting, the population. It is to if you take a radios sensual from the desert of La Barbe, the radios sensual is a giant.  I don't remember how many people enter in, but it's homogenous. All the radios sensuals have the same amount of people.  So you go to city and your radios sensual is smaller. That's one. very good idea, because it gives you an idea of the concentration of people, and therefore much better in the approximation of any other thing.
+
+6:49 - Franco Bertoldi (bertoldifranco4@gmail.com)
+  It's good, it's good, it's good, I like it, well, that was...
+
+6:49 - Speaker 2
+  When you to the census, you say, how many women are in Godly Crew? Well, tell me in which radio censal, you're going to tell me.  You specifically, you're in Talmad, and you're in Cava, which is the highest concentration of Cava and Rosario, which are the two places with more concentration, one radio censal is a manzana, and here in Mendoza I think there are six manzanas, more or less.  It's in that order, more or less. That could be as an element, as an idea, but then we can evolve.
+
+7:37 - Franco Bertoldi (bertoldifranco4@gmail.com)
+  Puta, se me cierra la MAC, el orto esta no...
+
+7:40 - Speaker 2
+  Ok.
+
+7:40 - Franco Bertoldi (bertoldifranco4@gmail.com)
+  Bueno, eso por un lado. Más allá del detalle, por eso quiero tener tasador, crea tasación, login del tasador, mis tasaciones, ¿sí?
+
+7:46 - Speaker 2
+  ¿Lograste achicarle el MVP a todo esto? Sí. Ok. Esta era la aplicación mobile. Login del trazador.
+
+8:00 - Franco Bertoldi (bertoldifranco4@gmail.com)
+  Pero ojo, serían mis tasaciones del punto de vista del tasador, tasado, y del banco, ¿se entiende?
+
+8:06 - Speaker 2
+  Claro.
+
+8:09 - Franco Bertoldi (bertoldifranco4@gmail.com)
+  Porque acuérdate que tenemos acá el mayor conflicto que tendríamos que resolver, que no lo digo necesariamente a unas reuniones, habíamos charlado en...
+
+8:10 - Speaker 2
+  Sí. Ok. Sí.
+
+8:31 - Franco Bertoldi (bertoldifranco4@gmail.com)
+  Bueno, no me acuerdo, pero te lo digo y después lo busco. That is, what are the types of users, what are the roles, because I have the tazer, the tazer, the bank, the company, the company, company that engloba tazers, so it is a tazer stand alone, you understand?  Okay.
+
+8:50 - Speaker 2
+  Sí, ahí me parece, me parece, pensémoslo, un poco lo que yo dije en esa reunión era lo siguiente, vos tenés el concepto del tazador, que me parece que el tazador es medio como cross, empresas que piden tazar, o un tazador puede tazar para un banco y para una inmobiliaria, ponen, y que siga siendo la misma persona, no que se tenga que registrar dos veces, sino que como que el otro le da la propiedad, tenemos que ver ahí el tema de la relación.  Después están, lo que vos decís, el banco, la inmobiliaria y todo eso, yo lo que, el concepto, lo que más se parece, es el de entidad.  Entidad... What does mean? It's a company, no matter if it's an immobilist, or 2.000, or a bank, because for us, the relationship that it has with the property is that it has to ask, no matter if it's of him, if it's of him, if it's it's of him, him, it's him, it's of it's him, So, what we only that we care about is that the type can ask for that property.  So, that, for me, is the entity. The entity that it has, it has, it can have multiple immobiles and it can have multiple tazadores.  And then you have, public in general, which I don't know if it would be in this first etapa, because it doesn't make a MVP, much less.  In the case of the school, I think, at the beginning, that the tazadores are going to be entities, I think, that it should be valid.
+
+10:28 - Franco Bertoldi (bertoldifranco4@gmail.com)
+  Ok, ok, sí, ok, ok, bueno, me anoto eso como punto a aclarar, que también va a definir mucho qué pantalla, entonces, sí, sí, sí, sí, sí, sí, sí, sí, bien, bueno, después, más fácil, este paralejo al final, la 0.4, taxador comparte PDF con solicitante, básicamente es bastante tupido cuando termina.
+
+10:31 - Speaker 2
+  So, who can you pay a tax? The bank or an immobilist, it goes for the model of the entity.  Now, if you say, no, any pelotudo can come and charge it and pay a tax. Well, it's hard understand how it would that relationship.  If you want a tax from your house, it's the only tax that you would pay in your life. You register, you visit, does mean that it is an entity?  No, I don't Yes, yes, The model, no, it's the model of the actors, let's say, are in the system.  Yes, yes, yes. So what is that?
+
+11:28 - Franco Bertoldi (bertoldifranco4@gmail.com)
+  Cliente B2C hace tasación referencial, que eso básicamente sería cuando vos querés tasar tu casa, y digas, quiero tasar mi casa, pero no quiero que venga un tasador, entonces vas y tasas con el robotomus, entonces ahí sería el mock, el robotomus y la fórmula de...
+
+11:43 - Speaker 2
+  Okay.
+
+11:44 - Franco Bertoldi (bertoldifranco4@gmail.com)
+  ¿entendés?
+
+11:44 - Speaker 2
+  Okay.
+
+11:44 - Franco Bertoldi (bertoldifranco4@gmail.com)
+  En la MOA soy cliente, quiero tasar mi propiedad, sí, sí, ok, vos mostrarías, ponele, mostrarías el robotomus, como para que sea una referencia para el tasador, es decir, ah, me...
+
+11:45 - Speaker 2
+  That's it. That's what he put for the MVP. That's it, I think it should be for the MVP. So, I think, for a matter of politics.  Because you're going to offer to the school of architect's college that competes against the architect. I'm going to say, no, that's it, it.  It's an help. It's an aid. Exacto, exacto, exacto.
+
+12:25 - Franco Bertoldi (bertoldifranco4@gmail.com)
+  Okay, okay, okay, okay. Bueno, bueno, bien, bien. Estas son las que yo y él elegimos.
+
+12:34 - Speaker 2
+  I have a question.
+
+12:34 - Franco Bertoldi (bertoldifranco4@gmail.com)
+  Yo te mostro las pruebas para que...
+
+12:38 - Speaker 2
+  In the theme of the login, do you include all the permits and all the security models? No, it's a login and punto.
+
+12:46 - Franco Bertoldi (bertoldifranco4@gmail.com)
+  Nada, lo que voy a hacer es que el login sea un endpoint.
+
+12:51 - Speaker 2
+  Because it's a quilombo, that's what say.
+
+12:53 - Franco Bertoldi (bertoldifranco4@gmail.com)
+  Sí, sí, no. O en un momento pensé hacerlo con OutZero, que venga, que elija con Google, que haga la cuenta, que un proveedor que es gratis, ya lo he hecho varias veces, pero es medio un kilómetro.  Entonces prefiero hacer un login estúpido donde están los datos precargados y a cada arquitecto le damos una cuenta y se terminó.
+
+13:14 - Speaker 2
+  Okay.
+
+13:16 - Franco Bertoldi (bertoldifranco4@gmail.com)
+  Bueno, las otras que quedaron, que no... bueno... Las voy a leer, porque mi computadora no tiene ganas de andar.
+
+13:22 - Speaker 2
+  I think it's good, it's good, I understand, yes, yes, yes, yes.
+
+13:23 - Franco Bertoldi (bertoldifranco4@gmail.com)
+  Los que llegaron son, cliente solicita tasación desde web, lo que el Chris quiere hacer es que en sí como que la web y el mobile sean cosas complementarias, pero que cada una tiene su funcionalidad principal.  ¿Qué quiere decir esto? ¿Vos podrías como particular tasar con Robotomus desde web y mobile? Sí. Pero, por ejemplo, si sos tasador y quieres consultar un dashboard más completo de tasaciones, lo tenés que hacer a través de web.  Si sos tasador y querés tasar una casa con inspección ocular, lo tenés que hacer a través del mobile. ¿Entendés?  Para hacerlo bien programático y lógico, son dos conjuntos que se interseccionan entre otras partes en funcionalidades, pero hay partes que son de cada conjunto, ¿sí?  De cada plataforma. Bueno, esto se pasa, lo del cliente solicita tasación de web es lo mismo...
+
+14:18 - Speaker 2
+  Okay.
+
+14:19 - Franco Bertoldi (bertoldifranco4@gmail.com)
+  Robotomus calcula valor referencial, eso lo he puesto como caso de uso, pero en realidad es un programa, una aplicación entera, es entrenar el modelo, todo ese quilombo, eso quedó para la fase 3, asignación automática de tasador por zona, eso es básicamente el concepto de Uber, que vos estás en Chakras con él, y solicitas la tasación, bueno, te vas a buscar gente de tu zona, no alguien de Maipú.  Dashboard B2B Owner, que eso sería básicamente la vista del banco o del corredor inmobiliario, que diga, ah, el banco tiene sus tasadores, y sus tasadores hacen tasaciones, yo quiero ver la actividad de mis tasadores contratados.
+
+15:00 - Speaker 2
+  Ese es el modelo que yo te digo del tema de la entidad. Vos a una inmobiliaria te va a pasar exactamente lo mismo, la inmobiliaria tiene varios tasadores, e igual, es el mismo modelo.  Che, tengo propiedades atasadas, tengo los tasadores, tengo la propiedad de los... So few them, who took them, and were doing it, were it, they doing One thing for the model, I'm thinking it now, let's think it's also, the property should be, in some way, not how, should be, like, unique, for even if we can't do it, I know, it can be repeated, or, in two places, you bought your house from this place, and, well, another type came after and volvió to have a taxing, the only way that was unique would be through the idea of of the immobilery, which you normally don't have in that age.
+
+15:19 - Franco Bertoldi (bertoldifranco4@gmail.com)
+  Perfecto, excelente. Bien, eso también quedó para más adelante. Después, bueno, cobro vía pasarela de pagos. Yo ya le hice, dale.
+
+16:02 - Speaker 2
+  However, you could, in some way, say this, at least for the entity, say, no, this house is the same house.  The type says that it is same, and the transactions should be independent of that invoice, so you have the entity and the entity of taxing, and it is a one to many, in that sense, talking about the UNDER, because could be possible that in the history you had more than a taxing for the same property.
+
+16:23 - Franco Bertoldi (bertoldifranco4@gmail.com)
+  Sí, sí. Sí, sí, entiendo, entiendo.
+
+16:39 - Speaker 2
+  The taxing last year, and this year the return to taxing for another reason, and whatever it is.
+
+16:46 - Franco Bertoldi (bertoldifranco4@gmail.com)
+  Y ahí lo que podríamos hacer es, por ejemplo, si me ocurre ahora, si quisiera diferenciarlo, en vez de relacionar usuarios que piden tasaciones con su propiedad, lo asociaría con tus tasaciones.
+
+16:46 - Speaker 2
+  Yes, is user taxing.
+
+16:57 - Franco Bertoldi (bertoldifranco4@gmail.com)
+  ¿Por qué? Porque vos podrías tener planes, propiedad, ¿entendés?
+
+17:01 - Speaker 2
+  Exactly, exactly.
+
+17:03 - Franco Bertoldi (bertoldifranco4@gmail.com)
+  Entonces te evitas ese conflicto de que para un usuario siempre vas a tener... So we were just Fathom, Bertoldi, was talking Fathom.
+
+17:09 - Speaker 2
+  Correcto. Lo que sí estoy pensando, como vos no tenés la identificación verdaderamente única, la relación entre entidad, entidad, o sea, la inmobiliaria y la propiedad, sí debería ser, ¿entendés?  O esa propiedad no se debería repetir para otras entidades. Por más que pudiese ser por característica y que en definitiva es la misma propiedad, vos no tenés manera de aseverarlo, ¿entendés?
+
+17:38 - Franco Bertoldi (bertoldifranco4@gmail.com)
+  So we were talking Fathom, Franco Bertoldi, he was talking about Fathom.
+
+17:41 - Speaker 2
+  Exacto. Che, es la misma propiedad. Che, bro, es que no sabes.
+
+17:45 - Franco Bertoldi (bertoldifranco4@gmail.com)
+  Yes, yes, yes, yes.
+
+17:46 - Speaker 2
+  ¿Cómo te aseguras que realmente era la misma propiedad? ¿Por la dirección? ¿Por un punto geográfico? Sí, pero en una propiedad horizontal, había tres departamentos, y qué sé yo.  O sea, no es tan fácil, ¿me entendés? Entonces, yo lo que digo es, para esa entidad, todas esas propiedades son únicas.  Ahora... So if I take the same property, well, I'm to make a new property, the relationship, the unique relationship would be property-entity, you understand?
+
+18:15 - Franco Bertoldi (bertoldifranco4@gmail.com)
+  Yes, yes, yes.
+
+18:20 - Speaker 2
+  Total, you know, what is the contra that we can have there? No, reality we don't have any contra because the taxing is unique.  I'm thinking, you know, what are you do with statistics? That's also interesting for when you get the report with the Robotomu, or with Inteligencia of Data, or whatever.  do mean? What do you mean? do you mean? do mean? You have three taxing in this area, okay, good, you have three taxing, your score, let's say, is better if you had no one, you know?  Do it. Bueno, para la misma propiedad no vas a saber si es la misma propiedad o no, solamente lo vas a saber porque fueron en esa dirección, en esa manzana, ponerle, qué sé yo, ¿entendés?
+
+19:09 - Franco Bertoldi (bertoldifranco4@gmail.com)
+  Claro.
+
+19:11 - Speaker 2
+  Pero igual, a tus efectos, a efectos de tu análisis, digamos, de veracidad de ese dato, te va a salir igual.
+
+19:22 - Franco Bertoldi (bertoldifranco4@gmail.com)
+  Sí, sí. O sea, en términos estadísticos tienen la misma significancia, pero el hecho después de diferenciarlo va a ser un poco complejo.  Lo que hay que ver también es si es deseable, ¿entendés?
+
+19:31 - Speaker 2
+  No te hace falta diferenciarlo, no te hace falta diferenciarlo.
+
+19:31 - Franco Bertoldi (bertoldifranco4@gmail.com)
+  Eso va a haber...
+
+19:35 - Speaker 2
+  para mí que soy una inmobiliaria, que tengo dos propiedades distintas, sí, pero yo sé cuáles le pongo los datos que a mí me significan, digamos, un diferenciador.  No voy a tener probablemente, validémoslo eso con Cristian, porque a lo mejor este no dice, no, si nosotros le ponemos la ID del padrón inmobiliario, listo, ese es el mismo problema, el padrón único y chao, no creo que eso pase, te digo, no creo.
+
+19:44 - Franco Bertoldi (bertoldifranco4@gmail.com)
+  Claro, sí.
+
+19:59 - Speaker 2
+  But well, validémoslo, y cómo vamos a validar eso, yo que haría la fácil, digamos, la...
+
+19:59 - Franco Bertoldi (bertoldifranco4@gmail.com)
+  Bueno, ahí surge la pregunta. Perfecto. Listo. ¿Qué más? Bueno, cobro vía pasarela de pagos. Esto ya le dije, lo más fácil sería integrarse con Mercado Pago.  Me dijo que bueno, esto igual va para la fase 6 más o menos. No le ha pasado mucho por eso.  Tazación certificada con inspección ocular. Eso es, básicamente, que uno vaya, haga la inspección ocular y se certifique. ¿Qué tiene que ver esto?  Que tiene que existir una manera de certificar a los tazadores. Entonces también tienes que hacer todo un flujo de ABM específicamente hecho para tazadores, que puedan enviar su documentación o lo que fuere, para que su firma sea válida.  Porque la idea es que... y ahí me mataste. Ahí yo lo que haría es, no sé si tiene que subir un papel legal o algo, ahí hay que preguntarle a Cristian cómo los tazadores valían, que son tazadores, ¿no?  ¿Cómo tiene que ver esto?
+
+20:56 - Speaker 2
+  Los tazadores entiendo que están todos registrados en la Cámara de los Arquitectos, entiendo que es así, si eso es así es, che, Arquitectos, Cámara de Arquitectos, dame la base de datos de todos los tazadores validados y la actualizo una vez por semana, una cosa así muy burla, y vos, por otro lado, haces un onboarding, que el onboarding lo único que hace es validar quien es quien dice ser, entonces vos decís, che, este, ah, el DNI número tanto, ¿es tazador que está en la base de datos?
+
+21:21 - Franco Bertoldi (bertoldifranco4@gmail.com)
+  Claro, claro, como un renapper de arquitectos, básicamente.
+
+21:26 - Speaker 2
+  Así de fácil, sí, está en la base, listo, es un tazador validado, chao, así de fácil, claro, claro, exacto, en realidad el RENAPER lo van a tener que hacer igual para saber que el flaco es quien dice ser, no, no, no, te digo porque sabes que estaba pensando por ahí usar algún onboarding de los que ya está hecho, alguno de los servicios, ¿no?
+
+21:43 - Franco Bertoldi (bertoldifranco4@gmail.com)
+  Una analogía no más para que yo lo entienda.
+
+21:53 - Speaker 2
+  to use that part, the part of the validation of the DNI, further, further, further, further, further, further.
+
+21:56 - Franco Bertoldi (bertoldifranco4@gmail.com)
+  Ah, dale. Sí, sí, me parece bien, me parece bien. Bien. ¿Qué más? Bueno, entrenamiento robotomus, tiene que ver con el cálculo referencial, más adelante, suscripción B2B, lo mismo que el pago, no importa, estos ranking y reviews de tasadores, lo que el Cristian básicamente quiere hacer es, igual que Uber, que tengan como una manera de rankearlo, que los tasados tengan su forma de rankear como fue su experiencia, y de esa forma la aplicación tiene mejores, tiene un filtro más, que es, no sé, filtrar por ranking, entendemos, por cantidad de reviews, lo que sea.  Y por último, un backoffice administrativo, que eso va a ser para nosotros, cuando tengamos que setear requisitos, perdón, parámetros globales, no sé, verlogs y demás, tenerlo centralizado.  Esto lo hice únicamente porque he visto muchos proyectos en soluciones que no tienen backoffice. And that are a bar at the bottom of top.  So, we're going to add now, then after I only have a new extension.
+
+22:52 - Speaker 2
+  Totalmente, sí.
+
+22:59 - Franco Bertoldi (bertoldifranco4@gmail.com)
+  So, that's it. That's all for now.
+
+23:02 - Speaker 2
+  Bien, perfecto.
+
+23:04 - Franco Bertoldi (bertoldifranco4@gmail.com)
+  Those are all the things that I have. Also, yes, what was that, he said, he he said, he said, he I at my moment said, well, yes, there's nothing do.
+
+23:08 - Speaker 2
+  No, no, digo, el alcance este estaba ligado con él, ¿hace falta algo más o compró la idea de que ese fuera el alcance para el MVP?
+
+23:25 - Franco Bertoldi (bertoldifranco4@gmail.com)
+  And then, he said, you know, know, I said, know, you to do it, you have it. And, I was do is, now I'm to transfer the meeting, and I'm going to the questions that have come out for him, and also I'm going to that the part of Robotomus, at least, of this meeting, the analysis next, we are going to But for a question that,  La capa analítica esa va a requerir mucho tiempo, o al menos, no es que la vamos a mojar al lado, pero la vamos a mojar al final, ¿entendés?, para ver si nos da el tiempo, la vamos a al final.  Lo que pasa es que Cristian también, él dice que tendríamos que presentar en octubre todo esto, como que la fecha límite es el día de la presentación.  Lo que nosotros pensamos es tal vez tiene que ser antes. El tema es que, bueno, hay que ir con un buen argumento, yo creo que ahí, y no digo que lo tengamos que decidir ahora, va a ser más una cuestión de tire a floje por esta semana, de ponernos de acuerdo de hasta acá llegó el MVP, ¿entendés?, pero yo por mientras ya quiero empezar a desarrollarlo, y voy iterando, sea, voy iterando a poco, siempre...
+
+24:08 - Speaker 2
+  Totalmente. Eso te iba a decir. Hay un actor intermedio que es el  Peralta, que es el amigo de Cristian, bueno, tú lo conozco hace muchos años, que es arquitecto, de hecho está en la cámara, está todo.  Lo podemos usar como un usuario calificado para validar. A ver si es un MVP funcional o no. ¿Me entendés?
+
+24:48 - Franco Bertoldi (bertoldifranco4@gmail.com)
+  Ok, claro.
+
+24:49 - Speaker 2
+  Y yo lo que quiero, bueno, la próxima reunión de examen, yo voy con vos, que se nota, porque también quiero como, viste, encuadrar y decir, boludo, esto, va a validar en la cámara, nos va a el feedback de decir, no, nada que ver, boludo, nada que ver con lo que hacemos, que nos diga, viste, nada que o que nos diga, no, está re bien encaminado, ¿no?  Bueno, entonces, eso lo tenemos que hacer.
+
+25:12 - Franco Bertoldi (bertoldifranco4@gmail.com)
+  Sí, sí, está bien. Yo lo pregunté, pero me imagino que porque vos sos Sebastián, sos su amigo y demás, te va a entender más.  A mí como yo soy el albañil, a mí tiene que ser así, pero está bueno.
+
+25:26 - Speaker 2
+  Dale, dale, dale, dale.
+
+25:28 - Franco Bertoldi (bertoldifranco4@gmail.com)
+  Yo te diría que, no sé, no te digo mañana, tal vez el martes, para ya poder caer con un poco más de código, poder caer con unas vistas, unas cositas más para que sea un poco más tangible la aplicación.  Y así... Al menos mi autofeedback es que fue muy productivo mostrarle las cosas para que él empiece a hablar, o al menos encauzarlo, porque viste que habla, habla, habla, pero hay que como encauzarlo, y eso es mejor que un cliente que no habla, pero bueno, de 10 se va, la verdad que vengo bien, o sea, el resto de cosas no te las muestro porque son un poco más agudos, pero lo importante es esto, yo en paralelo voy iterando esta wiki que nos va a servir a nosotros de respaldo, y además estoy grabando todas las reuniones, para que nos sirva de fuente de verdad, cuando se tomó la decisión, hasta mirá, me puse un coso de decisiones, para que quede todo encantado, así que nada, de 10, vos tranquilo que estamos, ¿sí?
+
+25:48 - Speaker 2
+  Yes, totally. Well, great. No, tranqui, tranqui, tranqui. The background, the background. Yes, yes. No, well, perfecto, perfecto, genial, genial.  Well, me acomodo la agenda toda y hacemos la reunión cuando llamo.
+
+26:39 - Franco Bertoldi (bertoldifranco4@gmail.com)
+  you martes, when you have the time, you tell me if we are the martes, you.
+
+26:42 - Speaker 2
+  Yo en la mañana, en la mañana me acomodo, me acomodo en la mañana. A veces yo tengo el martes, martes sería, el primer día viene el martes que viene, el martes que viene, claro, porque el 20, no, de todo el mundo, en la Argentina, porque el lunes es 25 de martes, yo el miércoles no puedo, así que sí, me viene bien el martes, tal, genial, sí señor, no, de nada, nos vemos, che, bye bye.
+
+26:54 - Franco Bertoldi (bertoldifranco4@gmail.com)
+  First, Fintex. Yes, yes, yes, martes, martes, I am now transcriber, mando notes and I am going to the martes.  Well, thank you much, much. Dale, adios. Thank you. Thank you.
+
+31:27 - Speaker 2
+  Fathom.

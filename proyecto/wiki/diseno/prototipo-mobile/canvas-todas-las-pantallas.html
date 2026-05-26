@@ -1,0 +1,124 @@
+<!doctype html>
+<html lang="es">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<title>Tasainmuebles — Mobile v0</title>
+<link rel="stylesheet" href="tokens.css">
+<style>
+  html, body { margin: 0; padding: 0; background: #f0eee9; font-family: 'Manrope', system-ui, sans-serif; }
+  .canvas-intro {
+    padding: 28px 32px 8px;
+    max-width: 760px;
+    color: #2a251f;
+    font-family: 'Manrope', system-ui, sans-serif;
+  }
+  .canvas-intro h1 { font-size: 28px; font-weight: 800; letter-spacing: -0.02em; margin: 0 0 6px; }
+  .canvas-intro .meta { font-size: 13px; color: rgba(60,50,40,0.6); margin-bottom: 14px; }
+  .canvas-intro p { font-size: 14px; line-height: 1.55; color: rgba(60,50,40,0.85); margin: 0 0 8px; }
+  .system-row {
+    display: flex; flex-wrap: wrap; gap: 8px; margin-top: 14px; font-size: 12px;
+  }
+  .swatch {
+    display: inline-flex; align-items: center; gap: 6px;
+    background: #fff; padding: 6px 10px 6px 6px; border-radius: 999px;
+    box-shadow: 0 1px 2px rgba(0,0,0,0.05);
+  }
+  .swatch i { width: 16px; height: 16px; border-radius: 50%; display: inline-block; }
+</style>
+</head>
+<body>
+
+<div class="canvas-intro">
+  <h1>Tasainmuebles — Mobile v0</h1>
+  <div class="meta">MVP Hito 1 · 22 pantallas + estados · 14 may 2026</div>
+  <p>
+    Primera pasada del prototipo mobile. Respeta la maqueta de WhatsApp:
+    <b>coral</b> como acción primaria, <b>navy</b> con patrón de mapa para cards informativas,
+    paleta de estado (mint/mustard/info) consistente con badges,
+    iconografía línea-fina estilo Lucide, tipografía Manrope.
+  </p>
+  <p>
+    Las ilustraciones de modales son <b>placeholders línea-fina</b> con el mismo lenguaje visual de la maqueta
+    (blob coral + mano con manga verde mint) — sustituibles por las ilustraciones finales sin cambios de layout.
+    La mascota Robotomus está incluida como branding del módulo IA.
+  </p>
+  <div class="system-row">
+    <span class="swatch"><i style="background:#F87171"></i>coral · #F87171</span>
+    <span class="swatch"><i style="background:#2A3140"></i>navy · #2A3140</span>
+    <span class="swatch"><i style="background:#10B981"></i>mint · #10B981</span>
+    <span class="swatch"><i style="background:#FBBF24"></i>mustard · #FBBF24</span>
+    <span class="swatch"><i style="background:#60A5FA"></i>info · #60A5FA</span>
+    <span class="swatch"><i style="background:#F4F5F8;border:1px solid #E5E7EB"></i>bg · #F4F5F8</span>
+    <span class="swatch">Manrope · 400 / 500 / 600 / 700 / 800</span>
+  </div>
+</div>
+
+<div id="root"></div>
+
+<script src="https://unpkg.com/react@18.3.1/umd/react.development.js" integrity="sha384-hD6/rw4ppMLGNu3tX5cjIb+uRZ7UkRJ6BPkLpg4hAu/6onKUg4lLsHAs9EBPT82L" crossorigin="anonymous"></script>
+<script src="https://unpkg.com/react-dom@18.3.1/umd/react-dom.development.js" integrity="sha384-u6aeetuaXnQ38mYT8rp6sbXaQe3NL9t+IBXmnYxwkUI2Hw4bsp2Wvmx4yRQF1uAm" crossorigin="anonymous"></script>
+<script src="https://unpkg.com/@babel/standalone@7.29.0/babel.min.js" integrity="sha384-m08KidiNqLdpJqLq95G/LEi8Qvjl/xUYll3QILypMoQ65QorJ9Lvtp2RXYGBFj1y" crossorigin="anonymous"></script>
+
+<script type="text/babel" src="design-canvas.jsx"></script>
+<script type="text/babel" src="components.jsx"></script>
+<script type="text/babel" src="screens-1.jsx"></script>
+<script type="text/babel" src="screens-2.jsx"></script>
+<script type="text/babel" src="screens-3.jsx"></script>
+
+<script type="text/babel">
+const ABW = 410;
+const ABH = 800;
+
+function App() {
+  return (
+    <DesignCanvas>
+
+      <DCSection id="auth" title="Onboarding & Autenticación" subtitle="Splash · Bienvenida bifurcada · Login tasador · Registro B2C">
+        <DCArtboard id="splash" label="01 · Splash" width={ABW} height={ABH}><ScreenSplash/></DCArtboard>
+        <DCArtboard id="bienvenida" label="02 · Bienvenida bifurcada" width={ABW} height={ABH}><ScreenBienvenida/></DCArtboard>
+        <DCArtboard id="login" label="03 · Login tasador" width={ABW} height={ABH}><ScreenLogin/></DCArtboard>
+        <DCArtboard id="registro" label="04 · Autoregistro B2C" width={ABW} height={ABH}><ScreenRegistro/></DCArtboard>
+      </DCSection>
+
+      <DCSection id="tasador" title="Tasador profesional · Núcleo del MVP" subtitle="Home con KPIs + listado · Nueva tasación con acordeones (6 secciones)">
+        <DCArtboard id="home" label="05 · Mis Tasaciones (home)" width={ABW} height={ABH}><ScreenMisTasaciones/></DCArtboard>
+        <DCArtboard id="nueva-motivo" label="06–07 · Nueva · Motivo" width={ABW} height={ABH}><ScreenNueva section="motivo"/></DCArtboard>
+        <DCArtboard id="nueva-ubic" label="08 · Nueva · Ubicación" width={ABW} height={ABH}><ScreenNueva section="ubicacion"/></DCArtboard>
+        <DCArtboard id="nueva-solic" label="09 · Nueva · Solicitante" width={ABW} height={ABH}><ScreenNueva section="solicitante"/></DCArtboard>
+        <DCArtboard id="nueva-fotos" label="10 · Nueva · Fotos" width={ABW} height={ABH}><ScreenNueva section="fotos"/></DCArtboard>
+        <DCArtboard id="nueva-det" label="11 · Nueva · Detalles" width={ABW} height={ABH}><ScreenNueva section="detalles"/></DCArtboard>
+        <DCArtboard id="nueva-desc" label="12 · Nueva · Descripción" width={ABW} height={ABH}><ScreenNueva section="descripcion"/></DCArtboard>
+      </DCSection>
+
+      <DCSection id="detalle" title="Detalle de tasación + Comité" subtitle="Tab Tasación · Tab Comité · Cerrar valor (sheet) · Compartir PDF">
+        <DCArtboard id="det-t" label="13 · Detalle · Tasación" width={ABW} height={ABH}><ScreenDetalleTasacion/></DCArtboard>
+        <DCArtboard id="det-c" label="14 · Detalle · Comité" width={ABW} height={ABH}><ScreenDetalleComite/></DCArtboard>
+        <DCArtboard id="cerrar" label="15 · Cerrar valor (sheet)" width={ABW} height={ABH}><ScreenCerrarValor/></DCArtboard>
+        <DCArtboard id="compartir" label="16 · Compartir / PDF" width={ABW} height={ABH}><ScreenCompartir/></DCArtboard>
+      </DCSection>
+
+      <DCSection id="modales" title="Modales transversales" subtitle="Feedback de acciones · ilustración placeholder consistente">
+        <DCArtboard id="m-edicion" label="17 · Edición exitosa" width={ABW} height={ABH}><ScreenModalEdicion/></DCArtboard>
+        <DCArtboard id="m-archivar" label="18 · Archivar" width={ABW} height={ABH}><ScreenModalArchivar/></DCArtboard>
+        <DCArtboard id="m-valoracion" label="19 · Valoración exitosa" width={ABW} height={ABH}><ScreenModalValoracion/></DCArtboard>
+        <DCArtboard id="m-alta" label="19b · Alta exitosa" width={ABW} height={ABH}><ScreenModalAlta/></DCArtboard>
+        <DCArtboard id="m-lista" label="19c · Lista para tasar" width={ABW} height={ABH}><ScreenModalLista/></DCArtboard>
+        <DCArtboard id="m-publicar" label="19d · Publicar" width={ABW} height={ABH}><ScreenModalPublicar/></DCArtboard>
+      </DCSection>
+
+      <DCSection id="b2c" title="Cliente B2C · Autotasador" subtitle="Home empty · Nueva tasación referencial · Resultado">
+        <DCArtboard id="b-home" label="20 · Mis tasaciones (empty)" width={ABW} height={ABH}><ScreenB2CHome/></DCArtboard>
+        <DCArtboard id="b-nueva" label="21 · Nueva tasación" width={ABW} height={ABH}><ScreenB2CNueva/></DCArtboard>
+        <DCArtboard id="b-res" label="22 · Resultado referencial" width={ABW} height={ABH}><ScreenB2CResultado/></DCArtboard>
+      </DCSection>
+
+    </DesignCanvas>
+  );
+}
+
+ReactDOM.createRoot(document.getElementById('root')).render(<App/>);
+</script>
+
+</body>
+</html>
