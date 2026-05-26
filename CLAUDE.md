@@ -78,6 +78,8 @@ Inicio → Geolocalizar → Datos básicos → Asistente IA (descripción) → F
 - **2026-05-14** — Reunión-01 (kickoff técnico). Transcripción completa en `analisis/reunion-01/transcript.txt`.
 - **2026-05-19** — Reunión-02 (refinamiento producto). Cerró decisiones clave: tipo de tasación dual venta+alquiler por default (DS-10), rentabilidad alquiler configurable (DS-09), Robotomus se mantiene como mock en MVP (DS-11), comité con propuestas individuales persistidas (DS-12). Transcripción en `analisis/reunion-02/transcript.txt`.
 - **2026-05-19** — **Migración del catálogo de requisitos a Notion.** 9 DBs bajo la página "Requisitos" son ahora source of truth. Los `.md` locales pre-migración quedan archivados en `analisis/archive/wiki-requisitos-pre-notion-2026-05-19/` como historia inmutable.
+- **2026-05-21** — Reunión-03 (impromptu con Sebastián, revisión de alcance). Introdujo modelo Entidad-Propiedad-Tasador (DS-02 refinado), padrón inmobiliario como ID canónico (DP-022), onboarding tasadores Fase 2 (DP-023), radios censales INDEC (Q14), competidor potencial mencionado en tercera persona. Transcripción en `analisis/reunion-03/transcript.txt`.
+- **2026-05-26** — Reunión-04 (revisión MVP demo + cierre de modelo de estados). Los 3 socios presentes. Demo en vivo de la app mobile funcionando (React Native + Expo + Supabase + Vercel). **Decisiones cerradas**: stack confirmado (DP-007), padrón inmobiliario canónico (DP-022), modelo de 4 estados Pendiente → En proceso → En comité → Completada (Q02), modelo de cobro y pasarela fuera-de-mobile por restricción Apple (DS-14). **Refinamientos**: DS-02 con 3 roles internos B2B (Admin/Tasador/Solicitante) + Entidad unipersonal, DS-12 con Planning Poker explícito, CU-UI-006 con flujo de auto-registro + aprobación, CU-UI-007 promovido de Fase 2 a MVP. **Nuevos artefactos**: 5 BR Software (BR-025 padrón + BR-026 a BR-029 transiciones de estado), RF-024 invitar tasadores, DP-024 algoritmo de asignación. **Identificado**: competidor local Jorge Sánchez (S-026, Ingeniero civil con cotizador automático para inmobiliarias). Transcripción en `analisis/reunion-04/transcript.txt`.
 - **2026-06-25 (Hito 1 — MVP demo Colegio)** — 6 semanas desde reunión-01. Demo intermedia funcional para el Colegio. El alcance del MVP está pensado contra esta fecha (no contra la fecha de cierre del acuerdo). Decisión confirmada por Franco el 2026-05-14.
 - **~2026-10-19 (Hito 2 — cierre acuerdo, estimado)** — Cierre formal del acuerdo de 6 meses con el Colegio. El MVP de las 6 semanas es la demo intermedia, no el entregable final. Entre Hito 1 y Hito 2 se ejecutan iteraciones que extienden el producto. **CONFIRMAR FECHA EXACTA.**
 
@@ -123,30 +125,33 @@ Objetivo: **~10 arquitectos completan un flujo "nueva tasación" end-to-end** so
 
 ---
 
-## 5. Stack técnico — **DECISIÓN PENDIENTE**
+## 5. Stack técnico — **CONFIRMADO en reunión-04 (2026-05-26)**
 
-> El stack final lo define Franco como CTO. Esta sección es un registro de candidatos e inputs, no una decisión.
+> Decisión registrada en Notion como **DP-007 (Decidida 2026-05-26)**. La decisión previa DP-S7 quedó como tombstone (duplicada conceptual del setup inicial).
 
-### Recomendación del PDF de Cocucci (`analisis/“Tasa Inmuebles…pdf`)
-- Frontend: React / Next.js + Material UI o Tailwind, dashboard responsive
-- Backend: Node.js / NestJS **o** Laravel
-- BD: PostgreSQL
-- IA: OpenAI API, OCR de imágenes, Google Maps para geolocalización
-- PDF: generador dinámico
-- Infra: AWS + (Supabase **o** Firebase)
+### Stack del MVP-6sem y Fase 2+
 
-### Restricciones / preferencias declaradas por Franco en reunión-01
-- Infra en **AWS**.
-- Repositorio en **GitLab** con CI/CD armado.
-- Sesgo fuerte a **open source** y herramientas gratuitas siempre que sea posible.
-- **Mobile-first** para el flujo del tasador (relevamiento en campo); web para dashboards de owner / banco (con versión mobile embebida).
-- Libertad para elegir framework y lenguaje.
+| Capa | Tecnología | Notas |
+|---|---|---|
+| **Mobile** | React Native + Expo | iOS + Android desde un solo codebase. |
+| **Backend (BaaS)** | Supabase | Postgres + Auth + Storage + API + Realtime + Row Level Security. |
+| **Frontend web** | Vercel | Hosting del dashboard web (admin de organizaciones). |
+| **BD** | Postgres (vía Supabase) | Schema versionado con migrations en `proyecto/codigo/tasainmuebles/supabase/migrations/`. |
+| **Lógica compleja** | Edge Functions (Deno/TS) + Postgres Functions | Para Fitt-Servini, Robotomus mock, validaciones, audit trail. Combinable con triggers de BD. |
+| **Distribución demo** | TestFlight (iOS) + APK directo (Android) | Requiere cuenta de developer Apple de Cocucci (ya disponible). |
+| **Pasarela de pagos** | Mercado Pago (DS-14) | **Fuera de app mobile** por restricción Apple — webhook + redirect + email con QR. |
+| **SMTP** | A decidir (DS-07 abierta) | Candidatos: Resend, Postmark. |
+| **Hosting de datos** | AWS (debajo de Supabase) | Supabase corre sobre AWS internamente — cumple la restricción "AWS" original de reunión-01. |
 
-### Pendiente decidir y registrar acá cuando se defina
-- Framework frontend final (Next.js vs alternativa).
-- Framework backend final (NestJS vs alternativa).
-- BaaS / Supabase vs stack custom sobre AWS.
-- Estrategia de datos (Inmoclick → Métricas → Robotomus): cómo se reconstruye la base intermedia y dónde corre el modelo.
+### Restricciones declaradas por Franco que se mantienen
+- Sesgo fuerte a **open source** y planes gratuitos.
+- **Mobile-first** para el flujo del tasador.
+- Repositorio versionado con git (en evaluación si va a GitLab o GitHub — el repo local actual usa `git init` simple desde 2026-05-19).
+
+### Subsistemas pendientes
+- **Robotomus** (motor IA real): pendiente Fase 2 dual-track. En MVP es mock (constante o promedio simple por tipo de inmueble, DS-11). Cuando arranque Fase 2, definir runtime: ¿Edge Function de Supabase o servicio separado en AWS Lambda?
+- **Métricas** (capa intermedia entre Inmoclick y Robotomus): a reconstruir en Fase 2 (DP-008). Probablemente vistas materializadas en Postgres + cron de refresh.
+- **Cobros** (módulo contable completo): pendiente Fase 2 (DS-14 cubre la pasarela; el reparto 90/10 al tasador post-cobro queda como sub-decisión).
 
 ---
 
