@@ -5,6 +5,8 @@
   "dependencies": {
     "@callstack/liquid-glass": "^0.7.1",
     "@expo/vector-icons": "^15.1.1",
+    "@react-native-async-storage/async-storage": "^3.1.0",
+    "@supabase/supabase-js": "^2.106.2",
     "expo": "~56.0.4",
     "expo-camera": "~56.0.7",
     "expo-constants": "~56.0.15",
@@ -22,6 +24,7 @@
     "react-native-safe-area-context": "~5.7.0",
     "react-native-screens": "4.25.2",
     "react-native-svg": "^15.15.5",
+    "react-native-url-polyfill": "^3.0.0",
     "react-native-worklets": "^0.8.3"
   },
   "devDependencies": {

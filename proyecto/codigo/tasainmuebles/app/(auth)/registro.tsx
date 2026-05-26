@@ -1,5 +1,6 @@
 import React, { useState } from 'react';
 import {
+  Alert,
   KeyboardAvoidingView,
   Platform,
   Pressable,
@@ -15,17 +16,73 @@ import { useRouter } from 'expo-router';
 import Button from '../../components/ui/Button';
 import Input from '../../components/ui/Input';
 import { colors, radius, spacing, typography } from '../../constants/tokens';
+import { useAuth } from '@/contexts/AuthContext';
+import { supabase } from '@/lib/supabase';
+
+function validarPassword(pwd: string): string | null {
+  if (pwd.length < 8) return 'La contraseña debe tener al menos 8 caracteres.';
+  if (!/[A-Z]/.test(pwd)) return 'La contraseña debe tener al menos una mayúscula.';
+  return null;
+}
+
+function traducirErrorRegistro(msg: string): string {
+  const m = msg.toLowerCase();
+  if (m.includes('already registered') || m.includes('user already'))
+    return 'Ya existe una cuenta con ese email. Intentá iniciar sesión.';
+  if (m.includes('invalid email')) return 'El email no es válido.';
+  if (m.includes('password')) return 'La contraseña no cumple los requisitos mínimos.';
+  if (m.includes('network')) return 'Sin conexión. Revisá tu internet.';
+  return msg;
+}
 
 export default function RegistroScreen() {
   const router = useRouter();
+  const { signUp } = useAuth();
   const [email, setEmail] = useState('');
   const [password, setPassword] = useState('');
   const [password2, setPassword2] = useState('');
   const [accept, setAccept] = useState(false);
+  const [submitting, setSubmitting] = useState(false);
 
-  const handleSubmit = () => {
-    if (!accept) return;
-    router.replace('/(b2c)/home');
+  const handleSubmit = async () => {
+    if (!accept || submitting) return;
+
+    const emailTrim = email.trim();
+    if (emailTrim.length === 0) {
+      Alert.alert('Falta el email', 'Ingresá un email válido.');
+      return;
+    }
+    const pwdError = validarPassword(password);
+    if (pwdError) {
+      Alert.alert('Contraseña inválida', pwdError);
+      return;
+    }
+    if (password !== password2) {
+      Alert.alert('Las contraseñas no coinciden', 'Repetí la misma contraseña en los dos campos.');
+      return;
+    }
+
+    setSubmitting(true);
+    const { error, userId } = await signUp(emailTrim, password, 'cliente_b2c');
+    if (error) {
+      setSubmitting(false);
+      Alert.alert('No pudimos crear tu cuenta', traducirErrorRegistro(error.message));
+      return;
+    }
+
+    // Persistir aceptación de Ley 25.326 en el profile (trigger ya lo creó).
+    if (userId) {
+      const { error: updErr } = await supabase
+        .from('profiles')
+        .update({ acepto_terminos_at: new Date().toISOString() })
+        .eq('id', userId);
+      if (updErr) {
+        console.warn('[registro] no se pudo persistir acepto_terminos_at:', updErr.message);
+      }
+    }
+
+    setSubmitting(false);
+    // El AuthProvider redirige automáticamente.
   };
 
   return (
@@ -104,12 +161,12 @@ export default function RegistroScreen() {
 
             <View style={styles.submitWrap}>
               <Button
-                variant={accept ? 'primary' : 'disabled'}
+                variant={accept && !submitting ? 'primary' : 'disabled'}
                 size="full"
                 onPress={handleSubmit}
-                disabled={!accept}
+                disabled={!accept || submitting}
               >
-                Crear cuenta
+                {submitting ? 'Creando cuenta…' : 'Crear cuenta'}
               </Button>
             </View>
           </View>

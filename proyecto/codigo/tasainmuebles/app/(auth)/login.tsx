@@ -1,5 +1,6 @@
 import { useState } from 'react';
 import {
+  Alert,
   KeyboardAvoidingView,
   Platform,
   Pressable,
@@ -13,18 +14,36 @@ import {
 import { useRouter } from 'expo-router';
 import { Feather } from '@expo/vector-icons';
 import { colors, radius, spacing, typography } from '../../constants/tokens';
+import { useAuth } from '@/contexts/AuthContext';
+
+function traducirErrorAuth(msg: string): string {
+  const m = msg.toLowerCase();
+  if (m.includes('invalid login credentials')) return 'Email o contraseña incorrectos.';
+  if (m.includes('email not confirmed')) return 'Tenés que confirmar tu email antes de ingresar.';
+  if (m.includes('network')) return 'Sin conexión. Revisá tu internet.';
+  return msg;
+}
 
 export default function LoginScreen() {
   const router = useRouter();
-  const [email, setEmail] = useState('m.barroso@tasainmuebles.ar');
+  const { signIn } = useAuth();
+  const [email, setEmail] = useState('');
   const [password, setPassword] = useState('');
   const [showPassword, setShowPassword] = useState(false);
   const [emailFocused, setEmailFocused] = useState(false);
   const [passwordFocused, setPasswordFocused] = useState(false);
+  const [submitting, setSubmitting] = useState(false);
 
-  function handleLogin() {
+  async function handleLogin() {
     if (email.trim().length === 0 || password.trim().length === 0) return;
-    router.replace('/(tasador)/home');
+    setSubmitting(true);
+    const { error } = await signIn(email.trim(), password);
+    setSubmitting(false);
+    if (error) {
+      Alert.alert('No pudimos ingresarte', traducirErrorAuth(error.message));
+      return;
+    }
+    // El AuthProvider redirige automáticamente al detectar la sesión + profile.
   }
 
   return (
@@ -105,14 +124,17 @@ export default function LoginScreen() {
         <TouchableOpacity
           style={[
             styles.btnPrimary,
-            email.trim().length === 0 || password.trim().length === 0
+            (email.trim().length === 0 || password.trim().length === 0 || submitting)
               ? styles.btnPrimaryDisabled
               : null,
           ]}
           onPress={handleLogin}
+          disabled={submitting || email.trim().length === 0 || password.trim().length === 0}
           activeOpacity={0.85}
         >
-          <Text style={styles.btnPrimaryText}>Iniciar sesión</Text>
+          <Text style={styles.btnPrimaryText}>
+            {submitting ? 'Ingresando…' : 'Iniciar sesión'}
+          </Text>
         </TouchableOpacity>
 
         <View style={styles.dividerRow}>
