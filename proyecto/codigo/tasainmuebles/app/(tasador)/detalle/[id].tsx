@@ -19,9 +19,9 @@ import { colors, radius, spacing, typography } from '../../../constants/tokens';
 import {
   EstadoTasacion,
   MotivoTasacion,
-  SAMPLE_TASACIONES,
   TipoInmueble,
 } from '../../../types/tasacion';
+import { useTasacion } from '../../../hooks/useTasacion';
 
 const TIPO_LABELS: Record<TipoInmueble, string> = {
   casa: 'Casa',
@@ -84,6 +84,16 @@ function formatMoney(n: number): string {
   return n.toLocaleString('es-AR');
 }
 
+function formatFecha(iso: string | null | undefined): string {
+  if (!iso) return '';
+  const d = new Date(iso);
+  if (isNaN(d.getTime())) return '';
+  const dd = String(d.getDate()).padStart(2, '0');
+  const mm = String(d.getMonth() + 1).padStart(2, '0');
+  const yyyy = d.getFullYear();
+  return `${dd}/${mm}/${yyyy}`;
+}
+
 function DetailField({ label, value }: { label: string; value: string }) {
   return (
     <View style={styles.detailField}>
@@ -144,7 +154,28 @@ export default function DetalleScreen() {
   const router = useRouter();
   const [tab, setTab] = useState<'tasacion' | 'comite'>('tasacion');
   const [editSuccess, setEditSuccess] = useState(false);
-  const tasacion = SAMPLE_TASACIONES.find((t) => t.id === id);
+  const { tasacion, loading } = useTasacion(id);
+
+  if (loading) {
+    return (
+      <SafeAreaView style={styles.root} edges={['top']}>
+        <View style={styles.appBar}>
+          <Pressable
+            onPress={() => router.back()}
+            style={styles.backBtn}
+            accessibilityRole="button"
+          >
+            <Feather name="arrow-left" size={20} color={colors.text} />
+          </Pressable>
+          <Text style={styles.appBarTitle}>Tasación</Text>
+          <View style={styles.appBarSpacer} />
+        </View>
+        <View style={styles.notFound}>
+          <Text style={styles.notFoundTitle}>Cargando…</Text>
+        </View>
+      </SafeAreaView>
+    );
+  }
 
   if (!tasacion) {
     return (
@@ -161,14 +192,25 @@ export default function DetalleScreen() {
     );
   }
 
-  const badge = ESTADO_BADGE[tasacion.estado];
-  const progress = ESTADO_PROGRESS[tasacion.estado];
-  const motivoLow = MOTIVO_LABELS[tasacion.motivo];
-  const tipoLabel = TIPO_LABELS[tasacion.tipo];
-  const motivoTitle = MOTIVO_LABELS_TITLE[tasacion.motivo];
-  const partes = tasacion.domicilio.split(',');
-  const calle = partes[0]?.trim() || tasacion.domicilio;
-  const ciudad = partes[1]?.trim() || tasacion.domicilio;
+  const estado = tasacion.estado as EstadoTasacion;
+  const motivo = tasacion.motivo as MotivoTasacion;
+  const tipo = tasacion.tipo as TipoInmueble;
+  const badge = ESTADO_BADGE[estado] ?? ESTADO_BADGE.borrador;
+  const progress = ESTADO_PROGRESS[estado] ?? 0;
+  const motivoLow = MOTIVO_LABELS[motivo] ?? '';
+  const tipoLabel = TIPO_LABELS[tipo] ?? '';
+  const motivoTitle = MOTIVO_LABELS_TITLE[motivo] ?? '';
+  const domicilio = tasacion.domicilio ?? '';
+  const partes = domicilio.split(',');
+  const calle = partes[0]?.trim() || domicilio;
+  const ciudad = partes[1]?.trim() || domicilio;
+  const fecha = formatFecha(tasacion.created_at);
+  const valorARS = tasacion.valor_ars ?? 0;
+  const valorUSD = tasacion.valor_usd ?? 0;
+  const nombreSolicitante = tasacion.solicitante
+    ? `${tasacion.solicitante.nombre ?? ''} ${tasacion.solicitante.apellido ?? ''}`.trim()
+    : '—';
+  const numero = tasacion.numero;
 
   return (
     <SafeAreaView style={styles.root} edges={['top']}>
@@ -181,7 +223,7 @@ export default function DetalleScreen() {
         >
           <Feather name="arrow-left" size={20} color={colors.text} />
         </Pressable>
-        <Text style={styles.appBarTitle}>Tasación {tasacion.id}</Text>
+        <Text style={styles.appBarTitle}>Tasación {numero}</Text>
         <View style={styles.appBarSpacer} />
       </View>
 
@@ -226,18 +268,18 @@ export default function DetalleScreen() {
             <View style={styles.grid}>
               <View style={styles.gridCol}>
                 <DetailField
-                  label={`Tasación ${tasacion.id}`}
-                  value={tasacion.domicilio}
+                  label={`Tasación ${numero}`}
+                  value={domicilio}
                 />
               </View>
               <View style={styles.gridCol}>
-                <DetailField label="Fecha alta" value={tasacion.fecha} />
+                <DetailField label="Fecha alta" value={fecha} />
               </View>
               <View style={styles.gridCol}>
                 <DetailField label="Tipo de inmueble" value={tipoLabel} />
               </View>
               <View style={styles.gridCol}>
-                <DetailField label="Referente" value={tasacion.tasador} />
+                <DetailField label="Referente" value={nombreSolicitante} />
               </View>
               <View style={styles.gridCol}>
                 <DetailField label="Domicilio" value={ciudad} />
@@ -252,13 +294,13 @@ export default function DetalleScreen() {
               <View style={styles.valorCol}>
                 <Text style={styles.valorLabel}>VALOR EN AR$</Text>
                 <Text style={styles.valorAmount}>
-                  $ {formatMoney(tasacion.valorARS)}
+                  $ {formatMoney(valorARS)}
                 </Text>
               </View>
               <View style={styles.valorCol}>
                 <Text style={styles.valorLabel}>VALOR EN USD</Text>
                 <Text style={styles.valorAmount}>
-                  US$ {formatMoney(tasacion.valorUSD)}
+                  US$ {formatMoney(valorUSD)}
                 </Text>
               </View>
             </View>
@@ -334,7 +376,7 @@ export default function DetalleScreen() {
               Tasación para {motivoLow} en {calle}.
             </Text>
             <Text style={styles.comiteSubtitle}>
-              Referente: {tasacion.tasador}
+              Referente: {nombreSolicitante}
             </Text>
 
             <View style={styles.miniBtnsRow}>
@@ -432,7 +474,7 @@ export default function DetalleScreen() {
         visible={editSuccess}
         onClose={() => setEditSuccess(false)}
         title="Tasación editada exitosamente"
-        subtitle={`Los datos de la tasación #${tasacion.id} fueron actualizados.`}
+        subtitle={`Los datos de la tasación #${numero} fueron actualizados.`}
         illustration="check"
         primaryLabel="Ver tasación"
         onPrimary={() => setEditSuccess(false)}

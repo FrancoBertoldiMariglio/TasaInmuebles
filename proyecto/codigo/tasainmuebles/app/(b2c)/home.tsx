@@ -1,18 +1,39 @@
 import React from 'react';
-import { ScrollView, StyleSheet, Text, View } from 'react-native';
+import { Alert, ScrollView, StyleSheet, Text, View } from 'react-native';
 import { SafeAreaView } from 'react-native-safe-area-context';
 import { Feather } from '@expo/vector-icons';
 import { useRouter } from 'expo-router';
 import BrandBar from '../../components/brand/BrandBar';
 import Button from '../../components/ui/Button';
 import { colors, radius, spacing, typography } from '../../constants/tokens';
+import { useAuth } from '@/contexts/AuthContext';
 
 export default function B2CHomeScreen() {
   const router = useRouter();
+  const { profile, signOut } = useAuth();
+  const userInitial = (profile?.nombre?.charAt(0) ?? profile?.email?.charAt(0) ?? 'C').toUpperCase();
+
+  function abrirMenuCuenta() {
+    Alert.alert(
+      profile?.email ?? 'Mi cuenta',
+      '¿Qué querés hacer?',
+      [
+        { text: 'Cancelar', style: 'cancel' },
+        {
+          text: 'Cerrar sesión',
+          style: 'destructive',
+          onPress: () => {
+            void signOut();
+          },
+        },
+      ],
+      { cancelable: true },
+    );
+  }
 
   return (
     <SafeAreaView style={styles.safe} edges={['top']}>
-      <BrandBar userName="C" />
+      <BrandBar userName={userInitial} onAvatarPress={abrirMenuCuenta} onMenuPress={abrirMenuCuenta} />
 
       <ScrollView
         contentContainerStyle={styles.scroll}

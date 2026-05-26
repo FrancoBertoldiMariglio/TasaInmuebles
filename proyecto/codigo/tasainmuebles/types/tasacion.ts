@@ -60,6 +60,7 @@ export interface DetalleInmueble {
   amenities: string[];
 }
 
+/** @deprecated solo mock B2C — el flujo tasador ahora usa Supabase */
 export const SAMPLE_TASACIONES: Tasacion[] = [
   {
     id: '1578',

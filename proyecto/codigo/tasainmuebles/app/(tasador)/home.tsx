@@ -1,5 +1,6 @@
 import React, { useState, useMemo } from 'react';
 import {
+  Alert,
   View,
   Text,
   ScrollView,
@@ -8,13 +9,17 @@ import {
   StyleSheet,
   Platform,
   StatusBar,
+  RefreshControl,
 } from 'react-native';
+import { useAuth } from '@/contexts/AuthContext';
 import { Feather } from '@expo/vector-icons';
 import { useRouter } from 'expo-router';
 import { useSafeAreaInsets } from 'react-native-safe-area-context';
 
 import { colors, radius, spacing, typography, shadows } from '@/constants/tokens';
-import { SAMPLE_TASACIONES, EstadoTasacion, Tasacion } from '@/types/tasacion';
+import { EstadoTasacion } from '@/types/tasacion';
+import { useTasaciones } from '@/hooks/useTasaciones';
+import { TasacionConSolicitante } from '@/lib/queries/tasaciones';
 import { LiquidGlassView } from '@callstack/liquid-glass';
 import { useGlassSupport } from '@/hooks/useGlassSupport';
 
@@ -48,7 +53,7 @@ const ESTADO_BADGE: Record<EstadoTasacion, { bg: string; text: string; label: st
   compartida: { bg: colors.mintSoft,     text: colors.mint,    label: 'Compartida'  },
 };
 
-function matchesTab(t: Tasacion, tab: TabId): boolean {
+function matchesTab(t: TasacionConSolicitante, tab: TabId): boolean {
   if (tab === 'todas') return true;
   if (tab === 'pendientes') return t.estado === 'a_tasar' || t.estado === 'a_editar';
   if (tab === 'sin_asignar') return t.estado === 'borrador';
@@ -56,15 +61,33 @@ function matchesTab(t: Tasacion, tab: TabId): boolean {
   return true;
 }
 
-function matchesQuery(t: Tasacion, query: string): boolean {
+function matchesQuery(t: TasacionConSolicitante, query: string): boolean {
   if (!query.trim()) return true;
   const q = query.toLowerCase();
+  const nombre = t.solicitante?.nombre?.toLowerCase() ?? '';
+  const apellido = t.solicitante?.apellido?.toLowerCase() ?? '';
+  const domicilio = (t.domicilio ?? '').toLowerCase();
+  const numero = String(t.numero ?? '');
   return (
-    t.id.toLowerCase().includes(q) ||
-    t.solicitante.nombre.toLowerCase().includes(q) ||
-    t.solicitante.apellido.toLowerCase().includes(q) ||
-    t.domicilio.toLowerCase().includes(q)
+    numero.includes(q) ||
+    nombre.includes(q) ||
+    apellido.includes(q) ||
+    domicilio.includes(q)
   );
+}
+
+function formatNumero(n: number | null | undefined): string {
+  return String(n ?? 0).padStart(4, '0');
+}
+
+function formatFecha(iso: string | null | undefined): string {
+  if (!iso) return '';
+  const d = new Date(iso);
+  if (isNaN(d.getTime())) return '';
+  const dd = String(d.getDate()).padStart(2, '0');
+  const mm = String(d.getMonth() + 1).padStart(2, '0');
+  const yyyy = d.getFullYear();
+  return `${dd}/${mm}/${yyyy}`;
 }
 
 // ─── KPI Card ──────────────────────────────────────────────────────────────
@@ -122,6 +145,27 @@ function KpiCard({ label, value, color, icon, onPress }: KpiCardProps) {
 
 function BrandBar() {
   const insets = useSafeAreaInsets();
+  const { profile, signOut } = useAuth();
+  const initial = (profile?.nombre?.charAt(0) ?? profile?.email?.charAt(0) ?? 'T').toUpperCase();
+
+  function abrirMenuCuenta() {
+    Alert.alert(
+      profile?.email ?? 'Mi cuenta',
+      '¿Qué querés hacer?',
+      [
+        { text: 'Cancelar', style: 'cancel' },
+        {
+          text: 'Cerrar sesión',
+          style: 'destructive',
+          onPress: () => {
+            void signOut();
+          },
+        },
+      ],
+      { cancelable: true },
+    );
+  }
+
   return (
     <View style={[styles.brandBar, { paddingTop: insets.top + 8 }]}>
       {/* Logo */}
@@ -139,13 +183,24 @@ function BrandBar() {
           <View style={styles.brandBadge} />
         </TouchableOpacity>
 
-        <TouchableOpacity style={styles.brandIconBtn} activeOpacity={0.7}>
+        <TouchableOpacity
+          style={styles.brandIconBtn}
+          activeOpacity={0.7}
+          onPress={abrirMenuCuenta}
+          accessibilityLabel="Más opciones"
+        >
           <Feather name="more-vertical" size={18} color={colors.white} />
         </TouchableOpacity>
 
-        {/* Avatar */}
-        <TouchableOpacity style={styles.brandAvatar} activeOpacity={0.8}>
-          <Text style={styles.brandAvatarText}>F</Text>
+        {/* Avatar — tap o long-press para abrir menú de cuenta */}
+        <TouchableOpacity
+          style={styles.brandAvatar}
+          activeOpacity={0.8}
+          onPress={abrirMenuCuenta}
+          onLongPress={abrirMenuCuenta}
+          accessibilityLabel="Mi cuenta"
+        >
+          <Text style={styles.brandAvatarText}>{initial}</Text>
         </TouchableOpacity>
       </View>
     </View>
@@ -158,15 +213,16 @@ export default function TasadorHome() {
   const router  = useRouter();
   const [tab, setTab]       = useState<TabId>('todas');
   const [query, setQuery]   = useState('');
+  const { tasaciones, loading, error, refetch } = useTasaciones();
 
   // KPI counts
-  const countAEditar  = SAMPLE_TASACIONES.filter((t) => t.estado === 'a_editar').length;
-  const countATasar   = SAMPLE_TASACIONES.filter((t) => t.estado === 'a_tasar').length;
-  const countAPublicar= SAMPLE_TASACIONES.filter((t) => t.estado === 'tasada').length;
+  const countAEditar  = tasaciones.filter((t) => t.estado === 'a_editar').length;
+  const countATasar   = tasaciones.filter((t) => t.estado === 'a_tasar').length;
+  const countAPublicar= tasaciones.filter((t) => t.estado === 'tasada').length;
 
   const filtered = useMemo(
-    () => SAMPLE_TASACIONES.filter((t) => matchesTab(t, tab) && matchesQuery(t, query)),
-    [tab, query],
+    () => tasaciones.filter((t) => matchesTab(t, tab) && matchesQuery(t, query)),
+    [tasaciones, tab, query],
   );
 
   function handleKpiPress(filterTab: TabId) {
@@ -174,8 +230,12 @@ export default function TasadorHome() {
     setQuery('');
   }
 
-  function handleRowPress(tasacion: Tasacion) {
-    router.push(`/detalle/${tasacion.id}`);
+  function handleRowPress(tasacion: TasacionConSolicitante) {
+    router.push(`/detalle/${tasacion.id}` as any);
+  }
+
+  if (error) {
+    console.error('[home] Error cargando tasaciones:', error);
   }
 
   return (
@@ -189,7 +249,19 @@ export default function TasadorHome() {
         contentContainerStyle={styles.scrollContent}
         showsVerticalScrollIndicator={false}
         keyboardShouldPersistTaps="handled"
+        refreshControl={
+          <RefreshControl refreshing={loading} onRefresh={refetch} />
+        }
       >
+        {error ? (
+          <View style={styles.errorBanner}>
+            <Feather name="alert-circle" size={16} color={colors.white} />
+            <Text style={styles.errorBannerText}>
+              Error al cargar tasaciones. Tirá para recargar.
+            </Text>
+          </View>
+        ) : null}
+
         {/* Section title */}
         <Text style={styles.sectionTitle}>Tasaciones</Text>
 
@@ -277,16 +349,31 @@ export default function TasadorHome() {
           </View>
 
           {/* Table rows */}
-          {filtered.length === 0 ? (
+          {loading && tasaciones.length === 0 ? (
+            <View>
+              {[0, 1, 2, 3, 4].map((i) => (
+                <View key={i} style={styles.skeletonRow} />
+              ))}
+            </View>
+          ) : tasaciones.length === 0 ? (
+            <View style={styles.emptyState}>
+              <Feather name="inbox" size={32} color={colors.muted} />
+              <Text style={styles.emptyText}>
+                Todavía no tenés tasaciones · tocá el + para crear la primera
+              </Text>
+            </View>
+          ) : filtered.length === 0 ? (
             <View style={styles.emptyState}>
               <Feather name="inbox" size={32} color={colors.muted} />
               <Text style={styles.emptyText}>Sin resultados</Text>
             </View>
           ) : (
             filtered.map((t, idx) => {
-              const badge   = ESTADO_BADGE[t.estado] ?? ESTADO_BADGE.borrador;
+              const badge   = ESTADO_BADGE[t.estado as EstadoTasacion] ?? ESTADO_BADGE.borrador;
               const isLast  = idx === filtered.length - 1;
               const isEven  = idx % 2 === 0;
+              const nombre = t.solicitante?.nombre ?? '';
+              const apellido = t.solicitante?.apellido ?? '';
               return (
                 <TouchableOpacity
                   key={t.id}
@@ -299,11 +386,13 @@ export default function TasadorHome() {
                   activeOpacity={0.72}
                 >
                   <Text style={[styles.tableCell, styles.colId, styles.cellId]}>
-                    #{t.id}
+                    #{formatNumero(t.numero)}
                   </Text>
-                  <Text style={[styles.tableCell, styles.colFecha]}>{t.fecha}</Text>
+                  <Text style={[styles.tableCell, styles.colFecha]}>
+                    {formatFecha(t.created_at)}
+                  </Text>
                   <Text style={[styles.tableCell, styles.colUsuario]} numberOfLines={1}>
-                    {t.solicitante.nombre} {t.solicitante.apellido}
+                    {nombre} {apellido}
                   </Text>
                   <View style={styles.colEstado}>
                     <View style={[styles.badge, { backgroundColor: badge.bg }]}>
@@ -630,6 +719,32 @@ const styles = StyleSheet.create({
   badgeText: {
     fontSize: typography.sizes.xs,
     fontWeight: typography.weights.semibold,
+  },
+
+  // Skeleton
+  skeletonRow: {
+    height: 40,
+    marginVertical: 4,
+    borderRadius: radius.sm,
+    backgroundColor: colors.bg2,
+  },
+
+  // Error banner
+  errorBanner: {
+    flexDirection: 'row',
+    alignItems: 'center',
+    gap: spacing.sm,
+    backgroundColor: colors.coral,
+    borderRadius: radius.md,
+    paddingHorizontal: spacing.md,
+    paddingVertical: spacing.sm,
+    marginTop: spacing.md,
+  },
+  errorBannerText: {
+    color: colors.white,
+    fontSize: typography.sizes.sm,
+    fontWeight: typography.weights.semibold,
+    flex: 1,
   },
 
   // Empty
